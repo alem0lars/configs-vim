@@ -39,11 +39,11 @@
 end -%>
 " ─────────────────────────────────────────────────────────────────────────────┘
 
-if has('vim_starting')
-  let &runtimepath.=','.escape(expand('<%= local! :dein_dir %>'), '\,')
+if has("vim_starting")
+  let &runtimepath.=",".escape(expand("<%= local! :dein_dir %>"), "\,")
 endif
 
-call dein#begin(expand('~/.cache/dein'))
+call dein#begin(expand("~/.cache/dein"))
 
 " TODO: Add plugins.
 " call dein#add('Shougo/neocomplete.vim')
