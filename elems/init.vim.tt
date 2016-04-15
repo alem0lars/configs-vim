@@ -34,27 +34,25 @@
 " ─────────────────────────────────────────────────────────────────────────────┐
 " Utility functions ───────────────────────────────────────────────────────────┤
 
-function! RC_has_vimrc_test()
-  return filereadable(expand('~/.vimrc-test.vim'))
+function! s:has_vimrc_test()
+  return filereadable(expand("~/.vimrc-test.vim"))
 endfunction
 
-function! RC_source_vimrc_test()
-  exe 'source ' . expand('~/.vimrc-test.vim')
+function! s:source_vimrc_test()
+  exe "source " . expand("~/.vimrc-test.vim")
 endfunction
 
-function! RC_source(path)
-  let l:path = expand("%:p:h" . path)
-  if l:path !~# '.*\.disabled$'
+function! s:source_rc(rel_path)
+  let l:path = expand("%:p:h") . "/" . a:rel_path
+  if l:path !~# ".*\.disabled$"
     if isdirectory(l:path)
-      for l:file_path in split(globpath(l:path, '*.vim'), '\n')
-        exe 'source ' . l:file_path
+      for l:file_path in split(globpath(l:path, "*.vim"), "\n")
+        exe "source " . l:file_path
       endfor
     elseif filereadable(l:path)
-      exe 'source ' . l:path
-    elseif filereadable(l:path . '.vim')
-      exe 'source ' . l:path . '.vim'
-    elseif filereadable(l:path . '.nvim') && has('nvim')
-      exe 'source ' . l:path . '.nvim'
+      exe "source " . l:path
+    elseif filereadable(l:path . ".vim")
+      exe "source " . l:path . ".vim"
     else
       echoerr string('Failed to load ' . l:path)
     end
@@ -76,11 +74,11 @@ if !has('nvim')
   endif
 endif
 
-if RC_has_vimrc_test()
-  call RC_source_vimrc_test()
+if s:has_vimrc_test()
+  call s:source_vimrc_test()
 else
-  call RC_source('plugins')
-  call RC_source('core')
+  call s:source_rc('plugins')
+  call s:source_rc('core')
 endif
 
 " ─────────────────────────────────────────────────────────────────────────────┘

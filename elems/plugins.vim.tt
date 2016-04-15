@@ -33,7 +33,7 @@
 <% define_locals do
   variable :"vim.plugins_dir", as: :plugins_dir, type: :directory
 
-  computed(:dein_dir, type: :directory, strict: true) do
+  computed(:dein_dir, type: :directory) do
     local!(:plugins_dir).join(*%w(repos github.com Shougo dein.vim))
   end
 end -%>

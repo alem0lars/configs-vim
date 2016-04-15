@@ -32,7 +32,7 @@
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 " ──────────────────────────────────────────────────────────────── Functions ──┐
-function s:get_fold_header
+function! s:get_fold_header()
   let numlines_folded = v:foldend - v:foldstart + 1
   let line_num = v:foldstart
   let firstline = getline(v:foldstart)
@@ -76,7 +76,7 @@ set foldminlines=0
 set foldnestmax=3
 " An expression which is used to specify the text displayed for a closed
 " fold.
-set foldtext=s:foldtext()
+set foldtext=s:get_fold_header()
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 " vim: set filetype=eruby.vim :
