@@ -1,0 +1,7 @@
+vim:
+  plugins_dir: "<%= xdg_config_home(:neovim).join("plugins") %>"
+
+features:
+  - neovim
+
+# vim: set filetype=eruby.yaml :

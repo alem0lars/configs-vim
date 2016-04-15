@@ -1,0 +1,88 @@
+" ─────────────────────────────────────────────────────────────────────────────┐
+"                                                                              │
+" File informations:                                                           │
+" - Name:    elems/init.vim.tt                                                 │
+" - Summary: The Vim configuration entry point.                                │
+" - Authors:                                                                   │
+"   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              │
+"                                                                              │
+" Project informations:                                                        │
+"   - Homepage:        https://github.com/alem0lars/configs-vim                │
+"   - Getting started: see README.md in the project root folder                │
+"                                                                              │
+" License: Apache v2.0 (see below)                                             │
+"                                                                              │
+" ─────────────────────────────────────────────────────────────────────────────┤
+"                                                                              │
+" Licensed to the Apache Software Foundation (ASF) under one more contributor  │
+" license agreements.  See the NOTICE file distributed with this work for      │
+" additional information regarding copyright ownership. The ASF licenses this  │
+" file to you under the Apache License, Version 2.0 (the "License"); you may   │
+" not use this file except in compliance with the License.                     │
+" You may obtain a copy of the License at                                      │
+"                                                                              │
+"   http://www.apache.org/licenses/LICENSE-2.0                                 │
+"                                                                              │
+" Unless required by applicable law or agreed to in writing, software          │
+" distributed under the License is distributed on an "AS IS" BASIS, WITHOUT    │
+" WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.             │
+" See the License for the specific language governing permissions and          │
+" limitations under the License.                                               │
+"                                                                              │
+" ─────────────────────────────────────────────────────────────────────────────┘
+
+" ─────────────────────────────────────────────────────────────────────────────┐
+" Utility functions ───────────────────────────────────────────────────────────┤
+
+function! RC_has_vimrc_test()
+  return filereadable(expand('~/.vimrc-test.vim'))
+endfunction
+
+function! RC_source_vimrc_test()
+  exe 'source ' . expand('~/.vimrc-test.vim')
+endfunction
+
+function! RC_source(path)
+  let l:path = expand("%:p:h" . path)
+  if l:path !~# '.*\.disabled$'
+    if isdirectory(l:path)
+      for l:file_path in split(globpath(l:path, '*.vim'), '\n')
+        exe 'source ' . l:file_path
+      endfor
+    elseif filereadable(l:path)
+      exe 'source ' . l:path
+    elseif filereadable(l:path . '.vim')
+      exe 'source ' . l:path . '.vim'
+    elseif filereadable(l:path . '.nvim') && has('nvim')
+      exe 'source ' . l:path . '.nvim'
+    else
+      echoerr string('Failed to load ' . l:path)
+    end
+  else
+    echomsg string('Skipped loading of ' . l:path . ' because it is disabled')
+  end
+endfunction
+
+" ─────────────────────────────────────────────────────────────────────────────┤
+" Entry point ─────────────────────────────────────────────────────────────────┤
+
+" Skip initialization for vim-tiny or vim-small.
+if !1 | finish | endif
+
+" Disable vi-compatibility for vim (neovim already isn't compatible with vi).
+if !has('nvim')
+  if &compatible
+    set nocompatible
+  endif
+endif
+
+if RC_has_vimrc_test()
+  call RC_source_vimrc_test()
+else
+  call RC_source('plugins')
+  call RC_source('core')
+endif
+
+" ─────────────────────────────────────────────────────────────────────────────┘
+
+" vim: set filetype=eruby.vim :

@@ -1,0 +1,99 @@
+" ─────────────────────────────────────────────────────────────────────────────┐
+"                                                                              │
+" File informations:                                                           │
+" - Name:    elems/core/persistence.vim.tt                                     │
+" - Summary: Settings related to the vim persistence, i.e. how vim should      │
+"            store backups, swap files, views state, undo history, etc..       │
+" - Authors:                                                                   │
+"   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              │
+"                                                                              │
+" Project informations:                                                        │
+"   - Homepage:        https://github.com/alem0lars/configs-vim                │
+"   - Getting started: see README.md in the project root folder                │
+"                                                                              │
+" License: Apache v2.0 (see below)                                             │
+"                                                                              │
+" ─────────────────────────────────────────────────────────────────────────────┤
+"                                                                              │
+" Licensed to the Apache Software Foundation (ASF) under one more contributor  │
+" license agreements.  See the NOTICE file distributed with this work for      │
+" additional information regarding copyright ownership. The ASF licenses this  │
+" file to you under the Apache License, Version 2.0 (the "License"); you may   │
+" not use this file except in compliance with the License.                     │
+" You may obtain a copy of the License at                                      │
+"                                                                              │
+"   http://www.apache.org/licenses/LICENSE-2.0                                 │
+"                                                                              │
+" Unless required by applicable law or agreed to in writing, software          │
+" distributed under the License is distributed on an "AS IS" BASIS, WITHOUT    │
+" WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.             │
+" See the License for the specific language governing permissions and          │
+" limitations under the License.                                               │
+"                                                                              │
+" ─────────────────────────────────────────────────────────────────────────────┤
+<% define_locals do
+  prefixed(:"vim.") do
+    variable :backups_dir, type: :directory
+    variable :swaps_dir,   type: :directory
+    variable :views_dir,   type: :directory
+    variable :undos_dir,   type: :directory
+  end
+
+  computed(:history_size, type: :int) {8192}
+  computed(:undo_levels,  type: :int) {2048}
+  computed(:undo_lines,   type: :int) {10240}
+end -%>
+" ─────────────────────────────────────────────────────────────────────────────┘
+
+" ────────────────────────────────────────────────────────────────── Buffers ──┐
+" Allow unsaved background buffers and remember marks/undo for them.
+set hidden
+" When a file has been detected to have been changed outside of Vim and
+" it has not been changed inside of Vim, automatically read it again.
+set autoread
+" ───────────────────────────────────────────────────────────────── Commands ──┤
+" A history of ":" commands, and a history of previous search patterns
+" is remembered.
+" This option decides how many entries may be stored in each of these histories.
+set history=<%= local! :history_size %>
+" ────────────────────────────────────────────────────────────────── Backups ──┤
+" Enable files backups.
+set backup
+" Set the directory for saving files backups.
+set backupdir=<%= local! :backups_dir %>
+if !isdirectory("<%= local! :backups_dir %>")
+  call mkdir("<%= local! :backups_dir %>", "p")
+endif
+" ───────────────────────────────────────────────────────────────────── Swap ──┤
+" Set the directory for saving swap files.
+set directory=<%= local! :swaps_dir %>
+if !isdirectory("<%= local! :swaps_dir %>")
+  call mkdir("<%= local! :swaps_dir %>", "p")
+endif
+" ──────────────────────────────────────────────────────────────────── Views ──┤
+" Set the directory for saving views state.
+set viewdir=<%= local! :views_dir %>
+if !isdirectory("<%= local! :views_dir %>")
+  call mkdir("<%= local! :views_dir %>", "p")
+endif
+" When entering and exiting from a buffer load the view state.
+au BufWinLeave \* silent! mkview
+au BufWinEnter \* silent! loadview
+" ───────────────────────────────────────────────────────────────────── Undo ──┤
+" Set the directory for saving undos.
+set undodir=<%= local! :undos_dir %>
+if !isdirectory("<%= local! :undos_dir %>")
+  call mkdir("<%= local! :undos_dir %>", "p")
+endif
+" How many undos.
+set undolevels=<%= local! :undo_levels %>
+" Number of lines to save for undo.
+set undoreload=<%= local! :undo_lines %>
+" Automatically save undo history to an undo file when writing a buffer to a
+" file, and restore undo history from the same file on buffer read.
+set undofile
+" ────────────────────────────────────────────────────────────────── Session ──┤
+set sessionoptions+=tabpages,globals
+" ─────────────────────────────────────────────────────────────────────────────┘
+
+" vim: set filetype=eruby.vim :

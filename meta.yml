@@ -1,0 +1,19 @@
+commands:
+
+  - type: git_sync
+    repo: https://github.com/Shougo/dein.vim
+    dst:  "<%= get_var!(:"vim.plugins_dir", type: :directory).
+                   join(*%w(repos github.com Shougo dein.vim)) %>"
+    only:
+      features:
+        - neovim
+
+elems:
+
+  src: elems/neovim/(.+)$
+  dst: <%= xdg_config_home(:neovim) %>/<1>
+  only:
+    features:
+      - neovim
+
+# vim: set filetype=eruby.yaml :

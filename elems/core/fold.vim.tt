@@ -1,0 +1,82 @@
+" ─────────────────────────────────────────────────────────────────────────────┐
+"                                                                              │
+" File informations:                                                           │
+" - Name:    elems/core/fold.vim.tt                                            │
+" - Summary: Configure folding behaviour.                                      │
+" - Authors:                                                                   │
+"   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              │
+"                                                                              │
+" Project informations:                                                        │
+"   - Homepage:        https://github.com/alem0lars/configs-vim                │
+"   - Getting started: see README.md in the project root folder                │
+"                                                                              │
+" License: Apache v2.0 (see below)                                             │
+"                                                                              │
+" ─────────────────────────────────────────────────────────────────────────────┤
+"                                                                              │
+" Licensed to the Apache Software Foundation (ASF) under one more contributor  │
+" license agreements.  See the NOTICE file distributed with this work for      │
+" additional information regarding copyright ownership. The ASF licenses this  │
+" file to you under the Apache License, Version 2.0 (the "License"); you may   │
+" not use this file except in compliance with the License.                     │
+" You may obtain a copy of the License at                                      │
+"                                                                              │
+"   http://www.apache.org/licenses/LICENSE-2.0                                 │
+"                                                                              │
+" Unless required by applicable law or agreed to in writing, software          │
+" distributed under the License is distributed on an "AS IS" BASIS, WITHOUT    │
+" WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.             │
+" See the License for the specific language governing permissions and          │
+" limitations under the License.                                               │
+"                                                                              │
+" ─────────────────────────────────────────────────────────────────────────────┘
+
+" ──────────────────────────────────────────────────────────────── Functions ──┐
+function s:get_fold_header
+  let numlines_folded = v:foldend - v:foldstart + 1
+  let line_num = v:foldstart
+  let firstline = getline(v:foldstart)
+
+  let charline = matchstr(firstline, '^\s*\(<[^!]\|\w\+\)[^{}]*')
+
+  " Handle javadoc style comments, display the javadoc summary as the foldtext
+  if match(firstline, '^\s*\/\*\*') == 0
+    if match(firstline, '^\s*\/\*\*\s*$') == 0
+      let charline = substitute(getline(v:foldstart+1), '^\s*\**\s*', '(doc) ', '')
+      let charline = substitute(charline, '\..*$', '.', '')
+    else
+      let charline = substitute(firstline, '\s*\/\*\*\s*', '', '')
+    endif
+  else
+    " handle the special case of multiple single line comments
+    if match(firstline, '^\s*\/\/') == 0
+      if match(getline(v:foldend), '^\s*\/\/') == 0
+        let charline = substitute(firstline, '\s*\/*\s*', '', '')
+      endif
+    else
+      let charline = matchstr(firstline, '^\s*\(<[^!]\|\w\+\)[^{}]*')
+      while strlen(charline) == 0 && line_num < v:foldend
+        let line_num = line_num + 1
+        let charline = matchstr(getline(line_num), '^\s*\(<[^!]\|\w\+\)[^{}]*')
+      endw
+    endif
+  endif
+
+  let preamble = printf("[%d lines folded]:", numlines_folded)
+  return printf("%-20s%s", preamble, substitute(charline, '^\s*', '', ''))
+endfunction
+" ──────────────────────────────────────────────────────────── Configuration ──┤
+" Commands to open folds.
+set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
+" Create folds by the current syntax rules.
+set foldmethod=syntax
+" The number of screen lines above which a fold can be displayed closed.
+set foldminlines=0
+" Maximum nesting of folds.
+set foldnestmax=3
+" An expression which is used to specify the text displayed for a closed
+" fold.
+set foldtext=s:foldtext()
+" ─────────────────────────────────────────────────────────────────────────────┘
+
+" vim: set filetype=eruby.vim :
