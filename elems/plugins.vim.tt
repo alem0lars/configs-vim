@@ -39,15 +39,21 @@
 end -%>
 " ─────────────────────────────────────────────────────────────────────────────┘
 
-if has("vim_starting")
-  let &runtimepath.=",".escape(expand("<%= local! :dein_dir %>"), "\,")
+if has('vim_starting')
+  execute ' set runtimepath^=' . substitute(
+          \ fnamemodify('<%= local! :dein_dir %>', ':p') , '/$', '', '')
 endif
 
-call dein#begin(expand("~/.cache/dein"))
-
-" TODO: Add plugins.
-" call dein#add('Shougo/neocomplete.vim')
-
+call dein#begin(expand('~/.cache/dein'))
+" ───────────────────────────────────────────────────────────── Plugins list ──┐
+call dein#add('tpope/vim-repeat', {
+      \ 'lazy': 1,
+      \ 'on_map': '.'})
+call dein#add('tpope/vim-surround', {
+      \ 'lazy': 1,
+      \ 'depends': ['vim-repeat'],
+      \ 'on_map': ',cs'})
+" ─────────────────────────────────────────────────────────────────────────────┘
 call dein#end()
 call dein#save_state()
 
