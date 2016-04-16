@@ -45,7 +45,7 @@ if has('vim_starting')
 endif
 
 call dein#begin(expand('~/.cache/dein'))
-" ───────────────────────────────────────────────────────────── Plugins list ──┐
+" ──────────────────────────────────────────────────────── Plugins - Editing ──┐
 call dein#add('tpope/vim-repeat', {
       \ 'lazy': 1,
       \ 'on_map': '.',
@@ -59,6 +59,11 @@ call dein#add('tpope/vim-unimpaired', {
       \ 'lazy': 1,
       \ 'depends': ['vim-repeat'],
       \ 'on_map': ['[', ']'],
+      \ })
+call dein#add('tpope/vim-abolish', {
+      \ 'lazy': 1,
+      \ 'depends': ['vim-repeat'],
+      \ 'on_cmd': ['Abolish', 'Subvert', 'S'],
       \ })
 " ─────────────────────────────────────────────────────────────────────────────┘
 call dein#end()
