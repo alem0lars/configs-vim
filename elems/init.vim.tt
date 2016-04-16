@@ -29,6 +29,10 @@
 " See the License for the specific language governing permissions and          │
 " limitations under the License.                                               │
 "                                                                              │
+" ─────────────────────────────────────────────────────────────────────────────┤
+<% define_locals do
+  variable :"vim.base_dir", as: :base_dir, type: :directory
+end -%>
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 " ──────────────────────────────────────────────────────── Utility functions ──┐
@@ -46,7 +50,7 @@ endfunction
 " - A directory containing '*.vim' files.
 " - A path to a single file ('.vim' can be omitted).
 function! s:source_rc(rel_path)
-  let l:path = expand('%:p:h') . '/' . a:rel_path
+  let l:path = '<%= local! :base_dir %>/' . a:rel_path
   if l:path !~# '.*\.disabled$'
     if isdirectory(l:path)
       for l:file_path in split(globpath(l:path, '*.vim'), '\n')

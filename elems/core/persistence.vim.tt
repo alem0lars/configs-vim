@@ -33,10 +33,11 @@
 " ─────────────────────────────────────────────────────────────────────────────┤
 <% define_locals do
   prefixed(:"vim.") do
-    variable :backups_dir, type: :directory
-    variable :swaps_dir,   type: :directory
-    variable :views_dir,   type: :directory
-    variable :undos_dir,   type: :directory
+    variable :base_dir,    type: :directory
+    variable :backups_dir, type: :directory, default: local!(:base_dir).join("backups")
+    variable :swaps_dir,   type: :directory, default: local!(:base_dir).join("swaps")
+    variable :views_dir,   type: :directory, default: local!(:base_dir).join("views")
+    variable :undos_dir,   type: :directory, default: local!(:base_dir).join("undos")
   end
 
   computed(:history_size, type: :int) {8192}

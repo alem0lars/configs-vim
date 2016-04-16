@@ -1,9 +1,6 @@
 vim:
+  base_dir:    <%= xdg_config_home(:nvim) %>
   plugins_dir: <%= xdg_config_home(:nvim).join("plugins") %>
-  backups_dir: <%= xdg_config_home(:nvim).join("backups") %>
-  swaps_dir:   <%= xdg_config_home(:nvim).join("swaps") %>
-  views_dir:   <%= xdg_config_home(:nvim).join("views") %>
-  undos_dir:   <%= xdg_config_home(:nvim).join("undos") %>
 
 features:
   - neovim
