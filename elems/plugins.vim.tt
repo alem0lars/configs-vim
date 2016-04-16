@@ -65,6 +65,11 @@ call dein#add('tpope/vim-abolish', {
       \ 'depends': ['vim-repeat'],
       \ 'on_cmd': ['Abolish', 'Subvert', 'S'],
       \ })
+call dein#add('tpope/vim-speeddating', {
+      \ 'lazy': 1,
+      \ 'depends': ['vim-repeat'],
+      \ 'on_map': ['<C-A>', '<C-X>'],
+      \ })
 " ─────────────────────────────────────────────────────────────────────────────┘
 call dein#end()
 call dein#save_state()
