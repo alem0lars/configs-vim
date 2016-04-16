@@ -48,11 +48,18 @@ call dein#begin(expand('~/.cache/dein'))
 " ───────────────────────────────────────────────────────────── Plugins list ──┐
 call dein#add('tpope/vim-repeat', {
       \ 'lazy': 1,
-      \ 'on_map': '.'})
+      \ 'on_map': '.',
+      \ })
 call dein#add('tpope/vim-surround', {
       \ 'lazy': 1,
       \ 'depends': ['vim-repeat'],
-      \ 'on_map': ',cs'})
+      \ 'on_map': ',cs',
+      \ })
+call dein#add('tpope/vim-unimpaired', {
+      \ 'lazy': 1,
+      \ 'depends': ['vim-repeat'],
+      \ 'on_map': ['[', ']'],
+      \ })
 " ─────────────────────────────────────────────────────────────────────────────┘
 call dein#end()
 call dein#save_state()
