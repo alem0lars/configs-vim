@@ -1,8 +1,8 @@
 " ─────────────────────────────────────────────────────────────────────────────┐
 "                                                                              │
 " File informations:                                                           │
-" - Name:    elems/init.vim.tt                                                 │
-" - Summary: The vim configuration entry point.                                │
+" - Name:    elems/hooks/vim-multiple-cursors.vim.tt                           │
+" - Summary: Hooks for plugin `terryma/vim-multiple-cursors`.                  │
 " - Authors:                                                                   │
 "   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              │
 "                                                                              │
@@ -29,62 +29,12 @@
 " See the License for the specific language governing permissions and          │
 " limitations under the License.                                               │
 "                                                                              │
-" ─────────────────────────────────────────────────────────────────────────────┤
-<% define_locals do
-  variable :"vim.base_dir", as: :base_dir, type: :directory
-end -%>
 " ─────────────────────────────────────────────────────────────────────────────┘
 
-" ──────────────────────────────────────────────────────── Utility functions ──┐
-" Check if the testing vim configuration is available.
-function! s:has_vimrc_test() abort
-  return filereadable(expand("~/.vimrc-test.vim"))
+function! RC_multiple_cursors_hook_post_source() abort
+  " Highlight the virtual cursors and their visual selections.
+  highlight multiple_cursors_cursor term=reverse cterm=reverse gui=reverse
+  highlight link multiple_cursors_visual Visual
 endfunction
-" Load the testing vim configuration.
-function! s:source_vimrc_test() abort
-  exe "source " . expand("~/.vimrc-test.vim")
-endfunction
-" Load a configuration file providing a path relative to the base directory
-" of this file.
-" The relative path can be either:
-" - A directory containing '*.vim' files.
-" - A path to a single file ('.vim' can be omitted).
-function! s:source_rc(rel_path) abort
-  let l:path = '<%= local! :base_dir %>/' . a:rel_path
-  if l:path !~# '.*\.disabled$'
-    if isdirectory(l:path)
-      for l:file_path in split(globpath(l:path, '*.vim'), '\n')
-        exe 'source ' . l:file_path
-      endfor
-    elseif filereadable(l:path)
-      exe 'source ' . l:path
-    elseif filereadable(l:path . '.vim')
-      exe 'source ' . l:path . '.vim'
-    else
-      echoerr string('Failed to load ' . l:path)
-    end
-  else
-    echomsg string('Skipped loading of ' . l:path . ' because it is disabled')
-  end
-endfunction
-" ────────────────────────────────────────────────────────────── Entry point ──┤
-" Skip initialization for vim-tiny or vim-small.
-if !1 | finish | endif
-" Disable vi-compatibility.
-if &compatible
-  set nocompatible
-endif
-" Load testing or normal vim configuration.
-if s:has_vimrc_test()
-  call s:source_vimrc_test()
-else
-  " Load the hooks (files inside `hooks` directory).
-  call s:source_rc('hooks')
-  " Load the plugins.
-  call s:source_rc('plugins.vim')
-  " Load core settings (files inside `core` directory).
-  call s:source_rc('core')
-endif
-" ─────────────────────────────────────────────────────────────────────────────┘
 
 " vim: set filetype=eruby.vim :
