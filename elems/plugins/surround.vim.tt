@@ -1,12 +1,21 @@
 " ─────────────────────────────────────────────────────────────────────────────┐
 "                                                                              │
-" File informations:                                                           │
-" - Name:    elems/hooks/surround.vim.tt                                       │
-" - Summary: Hooks for plugin `tpope/vim-surround`.                            │
-" - Authors:                                                                   │
+" Name:    elems/plugins/surround.vim.tt                                       │
+" Summary: Configure plugin `tpope/vim-surround`.                              │
+" Depends:                                                                     │
+"   - `vim-repeat`                                                             │
+" Mappings:                                                                    │
+"   - `ds`:  Delete surroundings.                                              │
+"   - `cs`:  Change surroundings.                                              │
+"   - `ys`:  Wrap a valid text-object or motion.                               │
+"   - `yS`:  Wrap and indent.                                                  │
+"   - `ySS`: Wrap and place it on a new line.                                  │
+"   - `yss`: Wrap the current line.                                            │
+"                                                                              │
+" Authors:                                                                     │
 "   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              │
 "                                                                              │
-" Project informations:                                                        │
+" Project:                                                                     │
 "   - Homepage:        https://github.com/alem0lars/configs-vim                │
 "   - Getting started: see README.md in the project root folder                │
 "                                                                              │
@@ -31,10 +40,18 @@
 "                                                                              │
 " ─────────────────────────────────────────────────────────────────────────────┘
 
-function! RC_surround_hook_post_source() abort
+" ────────────────────────────────────────────────────────────── Declaration ──┐
+function! plugins#surround#declare() abort
+  Plug 'tpope/vim-surround'
+endfunction
+" ─────────────────────────────────────────────────────────────────────────────┘
+
+" ──────────────────────────────────────────────────────────── Configuration ──┐
+function! plugins#surround#configure() abort
   autocmd FileType eruby let b:surround_37="<%% \r %>"
   autocmd FileType eruby let b:surround_61="<%%= \r %>"
   autocmd FileType php   let b:surround_63="<?php \r ?>"
 endfunction
+" ─────────────────────────────────────────────────────────────────────────────┘
 
 " vim: set filetype=eruby.vim :

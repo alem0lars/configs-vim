@@ -1,12 +1,11 @@
 " ─────────────────────────────────────────────────────────────────────────────┐
 "                                                                              │
-" File informations:                                                           │
-" - Name:    elems/core/clipboard.vim.tt                                       │
-" - Summary: Settings related to the Vim clipboard                             │
-" - Authors:                                                                   │
+" Name:    elems/core/clipboard.vim.tt                                         │
+" Summary: Settings related to the Vim clipboard                               │
+" Authors:                                                                     │
 "   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              │
 "                                                                              │
-" Project informations:                                                        │
+" Project:                                                                     │
 "   - Homepage:        https://github.com/alem0lars/configs-vim                │
 "   - Getting started: see README.md in the project root folder                │
 "                                                                              │

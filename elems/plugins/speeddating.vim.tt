@@ -1,12 +1,17 @@
 " ─────────────────────────────────────────────────────────────────────────────┐
 "                                                                              │
-" File informations:                                                           │
-" - Name:    elems/hooks/tcomment.vim.tt                                       │
-" - Summary: Hooks for plugin `tomtom/tcomment_vim`.                           │
-" - Authors:                                                                   │
+" Name:    elems/plugins/speeddating.vim.tt                                    │
+" Summary: Configure plugin `tpope/vim-speeddating`.                           │
+" Depends:                                                                     │
+"   - `vim-repeat`                                                             │
+" Mappings:                                                                    │
+"   - `<C-x>`: Decrement. TODO overlaps with vim-multiple-cursors              │
+"   - `<C-a>`: Increment.                                                      │
+"                                                                              │
+" Authors:                                                                     │
 "   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              │
 "                                                                              │
-" Project informations:                                                        │
+" Project:                                                                     │
 "   - Homepage:        https://github.com/alem0lars/configs-vim                │
 "   - Getting started: see README.md in the project root folder                │
 "                                                                              │
@@ -31,14 +36,10 @@
 "                                                                              │
 " ─────────────────────────────────────────────────────────────────────────────┘
 
-function! RC_tcomment_hook_post_source() abort
-  if !exists('g:tcommentOptions')
-    let g:tcommentOptions = {}
-  endif
-  " Indent uncommented lines.
-  let g:tcommentOptions.postprocess_uncomment = 'norm! %sgg=%sgg'
-  " Always strip trailing whitespace.
-  let g:tcommentOptions.strip_whitespace = 2
+" ────────────────────────────────────────────────────────────── Declaration ──┐
+function! plugins#speeddating#declare() abort
+  Plug 'tpope/vim-speeddating'
 endfunction
+" ─────────────────────────────────────────────────────────────────────────────┘
 
 " vim: set filetype=eruby.vim :

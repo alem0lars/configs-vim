@@ -1,12 +1,23 @@
 " ─────────────────────────────────────────────────────────────────────────────┐
 "                                                                              │
-" File informations:                                                           │
-" - Name:    elems/hooks/easyalign.vim.tt                                      │
-" - Summary: Hooks for plugin `junegunn/vim-easy-align`.                       │
-" - Authors:                                                                   │
+" Name:    elems/plugins/unimpaired.vim.tt                                     │
+" Summary: Configure plugin `tpope/vim-unimpaired`.                            │
+" Depends:                                                                     │
+"   - `vim-repeat`                                                             │
+" Mappings:                                                                    │
+"   - `[`*: Previous mappings.                                                 │
+"   - `]`*: Next mappings.                                                     │
+"   - `>p`: Paste after linewise, increasing indent.                           │
+"   - `>P`: Paste before linewise, increasing indent.                          │
+"   - `<p`: Paste after linewise, decreasing indent.                           │
+"   - `<P`: Paste before linewise, decreasing indent.                          │
+"   - `=p`: Paste after linewise, reindenting.                                 │
+"   - `=P`: Paste before linewise, reindenting.                                │
+"                                                                              │
+" Authors:                                                                     │
 "   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              │
 "                                                                              │
-" Project informations:                                                        │
+" Project:                                                                     │
 "   - Homepage:        https://github.com/alem0lars/configs-vim                │
 "   - Getting started: see README.md in the project root folder                │
 "                                                                              │
@@ -31,13 +42,10 @@
 "                                                                              │
 " ─────────────────────────────────────────────────────────────────────────────┘
 
-function! RC_easyalign_hook_post_source() abort
-  " Start interactive EasyAlign in visual mode (e.g. `vip<Enter>`).
-  vmap <Enter> <Plug>(EasyAlign)
-
-  " Start interactive EasyAlign for a motion/text object (e.g. `gaip`).
-  nmap ga <Plug>(EasyAlign)
-  xmap ga <Plug>(EasyAlign)
+" ────────────────────────────────────────────────────────────── Declaration ──┐
+function! plugins#unimpaired#declare() abort
+  Plug 'tpope/vim-unimpaired'
 endfunction
+" ─────────────────────────────────────────────────────────────────────────────┘
 
 " vim: set filetype=eruby.vim :

@@ -1,12 +1,11 @@
 " ─────────────────────────────────────────────────────────────────────────────┐
 "                                                                              │
-" File informations:                                                           │
-" - Name:    elems/init.vim.tt                                                 │
-" - Summary: The vim configuration entry point.                                │
-" - Authors:                                                                   │
+" Name:    elems/init.vim.tt                                                   │
+" Summary: The vim configuration entry point.                                  │
+" Authors:                                                                     │
 "   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              │
 "                                                                              │
-" Project informations:                                                        │
+" Project:                                                                     │
 "   - Homepage:        https://github.com/alem0lars/configs-vim                │
 "   - Getting started: see README.md in the project root folder                │
 "                                                                              │
@@ -38,11 +37,11 @@ end -%>
 " ──────────────────────────────────────────────────────── Utility functions ──┐
 " Check if the testing vim configuration is available.
 function! s:has_vimrc_test() abort
-  return filereadable(expand("~/.vimrc-test.vim"))
+  return filereadable(expand('~/.vimrc-test.vim'))
 endfunction
 " Load the testing vim configuration.
 function! s:source_vimrc_test() abort
-  exe "source " . expand("~/.vimrc-test.vim")
+  exe 'source ' . expand('~/.vimrc-test.vim')
 endfunction
 " Load a configuration file providing a path relative to the base directory
 " of this file.
@@ -78,12 +77,17 @@ endif
 if s:has_vimrc_test()
   call s:source_vimrc_test()
 else
-  " Load the hooks (files inside `hooks` directory).
-  call s:source_rc('hooks')
+  " Load core settings.
+  call s:source_rc('core')
+
+  " Load plugins settings.
+  call s:source_rc('plugins')
+
   " Load the plugins.
   call s:source_rc('plugins.vim')
-  " Load core settings (files inside `core` directory).
-  call s:source_rc('core')
+
+  filetype plugin indent on
+  syntax enable
 endif
 " ─────────────────────────────────────────────────────────────────────────────┘
 

@@ -1,18 +1,18 @@
 commands:
 
-  - type: git_sync
-    repo: https://github.com/Shougo/dein.vim
-    dst:  <%= get_var!(:"vim.plugins_dir", :type => :directory).join(*%w(repos github.com Shougo dein.vim)) %>
+  - type: download
+    url:  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    dst:  '<%= get_var!(:"vim.autoload_dir", type: :directory).join("plug.vim") %>'
     only:
       features:
-        - neovim
+        - vim
 
 elems:
 
   - src: elems/(.+)$
-    dst: <%= xdg_config_home(:nvim) %>/<1>
+    dst: '<%= get_var! :"vim.base_dir", type: :directory %>/<1>'
     only:
       features:
-        - neovim
+        - vim
 
 # vim: set filetype=eruby.yaml :

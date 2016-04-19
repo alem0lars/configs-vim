@@ -1,12 +1,14 @@
 " ─────────────────────────────────────────────────────────────────────────────┐
 "                                                                              │
-" File informations:                                                           │
-" - Name:    elems/hooks/vim-multiple-cursors.vim.tt                           │
-" - Summary: Hooks for plugin `terryma/vim-multiple-cursors`.                  │
-" - Authors:                                                                   │
+" Name:    elems/plugins/abolish.vim.tt                                        │
+" Summary: Configure plugin `tpope/vim-abolish`.                               │
+" Depends:                                                                     │
+"   - `vim-repeat`                                                             │
+"                                                                              │
+" Authors:                                                                     │
 "   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              │
 "                                                                              │
-" Project informations:                                                        │
+" Project:                                                                     │
 "   - Homepage:        https://github.com/alem0lars/configs-vim                │
 "   - Getting started: see README.md in the project root folder                │
 "                                                                              │
@@ -31,10 +33,10 @@
 "                                                                              │
 " ─────────────────────────────────────────────────────────────────────────────┘
 
-function! RC_multiple_cursors_hook_post_source() abort
-  " Highlight the virtual cursors and their visual selections.
-  highlight multiple_cursors_cursor term=reverse cterm=reverse gui=reverse
-  highlight link multiple_cursors_visual Visual
+" ────────────────────────────────────────────────────────────── Declaration ──┐
+function! plugins#abolish#declare() abort
+  Plug 'tpope/vim-abolish'
 endfunction
+" ─────────────────────────────────────────────────────────────────────────────┘
 
 " vim: set filetype=eruby.vim :

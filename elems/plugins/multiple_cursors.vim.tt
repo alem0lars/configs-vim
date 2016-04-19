@@ -1,7 +1,12 @@
 " ─────────────────────────────────────────────────────────────────────────────┐
 "                                                                              │
-" Name:    elems/core/search.vim.tt                                            │
-" Summary: Search settings.                                                    │
+" Name:    elems/plugins/multiple_cursors.vim.tt                               │
+" Summary: Configure plugin `terryma/vim-multiple-cursors`.                    │
+" Mappings:                                                                    │
+"   - `<C-n>`: Add virtual cursor.                                             │
+"   - `<C-p>`: Previous cursor.                                                │
+"   - `<C-x>`: Remove cursor. TODO overlaps with vim-multiple-cursors.         │
+"                                                                              │
 " Authors:                                                                     │
 "   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              │
 "                                                                              │
@@ -30,20 +35,18 @@
 "                                                                              │
 " ─────────────────────────────────────────────────────────────────────────────┘
 
-" ──────────────────────────────────────────────────────────────────── Rules ──┐
-" With both 'ignorecase' and 'smartcase' turned on, a search is
-" case-insensitive if you enter the search string in all lower case. However,
-" if your search string has one or more characters in upper case, it will
-" assume that you want a case-sensitive search.
-set ignorecase
-set smartcase
-" See live results while typing the search string.
-set incsearch
-" Highlight search results.
-set hlsearch
-" ────────────────────────────────────────────────────────────────── Hotkeys ──┤
-" <Leader>/: clear previous search highlighting.
-nnoremap <silent> <Leader>/ :nohlsearch<CR>
+" ────────────────────────────────────────────────────────────── Declaration ──┐
+function! plugins#multiple_cursors#declare() abort
+  Plug 'terryma/vim-multiple-cursors'
+endfunction
+" ─────────────────────────────────────────────────────────────────────────────┘
+
+" ──────────────────────────────────────────────────────────── Configuration ──┐
+function! plugins#multiple_cursors#configure() abort
+  " Highlight the virtual cursors and their visual selections.
+  highlight multiple_cursors_cursor term=reverse cterm=reverse gui=reverse
+  highlight link multiple_cursors_visual Visual
+endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 " vim: set filetype=eruby.vim :

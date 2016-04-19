@@ -1,12 +1,11 @@
 " ─────────────────────────────────────────────────────────────────────────────┐
 "                                                                              │
-" File informations:                                                           │
-" - Name:    elems/core/minibuffer.vim.tt                                      │
-" - Summary: Configure the Vim minibuffer.                                     │
-" - Authors:                                                                   │
+" Name:    elems/core/minibuffer.vim.tt                                        │
+" Summary: Configure the Vim minibuffer.                                       │
+" Authors:                                                                     │
 "   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              │
 "                                                                              │
-" Project informations:                                                        │
+" Project:                                                                     │
 "   - Homepage:        https://github.com/alem0lars/configs-vim                │
 "   - Getting started: see README.md in the project root folder                │
 "                                                                              │

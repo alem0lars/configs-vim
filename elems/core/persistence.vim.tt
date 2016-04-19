@@ -1,13 +1,12 @@
 " ─────────────────────────────────────────────────────────────────────────────┐
 "                                                                              │
-" File informations:                                                           │
-" - Name:    elems/core/persistence.vim.tt                                     │
-" - Summary: Settings related to the vim persistence, i.e. how vim should      │
-"            store backups, swap files, views state, undo history, etc..       │
-" - Authors:                                                                   │
+" Name:    elems/core/persistence.vim.tt                                       │
+" Summary: Settings related to the vim persistence, i.e. how vim should        │
+"          store backups, swap files, views state, undo history, etc..         │
+" Authors:                                                                     │
 "   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              │
 "                                                                              │
-" Project informations:                                                        │
+" Project:                                                                     │
 "   - Homepage:        https://github.com/alem0lars/configs-vim                │
 "   - Getting started: see README.md in the project root folder                │
 "                                                                              │

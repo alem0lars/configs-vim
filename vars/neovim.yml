@@ -1,6 +1,6 @@
 vim:
-  base_dir:    <%= xdg_config_home(:nvim) %>
-  plugins_dir: <%= xdg_config_home(:nvim).join("plugins") %>
+  base_dir: <%= xdg_config_home(:nvim) %>
+  autoload_dir: <%= xdg_config_home(:nvim).join("autoload") %>
 
 features:
   - neovim

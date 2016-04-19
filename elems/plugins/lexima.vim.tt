@@ -1,12 +1,12 @@
 " ─────────────────────────────────────────────────────────────────────────────┐
 "                                                                              │
-" File informations:                                                           │
-" - Name:    elems/hooks/easymotion.vim.tt                                     │
-" - Summary: Hooks for plugin `easymotion/vim-easymotion`.                     │
-" - Authors:                                                                   │
+" Name:    elems/plugins/lexima.vim.tt                                         │
+" Summary: Configure plugin `cohama/lexima`.                                   │
+"                                                                              │
+" Authors:                                                                     │
 "   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              │
 "                                                                              │
-" Project informations:                                                        │
+" Project:                                                                     │
 "   - Homepage:        https://github.com/alem0lars/configs-vim                │
 "   - Getting started: see README.md in the project root folder                │
 "                                                                              │
@@ -31,25 +31,10 @@
 "                                                                              │
 " ─────────────────────────────────────────────────────────────────────────────┘
 
-function! RC_easymotion_hook_post_source() abort
-  let g:EasyMotion_smartcase = 1
-  let g:EasyMotion_use_smartsign_us = 1
-  " ────────────────────────────────────── OverWin in normal mode ← Mappings ──┐
-  "  " <Leader>f{char} to move to {char}
-  "  map  <Leader>f <Plug>(easymotion-bd-f)
-  "  nmap <Leader>f <Plug>(easymotion-overwin-f)
-  "
-  "  " s{char}{char} to move to {char}{char}
-  "  nmap s <Plug>(easymotion-overwin-f2)
-  "
-  "  " Move to line
-  "  map  <Leader>L <Plug>(easymotion-bd-jk)
-  "  nmap <Leader>L <Plug>(easymotion-overwin-line)
-  "
-  "  " Move to word
-  "  map  <Leader>w <Plug>(easymotion-bd-w)
-  "  nmap <Leader>w <Plug>(easymotion-overwin-w)
-  " ───────────────────────────────────────────────────────────────────────────┘
+" ────────────────────────────────────────────────────────────── Declaration ──┐
+function! plugins#lexima#declare() abort
+  Plug 'cohama/lexima.vim'
 endfunction
+" ─────────────────────────────────────────────────────────────────────────────┘
 
 " vim: set filetype=eruby.vim :

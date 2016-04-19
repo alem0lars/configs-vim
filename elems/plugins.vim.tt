@@ -1,12 +1,11 @@
 " ─────────────────────────────────────────────────────────────────────────────┐
 "                                                                              │
-" File informations:                                                           │
-" - Name:    elems/plugins.vim.tt                                              │
-" - Summary: The Vim plugins definition.                                       │
-" - Authors:                                                                   │
+" Name:    elems/plugins.vim.tt                                                │
+" Summary: The Vim plugins definition.                                         │
+" Authors:                                                                     │
 "   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              │
 "                                                                              │
-" Project informations:                                                        │
+" Project:                                                                     │
 "   - Homepage:        https://github.com/alem0lars/configs-vim                │
 "   - Getting started: see README.md in the project root folder                │
 "                                                                              │
@@ -32,128 +31,44 @@
 " ─────────────────────────────────────────────────────────────────────────────┤
 <% define_locals do
   prefixed(:"vim.") do
-    variable :base_dir,    type: :directory
-    variable :assets_dir,  type: :directory, default: local!(:base_dir).join("assets")
-    variable :plugins_dir, type: :directory
+    variable :base_dir, type: :directory
+    variable :cache_dir, type: :directory, default: "~/.cache/vimplug"
   end
-
-  computed(:dein_dir, type: :directory) do
-    local!(:plugins_dir).join(*%w(repos github.com Shougo dein.vim))
-  end
-  computed(:dein_cache_dir, type: :directory) {"~/.cache/dein"}
 end -%>
 " ─────────────────────────────────────────────────────────────────────────────┘
 
-" ──────────────────────────────────────────────────── Load ← Plugin Manager ──┐
-if has('vim_starting')
-  execute ' set runtimepath^=' . substitute(
-          \ fnamemodify('<%= local! :dein_dir %>', ':p') , '/$', '', '')
-endif
-" ─────────────────────────────────────────── Configuration ← Plugin Manager ──┤
-let g:dein#enable_notification = 1
-let g:dein#notification_icon = '<%= local! :assets_dir %>/warn.png'
-let g:dein#install_progress_type = 'title'
-let g:dein#install_message_type = 'none'
-" ─────────────────────────────────────────────────────────────────────────────┘
-
 " ────────────────────────────────────────────────────────────────── Plugins ──┐
-if dein#load_state(expand('<%= local! :dein_cache_dir %>'))
-  call dein#begin(expand('<%= local! :dein_cache_dir %>'))
+call plug#begin('<%= local! :cache_dir %>')
 " ──────────────────────────────────────────────────────── Editing ← Plugins ──┤
-  " Mappings:
-  " - `.`: Perform repeat.
-  call dein#add('tpope/vim-repeat')
+call plugins#repeat#declare()
 
-  " Mappings:
-  " - `ds`:  Delete surroundings.
-  " - `cs`:  Change surroundings.
-  " - `ys`:  Wrap a valid text-object or motion.
-  " - `yS`:  Wrap and indent.
-  " - `ySS`: Wrap and place it on a new line.
-  " - `yss`: Wrap the current line.
-  call dein#add('tpope/vim-surround', {
-        \ 'depends': ['vim-repeat'],
-        \ 'hook_post_source': 'call RC_surround_hook_post_source()',
-        \ })
+call plugins#surround#declare()
+call plugins#surround#configure()
 
-  " Mappings:
-  " - `[`*: Previous mappings.
-  " - `]`*: Next mappings.
-  " - `>p`: Paste after linewise, increasing indent.
-  " - `>P`: Paste before linewise, increasing indent.
-  " - `<p`: Paste after linewise, decreasing indent.
-  " - `<P`: Paste before linewise, decreasing indent.
-  " - `=p`: Paste after linewise, reindenting.
-  " - `=P`: Paste before linewise, reindenting.
-  call dein#add('tpope/vim-unimpaired', {
-        \ 'depends': ['vim-repeat'],
-        \ })
+call plugins#unimpaired#declare()
 
-  call dein#add('tpope/vim-abolish', {
-        \ 'depends': ['vim-repeat'],
-        \ })
+call plugins#abolish#declare()
 
-  " Mappings:
-  " - `<C-x>`: Decrement. TODO overlaps with vim-multiple-cursors
-  " - `<C-a>`: Increment.
-  call dein#add('tpope/vim-speeddating', {
-        \ 'depends': ['vim-repeat'],
-        \ })
+call plugins#speeddating#declare()
 
-  " Mappings:
-  " - `gc`*:        Toggle comments.
-  " - `gc<`*:       Uncomment operations.
-  " - `gc>`*:       Comment operations.
-  " - `<Leader>_`*: Primary keymaps.
-  " - `<C-_>`*:     Secondary keymaps.
-  call dein#add('tomtom/tcomment_vim', {
-        \ 'hook_post_source': 'call RC_tcomment_hook_post_source()',
-        \ })
+call plugins#tcomment#declare()
+call plugins#tcomment#configure()
 
-  call dein#add('cohama/lexima.vim')
+call plugins#lexima#declare()
 
-  " Mappings:
-  " - `ga`: Start EasyAlign in interactive mode.
-  call dein#add('junegunn/vim-easy-align', {
-        \ 'hook_post_source': 'call RC_easyalign_hook_post_source()',
-        \ })
+call plugins#easyalign#declare()
+call plugins#easyalign#configure()
 
-  " Mappings:
-  " - `<C-n>`: Add virtual cursor.
-  " - `<C-p>`: Previous cursor.
-  " - `<C-x>`: Remove cursor. TODO overlaps with vim-multiple-cursors
-  call dein#add('terryma/vim-multiple-cursors', {
-        \ 'hook_post_source': 'call RC_multiple_cursors_hook_post_source()',
-        \ })
+call plugins#multiple_cursors#declare()
+call plugins#multiple_cursors#configure()
 
-  " TODO: Check if it's incompatible with the completion plugin.
-  " Mappings:
-  " - `<Leader><Leader>`*: All mappings are under the double leader prefix.
-  call dein#add('easymotion/vim-easymotion', {
-        \ 'depends': ['vim-repeat'],
-        \ 'hook_post_source': 'call RC_easymotion_hook_post_source()',
-        \ })
-  call dein#add('haya14busa/incsearch.vim')
-  call dein#add('haya14busa/incsearch-fuzzy.vim', {
-        \ 'depends': ['incsearch.vim'],
-        \ })
-  call dein#add('haya14busa/incsearch-easymotion.vim', {
-        \ 'depends': ['incsearch.vim', 'vim-easymotion'],
-        \ })
+call plugins#easymotion#declare()
+call plugins#easymotion#configure()
+
+call plugins#incsearch#declare()
+call plugins#incsearch#configure()
+" ─────────────────────────────────────────────────────────────────────────────┤
+call plug#end()
 " ─────────────────────────────────────────────────────────────────────────────┘
-  call dein#end()
-  call dein#save_state()
-
-  if dein#check_install()
-    call dein#install()
-  endif
-endif
-
-" Call hooks for non-lazy plugins (they aren't called automatically, issue#50).
-autocmd VimEnter * call dein#call_hook('source')
-autocmd VimEnter * call dein#call_hook('post_source')
-
-filetype plugin indent on
-syntax enable
 
 " vim: set filetype=eruby.vim :

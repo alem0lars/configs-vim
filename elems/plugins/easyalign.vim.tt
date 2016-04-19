@@ -1,7 +1,10 @@
 " ─────────────────────────────────────────────────────────────────────────────┐
 "                                                                              │
-" Name:    elems/core/search.vim.tt                                            │
-" Summary: Search settings.                                                    │
+" Name:    elems/plugins/easyalign.vim.tt                                      │
+" Summary: Configure plugin `junegunn/vim-easy-align`.                         │
+" Mappings:                                                                    │
+"   - `ga`: Start EasyAlign in interactive mode.                               │
+"                                                                              │
 " Authors:                                                                     │
 "   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              │
 "                                                                              │
@@ -30,20 +33,21 @@
 "                                                                              │
 " ─────────────────────────────────────────────────────────────────────────────┘
 
-" ──────────────────────────────────────────────────────────────────── Rules ──┐
-" With both 'ignorecase' and 'smartcase' turned on, a search is
-" case-insensitive if you enter the search string in all lower case. However,
-" if your search string has one or more characters in upper case, it will
-" assume that you want a case-sensitive search.
-set ignorecase
-set smartcase
-" See live results while typing the search string.
-set incsearch
-" Highlight search results.
-set hlsearch
-" ────────────────────────────────────────────────────────────────── Hotkeys ──┤
-" <Leader>/: clear previous search highlighting.
-nnoremap <silent> <Leader>/ :nohlsearch<CR>
+" ────────────────────────────────────────────────────────────── Declaration ──┐
+function! plugins#easyalign#declare() abort
+  Plug 'junegunn/vim-easy-align'
+endfunction
+" ─────────────────────────────────────────────────────────────────────────────┘
+
+" ──────────────────────────────────────────────────────────── Configuration ──┐
+function! plugins#easyalign#configure() abort
+  " Start interactive EasyAlign in visual mode (e.g. `vip<Enter>`).
+  vmap <Enter> <Plug>(EasyAlign)
+
+  " Start interactive EasyAlign for a motion/text object (e.g. `gaip`).
+  nmap ga <Plug>(EasyAlign)
+  xmap ga <Plug>(EasyAlign)
+endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 " vim: set filetype=eruby.vim :
