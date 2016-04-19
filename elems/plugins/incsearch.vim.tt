@@ -7,6 +7,9 @@
 "          `haya14busa/incsearch-easymotion.vim`.                              │
 " Depends:                                                                     │
 "   - `vim-easymotion`                                                         │
+" Mappings:                                                                    │
+"   - `/`, `?`, `g/`, `n`, `N`, `*`, `#`, `g*`, `g#`: Redefined builtins.      │
+"   - `<Space>/`, `<Space>?`, `<Space>g/`: Search using easymotion and fuzzy.  │
 "                                                                              │
 " Authors:                                                                     │
 "   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              │
@@ -75,7 +78,6 @@ function! plugins#incsearch#configure_hotkeys() abort
   map /  <Plug>(incsearch-forward)
   map ?  <Plug>(incsearch-backward)
   map g/ <Plug>(incsearch-stay)
-
   map n  <Plug>(incsearch-nohl-n)
   map N  <Plug>(incsearch-nohl-N)
   map *  <Plug>(incsearch-nohl-*)

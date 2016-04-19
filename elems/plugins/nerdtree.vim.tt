@@ -1,9 +1,9 @@
 " ─────────────────────────────────────────────────────────────────────────────┐
 "                                                                              │
-" Name:    elems/plugins/easyalign.vim.tt                                      │
-" Summary: Configure plugin `junegunn/vim-easy-align`.                         │
-" Mappings:                                                                    │
-"   - `ga`: Start EasyAlign in interactive mode.                               │
+" Name:    elems/plugins/nerdtree.vim.tt                                       │
+" Summary: Configure plugin `scrooloose/nerdtree` and its plugins (see below). │
+" Depends:                                                                     │
+"   - `tpope/vim-fugitive`                                                     │
 "                                                                              │
 " Authors:                                                                     │
 "   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              │
@@ -34,19 +34,30 @@
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 " ────────────────────────────────────────────────────────────── Declaration ──┐
-function! plugins#easyalign#declare() abort
-  Plug 'junegunn/vim-easy-align'
+function! plugins#nerdtree#declare() abort
+  Plug 'scrooloose/nerdtree'
+  Plug 'Xuyuanp/nerdtree-git-plugin'
+  Plug 'low-ghost/nerdtree-fugitive'
+  Plug 'ivalkeen/nerdtree-execute'
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 " ──────────────────────────────────────────────────────────── Configuration ──┐
-function! plugins#easyalign#configure() abort
-  " Start interactive EasyAlign in visual mode (e.g. `vip<Enter>`).
-  vnoremap <Enter> <Plug>(EasyAlign)
-
-  " Start interactive EasyAlign for a motion/text object (e.g. `gaip`).
-  nnoremap ga <Plug>(EasyAlign)
-  xnoremap ga <Plug>(EasyAlign)
+function! plugins#nerdtree#configure() abort
+  call plugins#nerdtree#configure_settings()
+  call plugins#nerdtree#configure_hotkeys()
+endfunction
+" ───────────────────────────────────────────────────── Settings ← Configure ──┤
+function! plugins#nerdtree#configure_settings() abort
+  " Automatically open nerdtree when no files are specified.
+  autocmd StdinReadPre * let s:std_in=1
+  autocmd VimEnter *
+        \ if exists(':NERDTree') && argc() == 0 && !exists("s:std_in") |
+        \   NERDTree                                                   |
+        \ endif
+endfunction
+" ────────────────────────────────────────────────────── Hotkeys ← Configure ──┤
+function! plugins#nerdtree#configure_hotkeys() abort
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 

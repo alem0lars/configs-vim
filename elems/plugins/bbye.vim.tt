@@ -1,9 +1,9 @@
 " ─────────────────────────────────────────────────────────────────────────────┐
 "                                                                              │
-" Name:    elems/plugins/easyalign.vim.tt                                      │
-" Summary: Configure plugin `junegunn/vim-easy-align`.                         │
+" Name:    elems/plugins/bbye.vim.tt                                           │
+" Summary: Configure plugin `moll/vim-bbye`.                                   │
 " Mappings:                                                                    │
-"   - `ga`: Start EasyAlign in interactive mode.                               │
+"   - `<Leader>q`: Delete the buffer (without closing the window).             │
 "                                                                              │
 " Authors:                                                                     │
 "   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              │
@@ -34,19 +34,15 @@
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 " ────────────────────────────────────────────────────────────── Declaration ──┐
-function! plugins#easyalign#declare() abort
-  Plug 'junegunn/vim-easy-align'
+function! plugins#bbye#declare() abort
+  Plug 'moll/vim-bbye'
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 " ──────────────────────────────────────────────────────────── Configuration ──┐
-function! plugins#easyalign#configure() abort
-  " Start interactive EasyAlign in visual mode (e.g. `vip<Enter>`).
-  vnoremap <Enter> <Plug>(EasyAlign)
-
-  " Start interactive EasyAlign for a motion/text object (e.g. `gaip`).
-  nnoremap ga <Plug>(EasyAlign)
-  xnoremap ga <Plug>(EasyAlign)
+function! plugins#bbye#configure() abort
+  " <Leader>q: Delete the buffer preserving the windows layout.
+  nnoremap <silent> <Leader>q :Bdelete<CR>
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 

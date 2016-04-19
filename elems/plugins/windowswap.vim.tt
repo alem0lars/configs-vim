@@ -1,9 +1,11 @@
 " ─────────────────────────────────────────────────────────────────────────────┐
 "                                                                              │
-" Name:    elems/plugins/easyalign.vim.tt                                      │
-" Summary: Configure plugin `junegunn/vim-easy-align`.                         │
+" Name:    elems/plugins/windowswap.vim.tt                                     │
+" Summary: Configure plugin `wesQ3/vim-windowswap`.                            │
 " Mappings:                                                                    │
-"   - `ga`: Start EasyAlign in interactive mode.                               │
+"   - `<Leader>wy`: Yank window.                                               │
+"   - `<Leader>wp`: Paste window.                                              │
+"   - `<Leader>ww`: Easy window swap.                                          │
 "                                                                              │
 " Authors:                                                                     │
 "   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              │
@@ -34,19 +36,19 @@
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 " ────────────────────────────────────────────────────────────── Declaration ──┐
-function! plugins#easyalign#declare() abort
-  Plug 'junegunn/vim-easy-align'
+function! plugins#windowswap#declare() abort
+  Plug 'wesQ3/vim-windowswap'
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 " ──────────────────────────────────────────────────────────── Configuration ──┐
-function! plugins#easyalign#configure() abort
-  " Start interactive EasyAlign in visual mode (e.g. `vip<Enter>`).
-  vnoremap <Enter> <Plug>(EasyAlign)
-
-  " Start interactive EasyAlign for a motion/text object (e.g. `gaip`).
-  nnoremap ga <Plug>(EasyAlign)
-  xnoremap ga <Plug>(EasyAlign)
+function! plugins#windowswap#configure() abort
+  " Prevent default bindings.
+  let g:windowswap_map_keys=0
+  " Custom bindings.
+  nnoremap <silent> <Leader>ww :call WindowSwap#EasyWindowSwap()<CR>
+  nnoremap <silent> <Leader>wy :call WindowSwap#MarkWindowSwap()<CR>
+  nnoremap <silent> <Leader>wp :call WindowSwap#DoWindowSwap()<CR>
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 

@@ -1,9 +1,9 @@
 " ─────────────────────────────────────────────────────────────────────────────┐
 "                                                                              │
-" Name:    elems/plugins/easyalign.vim.tt                                      │
-" Summary: Configure plugin `junegunn/vim-easy-align`.                         │
+" Name:    elems/plugins/undotree.vim.tt                                       │
+" Summary: Configure plugin `mbbill/undotree`.                                 │
 " Mappings:                                                                    │
-"   - `ga`: Start EasyAlign in interactive mode.                               │
+"   - `<F4>`: Toggle the undotree.                                             │
 "                                                                              │
 " Authors:                                                                     │
 "   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              │
@@ -34,19 +34,14 @@
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 " ────────────────────────────────────────────────────────────── Declaration ──┐
-function! plugins#easyalign#declare() abort
-  Plug 'junegunn/vim-easy-align'
+function! plugins#undotree#declare() abort
+  Plug 'mbbill/undotree'
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 " ──────────────────────────────────────────────────────────── Configuration ──┐
-function! plugins#easyalign#configure() abort
-  " Start interactive EasyAlign in visual mode (e.g. `vip<Enter>`).
-  vnoremap <Enter> <Plug>(EasyAlign)
-
-  " Start interactive EasyAlign for a motion/text object (e.g. `gaip`).
-  nnoremap ga <Plug>(EasyAlign)
-  xnoremap ga <Plug>(EasyAlign)
+function! plugins#undotree#configure() abort
+  nnoremap <F4> :<C-u>UndotreeToggle<CR>
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 

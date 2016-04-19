@@ -1,1 +1,1 @@
-# => inherits: generic, neovim <= #
+# => inherits: generic, neovim, with-tmux <= #

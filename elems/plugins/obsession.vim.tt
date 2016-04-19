@@ -1,9 +1,9 @@
 " ─────────────────────────────────────────────────────────────────────────────┐
 "                                                                              │
-" Name:    elems/plugins/easyalign.vim.tt                                      │
-" Summary: Configure plugin `junegunn/vim-easy-align`.                         │
-" Mappings:                                                                    │
-"   - `ga`: Start EasyAlign in interactive mode.                               │
+" Name:    elems/plugins/obsession.vim.tt                                      │
+" Summary: Configure plugins                                                   │
+"          `tpope/vim-obsession`,                                              │
+"          `dhruvasagar/vim-prosession`.                                       │
 "                                                                              │
 " Authors:                                                                     │
 "   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              │
@@ -31,22 +31,27 @@
 " See the License for the specific language governing permissions and          │
 " limitations under the License.                                               │
 "                                                                              │
+" ─────────────────────────────────────────────────────────────────────────────┤
+<% define_locals do
+  prefixed(:"vim.") do
+    variable :base_dir,     type: :directory
+    variable :sessions_dir, type: :directory,
+             default: local!(:base_dir).join("sessions")
+  end
+end -%>
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 " ────────────────────────────────────────────────────────────── Declaration ──┐
-function! plugins#easyalign#declare() abort
-  Plug 'junegunn/vim-easy-align'
+function! plugins#obsession#declare() abort
+  Plug 'tpope/vim-obsession'
+  Plug 'dhruvasagar/vim-prosession'
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 " ──────────────────────────────────────────────────────────── Configuration ──┐
-function! plugins#easyalign#configure() abort
-  " Start interactive EasyAlign in visual mode (e.g. `vip<Enter>`).
-  vnoremap <Enter> <Plug>(EasyAlign)
-
-  " Start interactive EasyAlign for a motion/text object (e.g. `gaip`).
-  nnoremap ga <Plug>(EasyAlign)
-  xnoremap ga <Plug>(EasyAlign)
+function! plugins#obsession#configure() abort
+  let g:prosession_dir='<%= local! :sessions_dir %>'
+  let g:prosession_tmux_title=<%= has_feature?(:tmux) ? 1 : 0 %>
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 

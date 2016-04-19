@@ -1,7 +1,8 @@
 " ─────────────────────────────────────────────────────────────────────────────┐
 "                                                                              │
 " Name:    elems/plugins.vim.tt                                                │
-" Summary: The Vim plugins definition.                                         │
+" Summary: Include vim plugins.                                                │
+"                                                                              │
 " Authors:                                                                     │
 "   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              │
 "                                                                              │
@@ -31,7 +32,6 @@
 " ─────────────────────────────────────────────────────────────────────────────┤
 <% define_locals do
   prefixed(:"vim.") do
-    variable :base_dir, type: :directory
     variable :cache_dir, type: :directory, default: "~/.cache/vimplug"
   end
 end -%>
@@ -67,6 +67,56 @@ call plugins#easymotion#configure()
 
 call plugins#incsearch#declare()
 call plugins#incsearch#configure()
+
+call plugins#bbye#declare()
+call plugins#bbye#configure()
+
+call plugins#over#declare()
+
+call plugins#nrrwrgn#declare()
+
+call plugins#table_mode#declare()
+" ───────────────────────────────────────────────────────────── UI ← Plugins ──┤
+call plugins#tagbar#declare()
+call plugins#tagbar#configure()
+
+call plugins#undotree#declare()
+call plugins#undotree#configure()
+
+call plugins#indentline#declare()
+call plugins#indentline#configure()
+
+call plugins#signature#declare()
+call plugins#signature#configure()
+
+call plugins#gitgutter#declare()
+call plugins#gitgutter#configure()
+
+call plugins#choosewin#declare()
+call plugins#choosewin#configure()
+
+call plugins#windowswap#declare()
+call plugins#windowswap#configure()
+" ──────────────────────────────────────────────────────────── VCS ← Plugins ──┤
+call plugins#fugitive#declare()
+" ──────────────────────────────────────────────────────── Session ← Plugins ──┤
+call plugins#obsession#declare()
+call plugins#obsession#configure()
+" ─────────────────────────────────────────────── Files Management ← Plugins ──┤
+call plugins#nerdtree#declare()
+call plugins#nerdtree#configure()
+
+call plugins#esearch#declare()
+
+call plugins#sudoedit#declare()
+
+call plugins#rooter#declare()
+" ─────────────────────────────────────────────────── Syntax Check ← Plugins ──┤
+" TODO: NeoMake.
+" ─────────────────────────────────────────────────── AutoComplete ← Plugins ──┤
+" TODO: Solution for autocomplete and snippets.
+" ─────────────────────────────────────────────────────────── Misc ← Plugins ──┤
+call plugins#prettyprint#declare()
 " ─────────────────────────────────────────────────────────────────────────────┤
 call plug#end()
 " ─────────────────────────────────────────────────────────────────────────────┘

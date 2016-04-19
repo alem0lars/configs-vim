@@ -1,9 +1,9 @@
 " ─────────────────────────────────────────────────────────────────────────────┐
 "                                                                              │
-" Name:    elems/plugins/easyalign.vim.tt                                      │
-" Summary: Configure plugin `junegunn/vim-easy-align`.                         │
+" Name:    elems/plugins/tagbar.vim.tt                                         │
+" Summary: Configure plugin `majutsushi/tagbar`.                               │
 " Mappings:                                                                    │
-"   - `ga`: Start EasyAlign in interactive mode.                               │
+"   - `<F5>`: Toggle the tagbar.                                               │
 "                                                                              │
 " Authors:                                                                     │
 "   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              │
@@ -34,19 +34,24 @@
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 " ────────────────────────────────────────────────────────────── Declaration ──┐
-function! plugins#easyalign#declare() abort
-  Plug 'junegunn/vim-easy-align'
+function! plugins#tagbar#declare() abort
+  Plug 'majutsushi/tagbar'
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 " ──────────────────────────────────────────────────────────── Configuration ──┐
-function! plugins#easyalign#configure() abort
-  " Start interactive EasyAlign in visual mode (e.g. `vip<Enter>`).
-  vnoremap <Enter> <Plug>(EasyAlign)
-
-  " Start interactive EasyAlign for a motion/text object (e.g. `gaip`).
-  nnoremap ga <Plug>(EasyAlign)
-  xnoremap ga <Plug>(EasyAlign)
+function! plugins#tagbar#configure() abort
+  call plugins#tagbar#configure_settings()
+  call plugins#tagbar#configure_hotkeys()
+endfunction
+" ───────────────────────────────────────────────────── Settings ← Configure ──┤
+function! plugins#tagbar#configure_settings() abort
+  let g:tagbar_width=24
+endfunction
+" ────────────────────────────────────────────────────── Hotkeys ← Configure ──┤
+function! plugins#tagbar#configure_hotkeys() abort
+  " <F5>: Toggle the tagbar.
+  nnoremap <silent> <F5> :<C-u>TagbarToggle<CR>
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 

@@ -1,9 +1,9 @@
 " ─────────────────────────────────────────────────────────────────────────────┐
 "                                                                              │
-" Name:    elems/plugins/easyalign.vim.tt                                      │
-" Summary: Configure plugin `junegunn/vim-easy-align`.                         │
+" Name:    elems/plugins/choosewin.vim.tt                                      │
+" Summary: Configure plugin `t9md/vim-choosewin`.                              │
 " Mappings:                                                                    │
-"   - `ga`: Start EasyAlign in interactive mode.                               │
+"   - `<Leader>wc`: Invoke choosewin.                                          │
 "                                                                              │
 " Authors:                                                                     │
 "   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              │
@@ -34,19 +34,25 @@
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 " ────────────────────────────────────────────────────────────── Declaration ──┐
-function! plugins#easyalign#declare() abort
-  Plug 'junegunn/vim-easy-align'
+function! plugins#choosewin#declare() abort
+  Plug 't9md/vim-choosewin'
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 " ──────────────────────────────────────────────────────────── Configuration ──┐
-function! plugins#easyalign#configure() abort
-  " Start interactive EasyAlign in visual mode (e.g. `vip<Enter>`).
-  vnoremap <Enter> <Plug>(EasyAlign)
-
-  " Start interactive EasyAlign for a motion/text object (e.g. `gaip`).
-  nnoremap ga <Plug>(EasyAlign)
-  xnoremap ga <Plug>(EasyAlign)
+function! plugins#choosewin#configure() abort
+  call plugins#choosewin#configure_settings()
+  call plugins#choosewin#configure_hotkeys()
+endfunction
+" ───────────────────────────────────────────────────── Settings ← Configure ──┤
+function! plugins#choosewin#configure_settings() abort
+  " Use overlay.
+  let g:choosewin_overlay_enable = 1
+endfunction
+" ────────────────────────────────────────────────────── Hotkeys ← Configure ──┤
+function! plugins#choosewin#configure_hotkeys() abort
+  " `<Leader>wc`: Invoke choosewin.
+  nnoremap <Leader>wc :<C-u>ChooseWin<CR>
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 

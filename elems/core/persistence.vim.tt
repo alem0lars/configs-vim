@@ -32,11 +32,16 @@
 " ─────────────────────────────────────────────────────────────────────────────┤
 <% define_locals do
   prefixed(:"vim.") do
-    variable :base_dir,    type: :directory
-    variable :backups_dir, type: :directory, default: local!(:base_dir).join("backups")
-    variable :swaps_dir,   type: :directory, default: local!(:base_dir).join("swaps")
-    variable :views_dir,   type: :directory, default: local!(:base_dir).join("views")
-    variable :undos_dir,   type: :directory, default: local!(:base_dir).join("undos")
+    variable :base_dir, type: :directory
+
+    variable :backups_dir, type: :directory,
+             default: local!(:base_dir).join("backups")
+    variable :swaps_dir, type: :directory,
+             default: local!(:base_dir).join("swaps")
+    variable :views_dir, type: :directory,
+             default: local!(:base_dir).join("views")
+    variable :undos_dir, type: :directory,
+             default: local!(:base_dir).join("undos")
   end
 
   computed(:history_size, type: :int) {8192}
@@ -70,6 +75,8 @@ set directory=<%= local! :swaps_dir %>
 if !isdirectory("<%= local! :swaps_dir %>")
   call mkdir("<%= local! :swaps_dir %>", "p")
 endif
+" Delay for writing swap on disk.
+set updatetime=1024
 " ──────────────────────────────────────────────────────────────────── Views ──┤
 " Set the directory for saving views state.
 set viewdir=<%= local! :views_dir %>

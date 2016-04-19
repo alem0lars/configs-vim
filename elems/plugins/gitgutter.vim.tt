@@ -1,9 +1,14 @@
 " ─────────────────────────────────────────────────────────────────────────────┐
 "                                                                              │
-" Name:    elems/plugins/easyalign.vim.tt                                      │
-" Summary: Configure plugin `junegunn/vim-easy-align`.                         │
+" Name:    elems/plugins/gitgutter.vim.tt                                      │
+" Summary: Configure plugin `airblade/vim-gitgutter`.                          │
+" Depends:                                                                     │
+"   - `vim-repeat`                                                             │
 " Mappings:                                                                    │
-"   - `ga`: Start EasyAlign in interactive mode.                               │
+"   - `[c`, `]c`: Jump between hunks.                                          │
+"   - `<Leader>hp`: Preview hunks.                                             │
+"   - `<Leader>hs`: Stage hunks.                                               │
+"   - `<Leader>hr`: Revert hunks.                                              │
 "                                                                              │
 " Authors:                                                                     │
 "   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              │
@@ -34,19 +39,15 @@
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 " ────────────────────────────────────────────────────────────── Declaration ──┐
-function! plugins#easyalign#declare() abort
-  Plug 'junegunn/vim-easy-align'
+function! plugins#gitgutter#declare() abort
+  Plug 'airblade/vim-gitgutter'
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 " ──────────────────────────────────────────────────────────── Configuration ──┐
-function! plugins#easyalign#configure() abort
-  " Start interactive EasyAlign in visual mode (e.g. `vip<Enter>`).
-  vnoremap <Enter> <Plug>(EasyAlign)
-
-  " Start interactive EasyAlign for a motion/text object (e.g. `gaip`).
-  nnoremap ga <Plug>(EasyAlign)
-  xnoremap ga <Plug>(EasyAlign)
+function! plugins#gitgutter#configure() abort
+  let g:gitgutter_max_signs=512
+  let g:gitgutter_highlight_lines=1
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 

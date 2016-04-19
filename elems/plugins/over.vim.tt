@@ -1,9 +1,7 @@
 " ─────────────────────────────────────────────────────────────────────────────┐
 "                                                                              │
-" Name:    elems/plugins/easyalign.vim.tt                                      │
-" Summary: Configure plugin `junegunn/vim-easy-align`.                         │
-" Mappings:                                                                    │
-"   - `ga`: Start EasyAlign in interactive mode.                               │
+" Name:    elems/plugins/over.vim.tt                                           │
+" Summary: Configure plugin `osyo-manga/vim-over`.                             │
 "                                                                              │
 " Authors:                                                                     │
 "   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              │
@@ -34,19 +32,8 @@
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 " ────────────────────────────────────────────────────────────── Declaration ──┐
-function! plugins#easyalign#declare() abort
-  Plug 'junegunn/vim-easy-align'
-endfunction
-" ─────────────────────────────────────────────────────────────────────────────┘
-
-" ──────────────────────────────────────────────────────────── Configuration ──┐
-function! plugins#easyalign#configure() abort
-  " Start interactive EasyAlign in visual mode (e.g. `vip<Enter>`).
-  vnoremap <Enter> <Plug>(EasyAlign)
-
-  " Start interactive EasyAlign for a motion/text object (e.g. `gaip`).
-  nnoremap ga <Plug>(EasyAlign)
-  xnoremap ga <Plug>(EasyAlign)
+function! plugins#over#declare() abort
+  Plug 'osyo-manga/vim-over'
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 
