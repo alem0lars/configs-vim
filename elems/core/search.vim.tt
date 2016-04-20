@@ -41,7 +41,7 @@ set smartcase
 set incsearch
 " Highlight search results.
 set hlsearch
-" ────────────────────────────────────────────────────────────────── Hotkeys ──┤
+" ───────────────────────────────────────────────────────────────── Mappings ──┤
 " <Leader>/: clear previous search highlighting.
 nnoremap <silent> <Leader>/ :nohlsearch<CR>
 " ─────────────────────────────────────────────────────────────────────────────┘

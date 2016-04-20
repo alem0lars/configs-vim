@@ -1,7 +1,8 @@
 " ─────────────────────────────────────────────────────────────────────────────┐
 "                                                                              │
-" Name:    elems/core/misc.vim.tt                                              │
-" Summary: Miscellaneous settings.                                             │
+" Name:    elems/plugins/colorscheme.vim.tt                                    │
+" Summary: Configure vim colorscheme plugins.                                  │
+"                                                                              │
 " Authors:                                                                     │
 "   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              │
 "                                                                              │
@@ -28,17 +29,23 @@
 " See the License for the specific language governing permissions and          │
 " limitations under the License.                                               │
 "                                                                              │
+" ─────────────────────────────────────────────────────────────────────────────┤
+<% define_locals do
+  variable :"fonts.main.has_italic", type: :bool, as: :font_has_italic
+end -%>
 " ─────────────────────────────────────────────────────────────────────────────┘
 
-" ─────────────────────────────────────────────────────────────────── Leader ──┐
-let mapleader=","
-" ──────────────────────────────────────────────────────────────────── Match ──┤
-" Show matching parenthesis & brackets.
-set showmatch
-" Tenths of a second to show the matching paren.
-set matchtime=1
-" Add angular brackets to the list of characters that form pairs.
-set matchpairs+=<:>
+" ────────────────────────────────────────────────────────────── Declaration ──┐
+function! plugins#colorscheme#declare() abort
+  Plug 'nanotech/jellybeans.vim'
+endfunction
+" ─────────────────────────────────────────────────────────────────────────────┘
+
+" ──────────────────────────────────────────────────────────── Configuration ──┐
+function! plugins#colorscheme#configure() abort
+  " If font has italics, enable it.
+  let g:jellybeans_use_term_italics=<%= local!(:font_has_italic) ? 1 : 0 %>
+endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 " vim: set filetype=eruby.vim :

@@ -60,10 +60,10 @@ function! s:source_rc(rel_path) abort
     elseif filereadable(l:path . '.vim')
       exe 'source ' . l:path . '.vim'
     else
-      echoerr string('Failed to load ' . l:path)
+      echoerr 'Failed to load ' . l:path
     end
   else
-    echomsg string('Skipped loading of ' . l:path . ' because it is disabled')
+    echomsg 'Skipped loading of ' . l:path . ' because it is disabled'
   end
 endfunction
 " ────────────────────────────────────────────────────────────── Entry point ──┤
@@ -85,6 +85,8 @@ else
 
   " Load the plugins.
   call s:source_rc('plugins.vim')
+
+  call s:source_rc('colorscheme.vim')
 
   filetype plugin indent on
   syntax enable

@@ -1,9 +1,15 @@
 " ─────────────────────────────────────────────────────────────────────────────┐
 "                                                                              │
-" Name:    elems/plugins/choosewin.vim.tt                                      │
-" Summary: Configure plugin `t9md/vim-choosewin`.                              │
+" Name:    elems/plugins/airline.vim.tt                                        │
+" Summary: Configure plugin `vim-airline/vim-airline`.                         │
+" Depends:                                                                     │
+"   - `tagbar`                                                                 │
+"   - `ctrlp`                                                                  │
+"   - `windowswap`                                                             │
+"   - `nrrwrgn`                                                                │
+"   - `youcompleteme`                                                          │
 " Mappings:                                                                    │
-"   - `<Leader>wc`: Invoke choosewin.                                          │
+"   - `<Leader>1..9+-`: Switch tabs.                                           │
 "                                                                              │
 " Authors:                                                                     │
 "   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              │
@@ -31,28 +37,76 @@
 " See the License for the specific language governing permissions and          │
 " limitations under the License.                                               │
 "                                                                              │
+" ─────────────────────────────────────────────────────────────────────────────┤
+<% define_locals do
+  prefixed(:"colorscheme.", as: :colorscheme_) do
+    variable :name, type: :string
+  end
+end -%>
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 " ────────────────────────────────────────────────────────────── Declaration ──┐
-function! plugins#choosewin#declare() abort
-  Plug 't9md/vim-choosewin'
+function! plugins#airline#declare() abort
+  Plug 'vim-airline/vim-airline'
+  Plug 'vim-airline/vim-airline-themes'
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 " ──────────────────────────────────────────────────────────── Configuration ──┐
-function! plugins#choosewin#configure() abort
-  call plugins#choosewin#configure_settings()
-  call plugins#choosewin#configure_mappings()
+function! plugins#airline#configure() abort
+  call plugins#airline#configure_settings()
+  call plugins#airline#configure_mappings()
 endfunction
 " ───────────────────────────────────────────────────── Settings ← Configure ──┤
-function! plugins#choosewin#configure_settings() abort
-  " Use overlay.
-  let g:choosewin_overlay_enable = 1
+function! plugins#airline#configure_settings() abort
+  " ─────────────────────────────────────────── Theme ← Settings ← Configure ──┤
+  " The airline theme.
+  let g:airline_theme = '<%= local! :colorscheme_name %>'
+  " Enable/disable automatic population of the `g:airline_symbols` dictionary
+  " with powerline symbols.
+  let g:airline_powerline_fonts = <%= has_feature?(:powerline) ? 1 : 0 %>
+  " Defines whether the preview window should be excluded from have its window
+  " statusline modified.
+  let g:airline_exclude_preview=1
+  " ───────────────────────────────── Branch ← Plugin ← Settings ← Configure ──┤
+  " Truncate all path sections but the last one, e.g. a branch `foo/bar/baz`
+  " becomes `f/b/baz`.
+  let g:airline#extensions#branch#format=2
+  " ──────────────────────────────── Tagbar ← Plugin ← Settings ← Configure ──┤
+  " Display complete signature.
+  let g:airline#extensions#tagbar#flags='s'
+  " ──────────────────────────────── Tabline ← Plugin ← Settings ← Configure ──┤
+  " Enable tabline (default is disabled).
+  let g:airline#extensions#tabline#enabled=1
+  " Show tab number.
+  let g:airline#extensions#tabline#tab_nr_type=1
+  " Use the tab index as the tab number.
+  let g:airline#extensions#tabline#buffer_idx_mode=1
+  " The `unique_tail` algorithm will display the tail of the filename, unless
+  " there is another file of the same name, in which it will display it along
+  " with the containing parent directory.
+  " The `unique_tail_improved` - another algorithm, that will smartly uniquify
+  " buffers names with similar filename, suppressing common parts of paths.
+  let g:airline#extensions#tabline#formatter='unique_tail_improved'
+  " Show the close button (with the provided symbol).
+  let g:airline#extensions#tabline#show_close_button=1
+  let g:airline#extensions#tabline#close_symbol='✗'
 endfunction
 " ───────────────────────────────────────────────────── Mappings ← Configure ──┤
-function! plugins#choosewin#configure_mappings() abort
-  " `<Leader>wc`: Invoke choosewin.
-  nnoremap <Leader>wc :<C-u>ChooseWin<CR>
+function! plugins#airline#configure_mappings() abort
+  " `<Leader>1..9`: Select the tab of index equal to number.
+  " NOTE: Using `nnoremap` the mappings don't work.
+  nmap <silent> <Leader>1 <Plug>AirlineSelectTab1
+  nmap <silent> <Leader>2 <Plug>AirlineSelectTab2
+  nmap <silent> <Leader>3 <Plug>AirlineSelectTab3
+  nmap <silent> <Leader>4 <Plug>AirlineSelectTab4
+  nmap <silent> <Leader>5 <Plug>AirlineSelectTab5
+  nmap <silent> <Leader>6 <Plug>AirlineSelectTab6
+  nmap <silent> <Leader>7 <Plug>AirlineSelectTab7
+  nmap <silent> <Leader>8 <Plug>AirlineSelectTab8
+  nmap <silent> <Leader>9 <Plug>AirlineSelectTab9
+  nmap <silent> <Leader>- <Plug>AirlineSelectPrevTab
+  nmap <silent> <Leader>+ <Plug>AirlineSelectNextTab
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 

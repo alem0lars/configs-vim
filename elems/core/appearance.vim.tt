@@ -33,8 +33,6 @@
 " ─────────────────────────────────────────────────────────────── Statusline ──┐
 " Always show the statusline.
 set laststatus=2
-" ────────────────────────────────────────────────────────────── Colorscheme ──┤
-set background=dark
 " ─────────────────────────────────────────────────────────────────── Column ──┤
 " Display column numbers.
 set number

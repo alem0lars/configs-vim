@@ -97,6 +97,12 @@ call plugins#choosewin#configure()
 
 call plugins#windowswap#declare()
 call plugins#windowswap#configure()
+
+call plugins#taboo#declare()
+call plugins#taboo#configure()
+
+call plugins#numbers#declare()
+call plugins#numbers#configure()
 " ──────────────────────────────────────────────────────────── VCS ← Plugins ──┤
 call plugins#fugitive#declare()
 " ──────────────────────────────────────────────────────── Session ← Plugins ──┤
@@ -117,6 +123,12 @@ call plugins#rooter#declare()
 " TODO: Solution for autocomplete and snippets.
 " ─────────────────────────────────────────────────────────── Misc ← Plugins ──┤
 call plugins#prettyprint#declare()
+" ───────────────────────────────────────────────────── Statusline ← Plugins ──┤
+call plugins#airline#declare()
+call plugins#airline#configure()
+" ──────────────────────────────────────────────────── Colorscheme ← Plugins ──┤
+call plugins#colorscheme#declare()
+call plugins#colorscheme#configure()
 " ─────────────────────────────────────────────────────────────────────────────┤
 call plug#end()
 " ─────────────────────────────────────────────────────────────────────────────┘

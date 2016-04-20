@@ -45,16 +45,16 @@ endfunction
 " ──────────────────────────────────────────────────────────── Configuration ──┐
 function! plugins#easymotion#configure() abort
   call plugins#easymotion#configure_settings()
-  call plugins#easymotion#configure_hotkeys()
+  call plugins#easymotion#configure_mappings()
 endfunction
 " ───────────────────────────────────────────────────── Settings ← Configure ──┤
 function! plugins#easymotion#configure_settings() abort
   let g:EasyMotion_smartcase = 1
   let g:EasyMotion_use_smartsign_us = 1
 endfunction
-" ────────────────────────────────────────────────────── Hotkeys ← Configure ──┤
-function! plugins#easymotion#configure_hotkeys() abort
-  " ────────────────────────────────────────── OverWin ← Hotkeys ← Configure ──┤
+" ───────────────────────────────────────────────────── Mappings ← Configure ──┤
+function! plugins#easymotion#configure_mappings() abort
+  " ───────────────────────────────────────── OverWin ← Mappings ← Configure ──┤
   "  " <Leader>f{char} to move to {char}
   "  map  <Leader>f <Plug>(easymotion-bd-f)
   "  nmap <Leader>f <Plug>(easymotion-overwin-f)

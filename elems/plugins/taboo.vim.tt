@@ -1,7 +1,8 @@
 " ─────────────────────────────────────────────────────────────────────────────┐
 "                                                                              │
-" Name:    elems/core/fold.vim.tt                                              │
-" Summary: Configure folding behaviour.                                        │
+" Name:    elems/plugins/taboo.vim.tt                                          │
+" Summary: Configure plugin `gcmt/taboo.vim`.                                  │
+"                                                                              │
 " Authors:                                                                     │
 "   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              │
 "                                                                              │
@@ -30,56 +31,17 @@
 "                                                                              │
 " ─────────────────────────────────────────────────────────────────────────────┘
 
-" ──────────────────────────────────────────────────────────────── Functions ──┐
-" Return the header to be shown when a fold is closed.
-" TODO: It doesn't work well at the moment: refactor!
-" function! s:get_fold_header() abort
-"   let numlines_folded = v:foldend - v:foldstart + 1
-"   let line_num = v:foldstart
-"   let firstline = getline(v:foldstart)
-"
-"   let charline = matchstr(firstline, '^\s*\(<[^!]\|\w\+\)[^{}]*')
-"
-"   " Handle javadoc style comments, display the javadoc summary as the foldtext
-"   if match(firstline, '^\s*\/\*\*') == 0
-"     if match(firstline, '^\s*\/\*\*\s*$') == 0
-"       let charline = substitute(getline(v:foldstart+1), '^\s*\**\s*', '(doc) ', '')
-"       let charline = substitute(charline, '\..*$', '.', '')
-"     else
-"       let charline = substitute(firstline, '\s*\/\*\*\s*', '', '')
-"     endif
-"   else
-"     " handle the special case of multiple single line comments
-"     if match(firstline, '^\s*\/\/') == 0
-"       if match(getline(v:foldend), '^\s*\/\/') == 0
-"         let charline = substitute(firstline, '\s*\/*\s*', '', '')
-"       endif
-"     else
-"       let charline = matchstr(firstline, '^\s*\(<[^!]\|\w\+\)[^{}]*')
-"       while strlen(charline) == 0 && line_num < v:foldend
-"         let line_num = line_num + 1
-"         let charline = matchstr(getline(line_num), '^\s*\(<[^!]\|\w\+\)[^{}]*')
-"       endw
-"     endif
-"   endif
-"
-"   let preamble = printf("[%d lines folded]:", numlines_folded)
-"   return printf("%-20s%s", preamble, substitute(charline, '^\s*', '', ''))
-" endfunction
-" ──────────────────────────────────────────────────────────── Configuration ──┤
-" Disable folding by default.
-set nofoldenable
-" Commands to open folds.
-set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
-" Create folds by the current syntax rules.
-set foldmethod=syntax
-" The number of screen lines above which a fold can be displayed closed.
-set foldminlines=0
-" Maximum nesting of folds.
-set foldnestmax=3
-" An expression which is used to specify the text displayed for a closed
-" fold.
-" set foldtext=s:get_fold_header() TODO: Uncomment when fold function is fixed.
+" ────────────────────────────────────────────────────────────── Declaration ──┐
+function! plugins#taboo#declare() abort
+  Plug 'gcmt/taboo.vim'
+endfunction
+" ─────────────────────────────────────────────────────────────────────────────┘
+
+" ──────────────────────────────────────────────────────────── Configuration ──┐
+function! plugins#taboo#configure() abort
+  " Don't let taboo manage tabline (because tabline is managed by airline).
+  let g:taboo_tabline=0
+endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 " vim: set filetype=eruby.vim :

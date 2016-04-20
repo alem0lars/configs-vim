@@ -3,7 +3,7 @@
 " Name:    elems/plugins/undotree.vim.tt                                       │
 " Summary: Configure plugin `mbbill/undotree`.                                 │
 " Mappings:                                                                    │
-"   - `<F4>`: Toggle the undotree.                                             │
+"   - `<Leader>u`: Toggle the undotree.                                        │
 "                                                                              │
 " Authors:                                                                     │
 "   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              │
@@ -41,7 +41,7 @@ endfunction
 
 " ──────────────────────────────────────────────────────────── Configuration ──┐
 function! plugins#undotree#configure() abort
-  nnoremap <F4> :<C-u>UndotreeToggle<CR>
+  nnoremap <Leader>u :<C-u>UndotreeToggle<CR>
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 

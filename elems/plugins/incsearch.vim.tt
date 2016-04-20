@@ -65,16 +65,16 @@ endfunction
 " ──────────────────────────────────────────────────────────── Configuration ──┐
 function! plugins#incsearch#configure() abort
   call plugins#incsearch#configure_settings()
-  call plugins#incsearch#configure_hotkeys()
+  call plugins#incsearch#configure_mappings()
 endfunction
 " ───────────────────────────────────────────────────── Settings ← Configure ──┤
 function! plugins#incsearch#configure_settings() abort
   " Turn off highlight automatically after search.
   let g:incsearch#auto_nohlsearch=1
 endfunction
-" ────────────────────────────────────────────────────── Hotkeys ← Configure ──┤
-function! plugins#incsearch#configure_hotkeys() abort
-  " Basic hotkeys.
+" ───────────────────────────────────────────────────── Mappings ← Configure ──┤
+function! plugins#incsearch#configure_mappings() abort
+  " Basic mappings.
   map /  <Plug>(incsearch-forward)
   map ?  <Plug>(incsearch-backward)
   map g/ <Plug>(incsearch-stay)

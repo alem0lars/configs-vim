@@ -45,7 +45,7 @@ endfunction
 " ──────────────────────────────────────────────────────────── Configuration ──┐
 function! plugins#nerdtree#configure() abort
   call plugins#nerdtree#configure_settings()
-  call plugins#nerdtree#configure_hotkeys()
+  call plugins#nerdtree#configure_mappings()
 endfunction
 " ───────────────────────────────────────────────────── Settings ← Configure ──┤
 function! plugins#nerdtree#configure_settings() abort
@@ -55,9 +55,16 @@ function! plugins#nerdtree#configure_settings() abort
         \ if exists(':NERDTree') && argc() == 0 && !exists("s:std_in") |
         \   NERDTree                                                   |
         \ endif
+  " Close vim if the only window left open is a NERDTree.
+  autocmd BufEnter *
+        \ if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) |
+        \   q |
+        \ endif
 endfunction
-" ────────────────────────────────────────────────────── Hotkeys ← Configure ──┤
-function! plugins#nerdtree#configure_hotkeys() abort
+" ───────────────────────────────────────────────────── Mappings ← Configure ──┤
+function! plugins#nerdtree#configure_mappings() abort
+  nnoremap <Leader>e :NERDTreeToggle<CR>
+  nnoremap <Leader>e :NERDTreeToggle<CR>
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 

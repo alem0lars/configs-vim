@@ -3,7 +3,7 @@
 " Name:    elems/plugins/tagbar.vim.tt                                         │
 " Summary: Configure plugin `majutsushi/tagbar`.                               │
 " Mappings:                                                                    │
-"   - `<F5>`: Toggle the tagbar.                                               │
+"   - `<Leader>g`: Toggle the tagbar.                                          │
 "                                                                              │
 " Authors:                                                                     │
 "   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              │
@@ -42,16 +42,16 @@ endfunction
 " ──────────────────────────────────────────────────────────── Configuration ──┐
 function! plugins#tagbar#configure() abort
   call plugins#tagbar#configure_settings()
-  call plugins#tagbar#configure_hotkeys()
+  call plugins#tagbar#configure_mappings()
 endfunction
 " ───────────────────────────────────────────────────── Settings ← Configure ──┤
 function! plugins#tagbar#configure_settings() abort
   let g:tagbar_width=24
 endfunction
-" ────────────────────────────────────────────────────── Hotkeys ← Configure ──┤
-function! plugins#tagbar#configure_hotkeys() abort
-  " <F5>: Toggle the tagbar.
-  nnoremap <silent> <F5> :<C-u>TagbarToggle<CR>
+" ───────────────────────────────────────────────────── Mappings ← Configure ──┤
+function! plugins#tagbar#configure_mappings() abort
+  " `<Leader>g`: Toggle the tagbar.
+  nnoremap <silent> <Leader>g :<C-u>TagbarToggle<CR>
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 
