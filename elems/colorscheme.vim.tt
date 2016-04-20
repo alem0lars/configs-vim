@@ -44,6 +44,7 @@ function! s:has_colorscheme(name)
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 
+" Set the colorscheme kind (`dark` or `light`).
 set background=dark
 
 " Set colorscheme.
