@@ -42,8 +42,14 @@ endfunction
 " ──────────────────────────────────────────────────────────── Configuration ──┐
 function! plugins#vimtex#configure() abort
   " Build options.
-  let g:vimtex_latexmk_options='-pdf -verbose -file-line-error -synctex=1 ' .
-        \ '-interaction=nonstopmode --shell-escape'
+  let g:vimtex_latexmk_options=''     .
+        \ '-xelatex '                 .
+        \ '--shell-escape '           .
+        \ '-interaction=nonstopmode ' .
+        \ '-bibtex '                  .
+        \ '-synctex=1 '               .
+        \ '-file-line-error '         .
+        \ '-synctex=1'
   " A tolerance for the number of lines to search for matching delimiters in
   " each direction.
   let g:vimtex_delim_stopline=512
