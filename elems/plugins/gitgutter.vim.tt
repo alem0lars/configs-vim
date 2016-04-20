@@ -47,7 +47,6 @@ endfunction
 " ──────────────────────────────────────────────────────────── Configuration ──┐
 function! plugins#gitgutter#configure() abort
   let g:gitgutter_max_signs=512
-  let g:gitgutter_highlight_lines=1
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 

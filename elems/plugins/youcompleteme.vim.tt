@@ -33,7 +33,6 @@
 <% define_locals do
   computed(:opts) do
     opts  = ["clang-completer"]
-    opts << "system-libclang"     if which? :clang
     opts << "omnisharp-completer" if has_feature? :mono
     opts << "gocode-completer"    if has_feature? :go
     opts << "racer-completer"     if has_feature? :rust
