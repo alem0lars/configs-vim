@@ -1,7 +1,11 @@
 " ─────────────────────────────────────────────────────────────────────────────┐
 "                                                                              │
-" Name:    elems/plugins/youcompleteme.vim.tt                                  │
-" Summary: Configure plugin `Valloric/YouCompleteMe`                           │
+" Name:    elems/plugins/cmd2.vim.tt                                           │
+" Summary: Configure plugin `gelguy/Cmd2.vim`                                  │
+" Mappings:                                                                    │
+"   - `/`, `:`: Redefined builtins.                                            │
+" Depends:                                                                     │
+"   - `airline`                                                                │
 "                                                                              │
 " Authors:                                                                     │
 "   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              │
@@ -29,32 +33,60 @@
 " See the License for the specific language governing permissions and          │
 " limitations under the License.                                               │
 "                                                                              │
-" ─────────────────────────────────────────────────────────────────────────────┤
-<% define_locals do
-  computed(:opts) do
-    opts  = ["clang-completer"]
-    opts << "omnisharp-completer" if has_feature? :mono
-    opts << "gocode-completer"    if has_feature? :go
-    opts << "racer-completer"     if has_feature? :rust
-    opts << "tern-completer"      if has_feature? :javascript
-    opts.map{|opt| "--#{opt}"}.join(" ")
-  end
-end -%>
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 " ────────────────────────────────────────────────────────────── Declaration ──┐
-function! plugins#youcompleteme#declare() abort
-  Plug 'Valloric/YouCompleteMe', {'do': './install.py <%= local! :opts %>'}
+function! plugins#cmd2#declare() abort
+  Plug 'gelguy/Cmd2.vim'
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 " ──────────────────────────────────────────────────────────── Configuration ──┐
-function! plugins#youcompleteme#configure() abort
-  let g:ycm_server_python_interpreter='/usr/bin/python3'
-  autocmd! User YouCompleteMe
-        \ if !has('vim_starting')       |
-        \   call youcompleteme#Enable() |
-        \ endif
+function! plugins#cmd2#configure() abort
+  call plugins#cmd2#configure_settings()
+  call plugins#cmd2#configure_mappings()
+endfunction
+" ───────────────────────────────────────────────────── Settings ← Configure ──┤
+function! plugins#cmd2#configure_settings() abort
+  let g:Cmd2_options = {
+        \   '_complete_ignorecase': 1,
+        \   '_complete_uniq_ignorecase': 0,
+        \   '_quicksearch_ignorecase': 1,
+        \   '_complete_start_pattern': '\<\(\k\+\(_\|\#\)\)\?',
+        \   '_complete_fuzzy': 1,
+        \   '_suggest_render': 'Cmd2#render#New().WithInsertCursor().WithAirlineMenu()',
+        \   'loop_sleep': 0,
+        \   'menu_hl': 'airline_x',
+        \   'menu_selected_hl': 'airline_y',
+        \   'menu_separator_hl': 'airline_x',
+        \ }
+  if exists('g:Cmd2_default_options')
+    call Cmd2#init#Options(g:Cmd2_default_options)
+  endif
+  " Character to type to start wildcard expansion in the command-line.
+  set wildcharm=<Tab>
+endfunction
+" ───────────────────────────────────────────────────── Mappings ← Configure ──┤
+function! plugins#cmd2#configure_mappings() abort
+  let g:Cmd2_cmd_mappings = {
+        \ 'iw': {'command': 'iw', 'type': 'text', 'flags': 'Cpv'},
+        \ 'ap': {'command': 'ap', 'type': 'line', 'flags': 'pv'},
+        \ '^': {'command': '^', 'type': 'normal!', 'flags': 'r'},
+        \ 'w': {'command': 'Cmd2#functions#Cword',
+            \ 'type': 'function', 'flags': 'Cr'},
+        \ }
+
+  " `:` or `/`: Enable Cmd2 automatically.
+  nmap <expr> : ':' . (&paste ? '' : "\<Plug>(Cmd2Suggest)")
+  nmap <expr> / '/' . (&paste ? '' : "\<Plug>(Cmd2Suggest)")
+
+  " `<F11>`: Enable Cmd2 manually.
+  cmap <F11> <Plug>(Cmd2Suggest)
+
+  " `<Tab>`: Perform completion using Cmd2.
+  cmap <expr> <Tab> Cmd2#ext#complete#InContext() ?
+        \ '\<Plug>(Cmd2Complete)' :
+        \ '\<Tab>'
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 

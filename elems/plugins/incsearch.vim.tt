@@ -74,16 +74,17 @@ function! plugins#incsearch#configure_settings() abort
 endfunction
 " ───────────────────────────────────────────────────── Mappings ← Configure ──┤
 function! plugins#incsearch#configure_mappings() abort
-  " Basic mappings.
-  map /  <Plug>(incsearch-forward)
-  map ?  <Plug>(incsearch-backward)
-  map g/ <Plug>(incsearch-stay)
-  map n  <Plug>(incsearch-nohl-n)
-  map N  <Plug>(incsearch-nohl-N)
-  map *  <Plug>(incsearch-nohl-*)
-  map #  <Plug>(incsearch-nohl-#)
-  map g* <Plug>(incsearch-nohl-g*)
-  map g# <Plug>(incsearch-nohl-g#)
+  " Basic mappings
+  " TODO: Uncomment when incsearch is compatible with cmd2.
+  " map /  <Plug>(incsearch-forward)
+  " map ?  <Plug>(incsearch-backward)
+  " map g/ <Plug>(incsearch-stay)
+  " map n  <Plug>(incsearch-nohl-n)
+  " map N  <Plug>(incsearch-nohl-N)
+  " map *  <Plug>(incsearch-nohl-*)
+  " map #  <Plug>(incsearch-nohl-#)
+  " map g* <Plug>(incsearch-nohl-g*)
+  " map g# <Plug>(incsearch-nohl-g#)
 
   noremap <silent><expr> <Space>/
         \ incsearch#go(<SID>config_efm())

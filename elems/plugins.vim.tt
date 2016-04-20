@@ -130,6 +130,9 @@ call plugins#prettyprint#declare()
 " ───────────────────────────────────────────────────── Statusline ← Plugins ──┤
 call plugins#airline#declare()
 call plugins#airline#configure()
+" ──────────────────────────────────────────────────── Commandline ← Plugins ──┤
+call plugins#cmd2#declare()
+call plugins#cmd2#configure()
 " ──────────────────────────────────────────────────── Colorscheme ← Plugins ──┤
 call plugins#colorscheme#declare()
 call plugins#colorscheme#configure()

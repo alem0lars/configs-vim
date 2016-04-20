@@ -41,8 +41,14 @@ endfunction
 
 " ──────────────────────────────────────────────────────────── Configuration ──┐
 function! plugins#vimtex#configure() abort
+  " Build options.
   let g:vimtex_latexmk_options='-pdf -verbose -file-line-error -synctex=1 ' .
         \ '-interaction=nonstopmode --shell-escape'
+  " A tolerance for the number of lines to search for matching delimiters in
+  " each direction.
+  let g:vimtex_delim_stopline=512
+  " Detect tex files correctly.
+  let g:tex_flavor='latex'
   " YouCompleteMe support.
   if !exists('g:ycm_semantic_triggers')
     let g:ycm_semantic_triggers = {}
