@@ -8,3 +8,7 @@ fonts:
 
 features:
   - powerline
+  - mono
+  - go
+  - rust
+  - javascript

@@ -120,7 +120,11 @@ call plugins#rooter#declare()
 " ─────────────────────────────────────────────────── Syntax Check ← Plugins ──┤
 " TODO: NeoMake.
 " ─────────────────────────────────────────────────── AutoComplete ← Plugins ──┤
-" TODO: Solution for autocomplete and snippets.
+call plugins#youcompleteme#declare()
+call plugins#youcompleteme#configure()
+" ────────────────────────────────────────────────────────── Langs ← Plugins ──┤
+call plugins#vimtex#declare()
+call plugins#vimtex#configure()
 " ─────────────────────────────────────────────────────────── Misc ← Plugins ──┤
 call plugins#prettyprint#declare()
 " ───────────────────────────────────────────────────── Statusline ← Plugins ──┤

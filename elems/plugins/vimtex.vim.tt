@@ -1,9 +1,9 @@
 " ─────────────────────────────────────────────────────────────────────────────┐
 "                                                                              │
-" Name:    elems/core/appearance.vim.tt                                        │
-" Summary: Settings related to the Vim appearance                              │
-" Mappings:                                                                    │
-"   - `<Leader>ws`*: Change window size.                                       │
+" Name:    elems/plugins/vimtex.vim.tt                                         │
+" Summary: Configure plugin `lervag/vimtex`.                                   │
+" Depends:                                                                     │
+"   - `youcompleteme`                                                          │
 "                                                                              │
 " Authors:                                                                     │
 "   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              │
@@ -33,29 +33,31 @@
 "                                                                              │
 " ─────────────────────────────────────────────────────────────────────────────┘
 
-" ──────────────────────────────────────────────────────────────── Utilities ──┐
-function! s:vert_resize() abort
-  let l:len = max(map(getline(1, '$'), 'len(v:val)'))
-  exec 'vertical resize ' . l:len
-endfunction
-
-function! s:vert_increment() abort
-  exe 'vertical resize +8'
-endfunction
-
-function! s:vert_decrement() abort
-  exe 'vertical resize -8'
+" ────────────────────────────────────────────────────────────── Declaration ──┐
+function! plugins#vimtex#declare() abort
+  Plug 'lervag/vimtex'
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 
-" ───────────────────────────────────────────────────────────────── Mappings ──┐
-" `<Leader>=`: Resize the window vertically to fit its contents.
-nnoremap <silent> <Leader>wsa :call <SID>vert_resize()<CR>
-" `<Leader>+` or `<Leader>=`: Increment window vertical size (`=`: omit `shift` key).
-nnoremap <silent> <Leader>ws= :call <SID>vert_increment()<CR>
-nnoremap <silent> <Leader>ws+ :call <SID>vert_increment()<CR>
-" `<Leader>-`: Decrement window vertical size
-nnoremap <silent> <Leader>ws- :call <SID>vert_decrement()<CR>
+" ──────────────────────────────────────────────────────────── Configuration ──┐
+function! plugins#vimtex#configure() abort
+  let g:vimtex_latexmk_options='-pdf -verbose -file-line-error -synctex=1 ' .
+        \ '-interaction=nonstopmode --shell-escape'
+  " YouCompleteMe support.
+  if !exists('g:ycm_semantic_triggers')
+    let g:ycm_semantic_triggers = {}
+  endif
+  let g:ycm_semantic_triggers.tex = [
+        \ 're!\\[A-Za-z]*cite[A-Za-z]*(\[[^]]*\]){0,2}{[^}]*',
+        \ 're!\\[A-Za-z]*ref({[^}]*|range{([^,{}]*(}{)?))',
+        \ 're!\\hyperref\[[^]]*',
+        \ 're!\\includegraphics\*?(\[[^]]*\]){0,2}{[^}]*',
+        \ 're!\\(include(only)?|input){[^}]*',
+        \ 're!\\\a*(gls|Gls|GLS)(pl)?\a*(\s*\[[^]]*\]){0,2}\s*\{[^}]*',
+        \ 're!\\includepdf(\s*\[[^]]*\])?\s*\{[^}]*',
+        \ 're!\\includestandalone(\s*\[[^]]*\])?\s*\{[^}]*',
+        \ ]
+endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 " vim: set filetype=eruby.vim :

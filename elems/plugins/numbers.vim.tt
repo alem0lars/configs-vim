@@ -39,7 +39,7 @@ endfunction
 
 " ────────────────────────────────────────────────────────────── Configuration ──┐
 function! plugins#numbers#configure() abort
-  let g:numbers_exclude = ['tagbar', 'undotree', 'nerdtree']
+  let g:numbers_exclude = ['tagbar', 'undotree', 'nerdtree', 'vim-plug']
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 
