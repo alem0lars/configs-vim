@@ -39,6 +39,7 @@ function! plugins#nerdtree#declare() abort
   Plug 'Xuyuanp/nerdtree-git-plugin'
   Plug 'low-ghost/nerdtree-fugitive'
   Plug 'ivalkeen/nerdtree-execute'
+  Plug 'jistr/vim-nerdtree-tabs'
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 
@@ -63,8 +64,7 @@ function! plugins#nerdtree#configure_settings() abort
 endfunction
 " ───────────────────────────────────────────────────── Mappings ← Configure ──┤
 function! plugins#nerdtree#configure_mappings() abort
-  nnoremap <Leader>e :NERDTreeToggle<CR>
-  nnoremap <Leader>e :NERDTreeToggle<CR>
+  nnoremap <Leader>e :NERDTreeTabsToggle<CR>
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 
