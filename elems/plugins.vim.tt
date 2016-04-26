@@ -126,6 +126,8 @@ call plugins#youcompleteme#configure()
 " ────────────────────────────────────────────────────────── Langs ← Plugins ──┤
 call plugins#vimtex#declare()
 call plugins#vimtex#configure()
+
+call plugins#tmux#declare()
 " ─────────────────────────────────────────────────────────── Misc ← Plugins ──┤
 call plugins#prettyprint#declare()
 " ───────────────────────────────────────────────────── Statusline ← Plugins ──┤
