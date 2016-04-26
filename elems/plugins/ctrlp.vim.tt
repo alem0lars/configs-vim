@@ -1,9 +1,7 @@
 " ─────────────────────────────────────────────────────────────────────────────┐
 "                                                                              │
-" Name:    elems/plugins/esearch.vim.tt                                        │
-" Summary: Configure plugin `eugen0329/vim-esearch`.                           │
-" Depends:                                                                     │
-"   - `nerdtree`                                                               │
+" Name:    elems/plugins/ctrlp.vim.tt                                          │
+" Summary: Configure plugin `ctrlpvim/ctrlp.vim`.                              │
 "                                                                              │
 " Authors:                                                                     │
 "   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              │
@@ -34,8 +32,13 @@
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 " ────────────────────────────────────────────────────────────── Declaration ──┐
-function! plugins#esearch#declare() abort
-  Plug 'eugen0329/vim-esearch'
+function! plugins#ctrlp#declare() abort
+  Plug 'ctrlpvim/ctrlp.vim'
+endfunction
+" ─────────────────────────────────────────────────────────────────────────────┘
+
+" ──────────────────────────────────────────────────────────── Configuration ──┐
+function! plugins#ctrlp#configure() abort
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 

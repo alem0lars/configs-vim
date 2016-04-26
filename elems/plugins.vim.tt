@@ -112,7 +112,8 @@ call plugins#obsession#configure()
 call plugins#nerdtree#declare()
 call plugins#nerdtree#configure()
 
-call plugins#esearch#declare()
+call plugins#ctrlp#declare()
+call plugins#ctrlp#configure()
 
 call plugins#sudoedit#declare()
 
