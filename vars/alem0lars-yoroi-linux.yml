@@ -1,0 +1,14 @@
+# => inherits: generic, neovim, with-tmux <= #
+
+colorscheme:
+  name: jellybeans
+fonts:
+  main:
+    has_italic: false
+
+features:
+  - powerline
+  - mono
+  - go
+  - rust
+  - javascript
