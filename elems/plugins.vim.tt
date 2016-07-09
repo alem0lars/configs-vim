@@ -120,6 +120,7 @@ call plugins#sudoedit#declare()
 call plugins#rooter#declare()
 " ─────────────────────────────────────────────────── Syntax Check ← Plugins ──┤
 call plugins#neomake#declare()
+call plugins#neomake#configure()
 " ─────────────────────────────────────────────────── AutoComplete ← Plugins ──┤
 call plugins#youcompleteme#declare()
 call plugins#youcompleteme#configure()

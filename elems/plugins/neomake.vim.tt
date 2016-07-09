@@ -37,4 +37,10 @@ function! plugins#neomake#declare() abort
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 
+" ──────────────────────────────────────────────────────────── Configuration ──┐
+function! plugins#neomake#configure() abort
+  autocmd! BufWritePost * Neomake
+endfunction
+" ─────────────────────────────────────────────────────────────────────────────┘
+
 " vim: set filetype=eruby.vim :
