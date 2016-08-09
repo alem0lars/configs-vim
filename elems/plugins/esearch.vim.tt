@@ -1,7 +1,7 @@
 " ─────────────────────────────────────────────────────────────────────────────┐
 "                                                                              │
-" Name:    elems/plugins/ctrlp.vim.tt                                          │
-" Summary: Configure plugin `ctrlpvim/ctrlp.vim`.                              │
+" Name:    elems/plugins/esearch.vim.tt                                        │
+" Summary: Configure plugin `eugen0329/vim-esearch`                            │
 "                                                                              │
 " Authors:                                                                     │
 "   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              │
@@ -32,14 +32,20 @@
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 " ────────────────────────────────────────────────────────────── Declaration ──┐
-function! plugins#ctrlp#declare() abort
-  Plug 'ctrlpvim/ctrlp.vim'
+function! plugins#esearch#declare() abort
+  Plug 'eugen0329/vim-esearch'
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 " ──────────────────────────────────────────────────────────── Configuration ──┐
-function! plugins#ctrlp#configure() abort
-  nnoremap <Leader>p :<C-u>CtrlP<CR>
+function! plugins#esearch#configure() abort
+  let g:esearch = {
+        \   'adapter':    'ag',
+        \   'backend':    'nvim',
+        \   'out':        'qflist',
+        \   'batch_size': 1024,
+        \   'use':        ['visual', 'hlsearch', 'last'],
+        \ }
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 

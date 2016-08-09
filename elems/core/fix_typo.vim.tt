@@ -1,8 +1,7 @@
 " ─────────────────────────────────────────────────────────────────────────────┐
 "                                                                              │
-" Name:    elems/plugins/ctrlp.vim.tt                                          │
-" Summary: Configure plugin `ctrlpvim/ctrlp.vim`.                              │
-"                                                                              │
+" Name:    elems/core/fix_typo.vim.tt                                          │
+" Summary: Fix common typos.                                                   │
 " Authors:                                                                     │
 "   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              │
 "                                                                              │
@@ -31,16 +30,19 @@
 "                                                                              │
 " ─────────────────────────────────────────────────────────────────────────────┘
 
-" ────────────────────────────────────────────────────────────── Declaration ──┐
-function! plugins#ctrlp#declare() abort
-  Plug 'ctrlpvim/ctrlp.vim'
-endfunction
-" ─────────────────────────────────────────────────────────────────────────────┘
 
-" ──────────────────────────────────────────────────────────── Configuration ──┐
-function! plugins#ctrlp#configure() abort
-  nnoremap <Leader>p :<C-u>CtrlP<CR>
-endfunction
-" ─────────────────────────────────────────────────────────────────────────────┘
+if has("user_commands")
+  command! -bang -nargs=? -complete=file E e<bang> <args>
+  command! -bang -nargs=? -complete=file W w<bang> <args>
+  command! -bang -nargs=? -complete=file Wq wq<bang> <args>
+  command! -bang -nargs=? -complete=file WQ wq<bang> <args>
+
+  command! -bang Wa wa<bang>
+  command! -bang WA wa<bang>
+  command! -bang Q  q<bang>
+  command! -bang QA qa<bang>
+  command! -bang Qa qa<bang>
+end
+
 
 " vim: set filetype=eruby.vim :
