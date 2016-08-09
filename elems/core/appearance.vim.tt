@@ -38,6 +38,9 @@ set laststatus=2
 set number
 " Set the maximum line length.
 set textwidth=80
+"  ────────────────────────────────────────────────────────────────── Syntax ──┤
+" Maximum column in which to search for syntax items.
+set synmaxcol=96
 " ──────────────────────────────────────────────────────────────────── Ruler ──┤
 " Always show the current position both in ruler and highlighting the line.
 set ruler
