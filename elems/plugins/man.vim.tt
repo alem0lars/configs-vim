@@ -1,7 +1,7 @@
 " ─────────────────────────────────────────────────────────────────────────────┐
 "                                                                              │
-" Name:    elems/plugins/ctrlp.vim.tt                                          │
-" Summary: Configure plugin `ctrlpvim/ctrlp.vim`.                              │
+" Name:    elems/plugins/man.vim.tt                                            │
+" Summary: Configure plugin `vim-utils/vim-man`                                │
 "                                                                              │
 " Authors:                                                                     │
 "   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              │
@@ -31,16 +31,17 @@
 "                                                                              │
 " ─────────────────────────────────────────────────────────────────────────────┘
 
+
 " ────────────────────────────────────────────────────────────── Declaration ──┐
-function! plugins#ctrlp#declare() abort
-  Plug 'ctrlpvim/ctrlp.vim'
+function! plugins#man#declare() abort
+  Plug 'vim-utils/vim-man'
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 " ──────────────────────────────────────────────────────────── Configuration ──┐
-function! plugins#ctrlp#configure() abort
-  nnoremap <Leader>p :<C-u>CtrlP<CR>
+function! plugins#man#configure() abort
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
+
 
 " vim: set filetype=eruby.vim :

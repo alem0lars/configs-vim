@@ -112,18 +112,21 @@ call plugins#obsession#configure()
 call plugins#nerdtree#declare()
 call plugins#nerdtree#configure()
 
-call plugins#ctrlp#declare()
-call plugins#ctrlp#configure()
-
 call plugins#sudoedit#declare()
 
 call plugins#rooter#declare()
+" ───────────────────────────────────────────────────────── Search ← Plugins ──┤
+call plugins#esearch#declare()
+call plugins#esearch#configure()
 " ─────────────────────────────────────────────────── Syntax Check ← Plugins ──┤
 call plugins#neomake#declare()
 call plugins#neomake#configure()
 " ─────────────────────────────────────────────────── AutoComplete ← Plugins ──┤
 call plugins#youcompleteme#declare()
 call plugins#youcompleteme#configure()
+" ──────────────────────────────────────────────────────────── Doc ← Plugins ──┤
+call plugins#man#declare()
+call plugins#man#configure()
 " ────────────────────────────────────────────────────────── Langs ← Plugins ──┤
 call plugins#vimtex#declare()
 call plugins#vimtex#configure()
