@@ -80,9 +80,6 @@ call plugins#table_mode#declare()
 call plugins#tagbar#declare()
 call plugins#tagbar#configure()
 
-call plugins#undotree#declare()
-call plugins#undotree#configure()
-
 call plugins#indentline#declare()
 call plugins#indentline#configure()
 
@@ -103,6 +100,12 @@ call plugins#taboo#configure()
 
 call plugins#numbers#declare()
 call plugins#numbers#configure()
+" ─────────────────────────────────────────────────────────── Undo ← Plugins ──┤
+call plugins#undotree#declare()
+call plugins#undotree#configure()
+
+call plugins#peekaboo#declare()
+call plugins#peekaboo#configure()
 " ──────────────────────────────────────────────────────────── VCS ← Plugins ──┤
 call plugins#fugitive#declare()
 " ──────────────────────────────────────────────────────── Session ← Plugins ──┤
