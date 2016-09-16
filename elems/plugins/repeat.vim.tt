@@ -1,7 +1,7 @@
 " ─────────────────────────────────────────────────────────────────────────────┐
 "                                                                              │
 " Name:    elems/plugins/repeat.vim.tt                                         │
-" Summary: Configure plugin `haya14busa/incsearch.vim`                         │
+" Summary: Configure plugin `tpope/repeat.vim`                                 │
 " Mappings:                                                                    │
 "   - `.`: Perform repeat.                                                     │
 "                                                                              │

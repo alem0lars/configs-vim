@@ -1,7 +1,8 @@
 " ─────────────────────────────────────────────────────────────────────────────┐
 "                                                                              │
-" Name:    elems/core/appearance.vim.tt                                        │
-" Summary: Settings related to the Vim appearance                              │
+" Name:    elems/plugins/vimproc.vim.tt                                        │
+" Summary: Configure plugin `Shougo/vimproc.vim`.                              │
+"                                                                              │
 " Authors:                                                                     │
 "   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              │
 "                                                                              │
@@ -28,26 +29,28 @@
 " See the License for the specific language governing permissions and          │
 " limitations under the License.                                               │
 "                                                                              │
+" ─────────────────────────────────────────────────────────────────────────────┤
+<% define_locals do
+  variable :"vim.quick_look", type: :string?, as: :quick_look
+  computed :vimproc_make_cmd do
+    case_os osx:     "make -f make_mac.mak",
+            linux:   "make -f make_unix.mak",
+            windows: "make -f make_mingw32.mak"
+  end
+end -%>
 " ─────────────────────────────────────────────────────────────────────────────┘
 
-" ─────────────────────────────────────────────────────────────── Statusline ──┐
-" Always show the statusline.
-set laststatus=2
-" ─────────────────────────────────────────────────────────────────── Column ──┤
-" Display column numbers.
-set number
-" Set the maximum line length.
-set textwidth=80
-"  ────────────────────────────────────────────────────────────────── Syntax ──┤
-" Maximum column in which to search for syntax items.
-set synmaxcol=1024
-" ──────────────────────────────────────────────────────────────────── Ruler ──┤
-" Always show the current position both in ruler and highlighting the line.
-set ruler
-" ───────────────────────────────────────────────────────────────── Modeline ──┤
-set modeline
-" The number of lines that is checked for set commands.
-set modelines=5
+" ────────────────────────────────────────────────────────────── Declaration ──┐
+function! plugins#vimproc#declare() abort
+  Plug 'Shougo/vimproc.vim', {'do': '<%= local! :vimproc_make_cmd %>'}
+endfunction
+" ─────────────────────────────────────────────────────────────────────────────┘
+
+" ──────────────────────────────────────────────────────────── Configuration ──┐
+function! plugins#vimproc#configure() abort
+  " <Leader>!: Use vimproc instead of the builtin command.
+  nnoremap <Leader>! :VimProcBang
+endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 " vim: set filetype=eruby.vim :

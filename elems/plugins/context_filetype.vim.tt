@@ -1,7 +1,7 @@
 " ─────────────────────────────────────────────────────────────────────────────┐
 "                                                                              │
-" Name:    elems/plugins/neomake.vim.tt                                        │
-" Summary: Configure plugin `neomake/neomake`.                                 │
+" Name:    elems/plugins/context_filetype.vim.tt                               │
+" Summary: Configure plugin `Shougo/context_filetype.vim`                      │
 "                                                                              │
 " Authors:                                                                     │
 "   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              │
@@ -32,14 +32,8 @@
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 " ────────────────────────────────────────────────────────────── Declaration ──┐
-function! plugins#neomake#declare() abort
-  Plug 'neomake/neomake'
-endfunction
-" ─────────────────────────────────────────────────────────────────────────────┘
-
-" ──────────────────────────────────────────────────────────── Configuration ──┐
-function! plugins#neomake#configure() abort
-  autocmd! BufWritePost * Neomake
+function! plugins#context_filetype#declare() abort
+  Plug 'Shougo/context_filetype.vim'
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 

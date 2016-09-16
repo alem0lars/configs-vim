@@ -1,10 +1,17 @@
-# => inherits: generic, neovim, with-tmux <= #
+# => inherits: generic, vanilla, tmux, zsh <= #
 
 colorscheme:
   name: jellybeans
+
 fonts:
   main:
     has_italic: false
+
+vim:
+  terminal:
+    cmd: 'urxvtc -e'
+  vimshell:
+    tmp_dir: '~/.vimshell'
 
 features:
   - powerline

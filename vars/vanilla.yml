@@ -1,0 +1,6 @@
+vim:
+  base_dir: '~/.vim'
+  autoload_dir: '~/.vim/autoload'
+
+features:
+  - vanilla

@@ -48,12 +48,6 @@ function! plugins#peekaboo#configure() abort
 
   " Compact display; do not display the names of the register groups
   let g:peekaboo_compact = 1
-
-  " Prefix for the peekaboo key mapping (default: '')
-  "let g:peekaboo_prefix = '<Leader>'
-
-  " Prefix for CTRL-R insert key mapping (default: '')
-  "let g:peekaboo_ins_prefix = '<c-x>'
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 

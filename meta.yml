@@ -9,7 +9,13 @@ commands:
 
 elems:
 
-  - src: elems/(.+)$
+  - src: elems/(vimrc)$
+    dst: ~/.<1>
+    only:
+      features:
+        - vanilla
+
+  - src: elems/((?!.*(?:vimrc)$).*)$
     dst: '<%= get_var! :"vim.base_dir", type: :directory %>/<1>'
     only:
       features:

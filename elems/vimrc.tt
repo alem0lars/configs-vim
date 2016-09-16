@@ -1,0 +1,1 @@
+exe 'source <%= get_var! "vim.base_dir" %>/init.vim'

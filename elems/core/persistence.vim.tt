@@ -101,6 +101,31 @@ set undoreload=<%= local! :undo_lines %>
 set undofile
 " ────────────────────────────────────────────────────────────────── Session ──┤
 set sessionoptions+=tabpages,globals
+" ───────────────────────────────────────── Automatically create directories ──┤
+function! s:ask_quit(msg, options, quit_option) abort
+  if confirm(a:msg, a:options) == a:quit_option
+    exit
+  endif
+endfunction
+
+function! s:ensure_dir_exists() abort
+  let required_dir=expand("%:h")
+  if !isdirectory(required_dir)
+    call s:ask_quit("Parent directory '" . required_dir . "' doesn't exist.",
+          \  "&Create it\nor &Quit?", 2)
+    try
+      call mkdir( required_dir, 'p' )
+    catch
+      call s:ask_quit("Can't create '" . required_dir . "'",
+            \ "&Quit\nor &Continue anyway?", 1)
+    endtry
+  endif
+endfunction
+
+augroup AutoMkdir
+  autocmd!
+  autocmd BufNewFile * :call <SID>ensure_dir_exists()
+augroup END
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 " vim: set filetype=eruby.vim :

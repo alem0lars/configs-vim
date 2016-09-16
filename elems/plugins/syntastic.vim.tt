@@ -1,7 +1,9 @@
 " ─────────────────────────────────────────────────────────────────────────────┐
 "                                                                              │
-" Name:    elems/plugins/esearch.vim.tt                                        │
-" Summary: Configure plugin `eugen0329/vim-esearch`                            │
+" Name:    elems/plugins/syntastic.vim.tt                                      │
+" Summary: Configure plugin `scrooloose/syntastic`.                            │
+" Depends:                                                                     │
+"   - `airblade/vim-rooter`                                                    │
 "                                                                              │
 " Authors:                                                                     │
 "   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              │
@@ -32,20 +34,14 @@
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 " ────────────────────────────────────────────────────────────── Declaration ──┐
-function! plugins#esearch#declare() abort
-  Plug 'eugen0329/vim-esearch'
+function! plugins#syntastic#declare() abort
+  Plug 'scrooloose/syntastic'
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 " ──────────────────────────────────────────────────────────── Configuration ──┐
-function! plugins#esearch#configure() abort
-  let g:esearch = {
-        \   'adapter':    'ag',
-        \   'backend':    'nvim',
-        \   'out':        'qflist',
-        \   'batch_size': 1024,
-        \   'use':        ['visual', 'hlsearch', 'last'],
-        \ }
+function! plugins#syntastic#configure() abort
+  let g:syntastic_aggregate_errors=1
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 

@@ -2,7 +2,7 @@
 "                                                                              │
 " Name:    elems/plugins/table_mode.vim.tt                                     │
 " Summary: Configure plugin `dhruvasagar/vim-table-mode`.                      │
-" Depends:                                                                     │
+" Mappings:                                                                    │
 "   - `<Leader>t`*: Perform table operations.                                  │
 "                                                                              │
 " Authors:                                                                     │
