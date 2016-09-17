@@ -98,7 +98,7 @@ function! plugins#vimfiler#configure_mappings() abort
 "        \ -buffer-name=explorer -toggle<CR>
 
   nnoremap <silent> <Leader>e :<C-u>VimFiler -buffer-name=explorer
-        \ -split -simple -winwidth=35 -toggle -no-quit
+        \ -split -simple -winwidth=35 -toggle -no-quit<CR>
 
   " <Leader>vff: Find and focus the current file in Vimfiler.
   nnoremap <silent> <Leader>vff :<C-u>VimFilerExplorer -find<CR>

@@ -38,10 +38,11 @@ end -%>
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 " ────────────────────────────────────────────────────────────────── Plugins ──┐
+" ──────────────────────────────────────────────────────── Declare ← Plugins ──┤
 call plug#begin('<%= local! :cache_dir %>')
-" ────────────────────────────────────────────────────────── Async ← Plugins ──┤
+" ──────────────────────────────────────────────── Async ← Declare ← Plugins ──┤
 call plugins#vimproc#declare()
-" ──────────────────────────────────────────────────────── Editing ← Plugins ──┤
+" ────────────────────────────────────────────── Editing ← Declare ← Plugins ──┤
 call plugins#context_filetype#declare()
 call plugins#repeat#declare()
 call plugins#surround#declare()
@@ -58,7 +59,7 @@ call plugins#bbye#declare()
 call plugins#over#declare()
 call plugins#nrrwrgn#declare()
 call plugins#table_mode#declare()
-" ───────────────────────────────────────────────────────────── UI ← Plugins ──┤
+" ─────────────────────────────────────────────────── UI ← Declare ← Plugins ──┤
 call plugins#tagbar#declare()
 call plugins#indentline#declare()
 call plugins#signature#declare()
@@ -68,43 +69,42 @@ call plugins#windowswap#declare()
 call plugins#taboo#declare()
 call plugins#numbers#declare()
 call plugins#unite#declare()
-" ────────────────────────────────────────────────────────── Shell ← Plugins ──┤
+" ──────────────────────────────────────────────── Shell ← Declare ← Plugins ──┤
 call plugins#vimshell#declare()
-" ─────────────────────────────────────────────────────────── Undo ← Plugins ──┤
+" ───────────────────────────────────────────────── Undo ← Declare ← Plugins ──┤
 call plugins#undotree#declare()
 call plugins#peekaboo#declare()
-" ──────────────────────────────────────────────────────────── VCS ← Plugins ──┤
+" ────────────────────────────────────────────────── VCS ← Declare ← Plugins ──┤
 call plugins#fugitive#declare()
-" ──────────────────────────────────────────────────────── Session ← Plugins ──┤
+" ────────────────────────────────────────────── Session ← Declare ← Plugins ──┤
 call plugins#obsession#declare()
-" ─────────────────────────────────────────────── Files Management ← Plugins ──┤
+" ───────────────────────────────────── Files Management ← Declare ← Plugins ──┤
 call plugins#vimfiler#declare()
 call plugins#sudoedit#declare()
 call plugins#rooter#declare()
-" ─────────────────────────────────────────────────── Syntax Check ← Plugins ──┤
+" ───────────────────────────────────────── Syntax Check ← Declare ← Plugins ──┤
 call plugins#syntastic#declare()
-" ─────────────────────────────────────────────────── AutoComplete ← Plugins ──┤
+" ───────────────────────────────────────── AutoComplete ← Declare ← Plugins ──┤
 call plugins#youcompleteme#declare()
-" ──────────────────────────────────────────────────────────── Doc ← Plugins ──┤
+" ────────────────────────────────────────────────── Doc ← Declare ← Plugins ──┤
 call plugins#man#declare()
-" ────────────────────────────────────────────────────────── Langs ← Plugins ──┤
+" ──────────────────────────────────────────────── Langs ← Declare ← Plugins ──┤
 call plugins#vimtex#declare()
 call plugins#tmux#declare()
-" ─────────────────────────────────────────────────────────── Misc ← Plugins ──┤
+" ───────────────────────────────────────────────── Misc ← Declare ← Plugins ──┤
 call plugins#prettyprint#declare()
-" ───────────────────────────────────────────────────── Statusline ← Plugins ──┤
+" ─────────────────────────────────────────── Statusline ← Declare ← Plugins ──┤
 call plugins#airline#declare()
-" ──────────────────────────────────────────────────── Commandline ← Plugins ──┤
+" ────────────────────────────────────────── Commandline ← Declare ← Plugins ──┤
 call plugins#cmd2#declare()
-" ──────────────────────────────────────────────────── Colorscheme ← Plugins ──┤
+" ────────────────────────────────────────── Colorscheme ← Declare ← Plugins ──┤
 call plugins#colorscheme#declare()
 " ─────────────────────────────────────────────────────────────────────────────┤
 call plug#end()
-" ─────────────────────────────────────────────────────────────────────────────┘
-
-" ────────────────────────────────────────────────────────── Async ← Plugins ──┤
+" ────────────────────────────────────────────────────── Configure ← Plugins ──┤
+" ────────────────────────────────────────────── Async ← Configure ← Plugins ──┤
 call plugins#vimproc#configure()
-" ──────────────────────────────────────────────────────── Editing ← Plugins ──┤
+" ──────────────────────────────────────────── Editing ← Configure ← Plugins ──┤
 call plugins#surround#configure()
 call plugins#tcomment#configure()
 call plugins#easyalign#configure()
@@ -112,7 +112,7 @@ call plugins#multiple_cursors#configure()
 call plugins#easymotion#configure()
 call plugins#incsearch#configure()
 call plugins#bbye#configure()
-" ───────────────────────────────────────────────────────────── UI ← Plugins ──┤
+" ───────────────────────────────────────────────── UI ← Configure ← Plugins ──┤
 call plugins#tagbar#configure()
 call plugins#indentline#configure()
 call plugins#signature#configure()
@@ -122,31 +122,31 @@ call plugins#windowswap#configure()
 call plugins#taboo#configure()
 call plugins#numbers#configure()
 call plugins#unite#configure()
-" ────────────────────────────────────────────────────────── Shell ← Plugins ──┤
+" ────────────────────────────────────────────── Shell ← Configure ← Plugins ──┤
 call plugins#vimshell#configure()
-" ─────────────────────────────────────────────────────────── Undo ← Plugins ──┤
+" ─────────────────────────────────────────────── Undo ← Configure ← Plugins ──┤
 call plugins#undotree#configure()
 call plugins#peekaboo#configure()
-" ──────────────────────────────────────────────────────────── VCS ← Plugins ──┤
-" ──────────────────────────────────────────────────────── Session ← Plugins ──┤
+" ──────────────────────────────────────────────── VCS ← Configure ← Plugins ──┤
+" ──────────────────────────────────────────── Session ← Configure ← Plugins ──┤
 call plugins#obsession#configure()
-" ─────────────────────────────────────────────── Files Management ← Plugins ──┤
+" ─────────────────────────────────── Files Management ← Configure ← Plugins ──┤
 call plugins#vimfiler#configure()
-" ─────────────────────────────────────────────────── Syntax Check ← Plugins ──┤
+" ─────────────────────────────────────── Syntax Check ← Configure ← Plugins ──┤
 call plugins#syntastic#configure()
-" ─────────────────────────────────────────────────── AutoComplete ← Plugins ──┤
+" ─────────────────────────────────────── AutoComplete ← Configure ← Plugins ──┤
 call plugins#youcompleteme#configure()
-" ──────────────────────────────────────────────────────────── Doc ← Plugins ──┤
+" ──────────────────────────────────────────────── Doc ← Configure ← Plugins ──┤
 call plugins#man#configure()
-" ────────────────────────────────────────────────────────── Langs ← Plugins ──┤
+" ────────────────────────────────────────────── Langs ← Configure ← Plugins ──┤
 call plugins#vimtex#configure()
-" ─────────────────────────────────────────────────────────── Misc ← Plugins ──┤
-" ───────────────────────────────────────────────────── Statusline ← Plugins ──┤
+" ─────────────────────────────────────────────── Misc ← Configure ← Plugins ──┤
+" ───────────────────────────────────────── Statusline ← Configure ← Plugins ──┤
 call plugins#airline#configure()
-" ──────────────────────────────────────────────────── Commandline ← Plugins ──┤
+" ──────────────────────────────────────── Commandline ← Configure ← Plugins ──┤
 call plugins#cmd2#configure()
-" ──────────────────────────────────────────────────── Colorscheme ← Plugins ──┤
+" ──────────────────────────────────────── Colorscheme ← Configure ← Plugins ──┤
 call plugins#colorscheme#configure()
-" ─────────────────────────────────────────────────────────────────────────────┤
+" ─────────────────────────────────────────────────────────────────────────────┘
 
 " vim: set filetype=eruby.vim :
