@@ -1,7 +1,7 @@
 " ─────────────────────────────────────────────────────────────────────────────┐
 "                                                                              │
-" Name:    elems/plugins/youcompleteme.vim.tt                                  │
-" Summary: Configure plugin `Valloric/YouCompleteMe`                           │
+" Name:    elems/plugins/neosnippet.vim.tt                                     │
+" Summary: Configure plugin `Shougo/neosnippet.vim`                            │
 "                                                                              │
 " Authors:                                                                     │
 "   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              │
@@ -29,33 +29,36 @@
 " See the License for the specific language governing permissions and          │
 " limitations under the License.                                               │
 "                                                                              │
-" ─────────────────────────────────────────────────────────────────────────────┤
-<% define_locals do
-  computed(:opts) do
-    opts  = ["clang-completer"]
-    opts << "omnisharp-completer" if has_feature? :mono
-    opts << "gocode-completer"    if has_feature? :go
-    opts << "racer-completer"     if has_feature? :rust
-    opts << "tern-completer"      if has_feature? :javascript
-    opts.map{|opt| "--#{opt}"}.join(" ")
-  end
-end -%>
 " ─────────────────────────────────────────────────────────────────────────────┘
 
+
 " ────────────────────────────────────────────────────────────── Declaration ──┐
-function! plugins#youcompleteme#declare() abort
-  Plug 'Valloric/YouCompleteMe', {'do': './install.py <%= local! :opts %>'}
+function! plugins#neosnippet#declare() abort
+  Plug 'Shougo/neosnippet'
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 " ──────────────────────────────────────────────────────────── Configuration ──┐
-function! plugins#youcompleteme#configure() abort
-  let g:ycm_server_python_interpreter='/usr/bin/python3'
-  autocmd! User YouCompleteMe
-        \ if !has('vim_starting')       |
-        \   call youcompleteme#Enable() |
-        \ endif
+function! plugins#neosnippet#configure() abort
+  " Plugin key-mappings.
+  imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+  smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+  xmap <C-k>     <Plug>(neosnippet_expand_target)
+  
+  " SuperTab like snippets behavior.
+  imap <expr><TAB>
+  	\ pumvisible() ? "\<C-n>" :
+	\ neosnippet#expandable_or_jumpable() ?
+	\    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+  smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+  	\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+  " For conceal markers.
+  if has('conceal')
+    set conceallevel=2 concealcursor=niv
+  endif
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
+
 
 " vim: set filetype=eruby.vim :

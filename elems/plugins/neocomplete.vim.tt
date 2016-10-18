@@ -1,0 +1,71 @@
+" ─────────────────────────────────────────────────────────────────────────────┐
+"                                                                              │
+" Name:    elems/plugins/neocomplete.vim.tt                                    │
+" Summary: Configure plugin `Shougo/neocomplete`                               │
+"                                                                              │
+" Authors:                                                                     │
+"   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              │
+"                                                                              │
+" Project:                                                                     │
+"   - Homepage:        https://github.com/alem0lars/configs-vim                │
+"   - Getting started: see README.md in the project root folder                │
+"                                                                              │
+" License: Apache v2.0 (see below)                                             │
+"                                                                              │
+" ─────────────────────────────────────────────────────────────────────────────┤
+"                                                                              │
+" Licensed to the Apache Software Foundation (ASF) under one more contributor  │
+" license agreements.  See the NOTICE file distributed with this work for      │
+" additional information regarding copyright ownership. The ASF licenses this  │
+" file to you under the Apache License, Version 2.0 (the "License"); you may   │
+" not use this file except in compliance with the License.                     │
+" You may obtain a copy of the License at                                      │
+"                                                                              │
+"   http://www.apache.org/licenses/LICENSE-2.0                                 │
+"                                                                              │
+" Unless required by applicable law or agreed to in writing, software          │
+" distributed under the License is distributed on an "AS IS" BASIS, WITHOUT    │
+" WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.             │
+" See the License for the specific language governing permissions and          │
+" limitations under the License.                                               │
+"                                                                              │
+" ─────────────────────────────────────────────────────────────────────────────┤
+<% define_locals do
+end -%>
+" ─────────────────────────────────────────────────────────────────────────────┘
+
+
+" ────────────────────────────────────────────────────────────── Declaration ──┐
+function! plugins#neocomplete#declare() abort
+  Plug 'Shougo/neocomplete'
+  Plug 'Shougo/neopairs'
+  Plug 'Shougo/neoinclude'
+endfunction
+" ─────────────────────────────────────────────────────────────────────────────┘
+
+" ──────────────────────────────────────────────────────────── Configuration ──┐
+function! plugins#neocomplete#configure() abort
+  " ───────────────────────────────────────────────────────────────────────────┤
+  " Disable autocomplpop.
+  let g:acp_enableAtStartup=0
+  " Enable neocomplete.
+  let g:neocomplete#enable_at_startup=1
+  let g:neopairs#enable=1
+  " ───────────────────────────────────────────────────────────────────────────┤
+  " Use smartcase.
+  let g:neocomplete#enable_smart_case=1
+  " Don't display more than 32 items.
+  let g:neocomplete#max_list=32
+  " Minimum char completion lengths.
+  let g:neocomplete#sources#syntax#min_keyword_length=2
+  " Don't preselect entries.
+  let g:neocomplete#enable_auto_select=0
+  " Don't add automatic delimiters.
+  let g:neocomplete#enable_auto_delimiter=0
+  let g:neocomplete#enable_cursor_hold_i=1
+  let g:neocomplete#cursor_hold_i_time=48
+endfunction
+" ─────────────────────────────────────────────────────────────────────────────┘
+
+
+" vim: set filetype=eruby.vim :
