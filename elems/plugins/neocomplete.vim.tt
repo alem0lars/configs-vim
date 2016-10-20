@@ -35,7 +35,7 @@ end -%>
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 
-" ────────────────────────────────────────────────────────────── Declaration ──┐
+" ────────────────────────────────────────────────────────────────── Declare ──┐
 function! plugins#neocomplete#declare() abort
   Plug 'Shougo/neocomplete'
   Plug 'Shougo/neopairs'
@@ -43,15 +43,15 @@ function! plugins#neocomplete#declare() abort
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 
-" ──────────────────────────────────────────────────────────── Configuration ──┐
+" ──────────────────────────────────────────────────────────────── Configure ──┐
 function! plugins#neocomplete#configure() abort
-  " ───────────────────────────────────────────────────────────────────────────┤
+  " ───────────────────────────────────────────────────── Enable ← Configure ──┤
   " Disable autocomplpop.
   let g:acp_enableAtStartup=0
   " Enable neocomplete.
   let g:neocomplete#enable_at_startup=1
   let g:neopairs#enable=1
-  " ───────────────────────────────────────────────────────────────────────────┤
+  " ────────────────────────────────────────────────── Behaviour ← Configure ──┤
   " Use smartcase.
   let g:neocomplete#enable_smart_case=1
   " Don't display more than 32 items.
@@ -64,6 +64,61 @@ function! plugins#neocomplete#configure() abort
   let g:neocomplete#enable_auto_delimiter=0
   let g:neocomplete#enable_cursor_hold_i=1
   let g:neocomplete#cursor_hold_i_time=48
+  " ─────────────────────────────────────────────── Dictionaries ← Configure ──┤
+  let g:neocomplete#sources#dictionary#dictionaries = {'default' : ''} 
+  " ─────────────────────────────────────────── Keyword Patterns ← Configure ──┤
+  " Define keywords patterns for completion.
+  if !exists('g:neocomplete#keyword_patterns')
+    let g:neocomplete#keyword_patterns = {}
+  endif
+  let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+  " ───────────────────────────────────────────── Input Patterns ← Configure ──┤
+  " Enable per-language completion based on input patterns.
+  " The following input patterns definitions will add corresponding
+  " omni function to the available completion sources, without
+  " forcing it over the other sources available.
+  if !exists('g:neocomplete#sources#omni#input_patterns')
+    let g:neocomplete#sources#omni#input_patterns = {}
+  endif
+  
+  let g:neocomplete#sources#omni#input_patterns.tex =
+        \ '\v\\\a*(ref|cite)\a*([^]]*\])?\{([^}]*,)*[^}]*'
+  
+  " Enable forcing per-language completion based on input patterns.
+  " The following input patterns definitions will force to use the corresponding
+  " omni func when they match; in that case, the other sources will be ignored.
+  if !exists('g:neocomplete#force_omni_input_patterns')
+    let g:neocomplete#force_omni_input_patterns = {}
+  endif
+  
+  let g:neocomplete#force_omni_input_patterns.c =
+        \ '[^.[:digit:] *\t]\%(\.\|->\)\w*'
+  let g:neocomplete#force_omni_input_patterns.cpp =
+        \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
+  let g:neocomplete#force_omni_input_patterns.objc =
+        \ '\[\h\w*\s\h\?\|\h\w*\%(\.\|->\)'
+  let g:neocomplete#force_omni_input_patterns.objcpp =
+        \ '\[\h\w*\s\h\?\|\h\w*\%(\.\|->\)\|\h\w*::\w*'
+  let g:neocomplete#force_omni_input_patterns.python =
+        \ '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
+  let g:neocomplete#force_omni_input_patterns.ruby =
+        \ '[^. *\t]\.\h\w*\|\h\w*::'
+  let g:neocomplete#force_omni_input_patterns.javascript = '\h\w*\|[^. \t]\.\w*'
+  " ──────────────────────────────────────────────────── Hotkeys ← Configure ──┤
+  inoremap <expr><C-g> neocomplete#undo_completion()
+  inoremap <expr><C-l> neocomplete#complete_common_string()
+  
+  " <C-y>: Close popup.
+  inoremap <expr><C-y>  neocomplete#close_popup()
+  " <C-e>: to close popup and cancel selection
+  inoremap <expr><C-e>  neocomplete#cancel_popup()
+  
+  " <C-h> or <BS>: Close popup before deleting the char.
+  inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+  inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+  
+  " <CR>: Close the popup.
+  inoremap <silent> <CR> <C-r>=<SID>RC_Plugins_Hooks_NeoComplete_ClosePopup()<CR>
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 
