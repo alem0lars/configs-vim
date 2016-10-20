@@ -1,9 +1,7 @@
 " ─────────────────────────────────────────────────────────────────────────────┐
 "                                                                              │
-" Name:    elems/plugins/vimshell.vim.tt                                       │
-" Summary: Configure plugin `Shougo/vimshell.vim` and its plugins.             │
-" Depends:                                                                     │
-"   - `Shougo/vimproc.vim`                                                     │
+" Name:    elems/plugins/fastfold.vim.tt                                       │
+" Summary: Configure plugin `Konfekt/fastfold`.                                │
 "                                                                              │
 " Authors:                                                                     │
 "   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              │
@@ -31,63 +29,23 @@
 " See the License for the specific language governing permissions and          │
 " limitations under the License.                                               │
 "                                                                              │
-" ─────────────────────────────────────────────────────────────────────────────┤
-<% define_locals do
-  variable :"vim.terminal.cmd",     type: :string, as: :terminal_cmd
-end -%>
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 
 " ────────────────────────────────────────────────────────────────── Declare ──┐
-function! plugins#vimshell#declare() abort
-  Plug 'Shougo/vimshell.vim'
-  Plug 'ujihisa/vimshell-ssh'
+function! plugins#fastfold#declare() abort
+  Plug 'Konfekt/FastFold'
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 " ──────────────────────────────────────────────────────────────── Configure ──┐
-function! plugins#vimshell#configure() abort
-  call plugins#vimshell#configure_settings()
-  call plugins#vimshell#configure_mappings()
-endfunction
-" ───────────────────────────────────────────────────── Settings ← Configure ──┤
-function! plugins#vimshell#configure_settings() abort
-  " ────────────────────────────────────────── Prompt ← Settings ← Configure ──┤
-  let g:vimshell_user_prompt='fnamemodify(getcwd(), ":~")'
-  let g:vimshell_prompt='$ '
-  " ──────────────────────────────────────── Terminal ← Settings ← Configure ──┤
-  let g:vimshell_use_terminal_command='<%= local! :terminal_cmd %>'
-  " ──────────────────────────── History & Scrollback ← Settings ← Configure ──┤
-  " Maximum number of commands to keep in history.
-  let g:vimshell_max_command_history=1024
-  " Read from the external history file.
-  <% if has_feature? :zsh %>
-  let g:vimshell_external_history_path=expand('~/.zhistory')
-  <% end %>
-  " Maximum number of lines that can be scrolled back.
-  let g:vimshell_scrollback_limit=2048
-  " ──────────────────────────────────── Autocomplete ← Settings ← Configure ──┤
-  let g:vimshell_enable_smart_case=1
-  " Configure NeoComplete dictionary.
-  let g:neocomplete#sources#dictionary#dictionaries['vimshell']=expand(
-        \ '~/.cache/vimshell/command-history')
-endfunction
-" ───────────────────────────────────────────────────── Mappings ← Configure ──┤
-function! plugins#vimshell#configure_mappings() abort
-  nnoremap <Leader>vsh :<C-u>VimShell<CR>
-  nnoremap <Leader>vsp :<C-u>VimShellPop<CR>
-
-  autocmd FileType vimshell call <SID>configure_ft_mappings()
-endfunction
-
-function! s:configure_ft_mappings() abort
-  " TODO
-  "  nnoremap <silent><buffer> <C-j>
-  "        \ :<C-u>Unite -buffer-name=files -default-action=lcd directory_mru<CR>
-  "
-  "  " Autojump.
-  "  call vimshell#set_alias('j', ':Unite -buffer-name=files
-  "        \ -default-action=lcd -no-split -input=$$args directory_mru')
+function! plugins#fastfold#configure() abort
+  " ───────────────────────────────────────────────────── Enable ← Configure ──┤
+  let g:fastfold_savehook = 1
+  let g:fastfold_fdmhook = 0
+  " let g:fastfold_skip_filetypes=['taglist']
+  " ──────────────────────────────────────────────────── Hotkeys ← Configure ──┤
+  nmap zuz <Plug>(FastFoldUpdate)
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 

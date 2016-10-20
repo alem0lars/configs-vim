@@ -34,6 +34,7 @@
 end -%>
 " ─────────────────────────────────────────────────────────────────────────────┘
 
+
 " ──────────────────────────────────────────────────────── Utility functions ──┐
 " Check if the testing vim configuration is available.
 function! s:has_vimrc_test() abort
@@ -92,5 +93,6 @@ else
   syntax enable
 endif
 " ─────────────────────────────────────────────────────────────────────────────┘
+
 
 " vim: set filetype=eruby.vim :

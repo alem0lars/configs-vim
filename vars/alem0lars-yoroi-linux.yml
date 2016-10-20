@@ -10,8 +10,6 @@ fonts:
 vim:
   terminal:
     cmd: 'urxvtc -e'
-  vimshell:
-    tmp_dir: '~/.vimshell'
 
 features:
   - powerline

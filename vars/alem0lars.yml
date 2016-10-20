@@ -11,8 +11,6 @@ fonts:
 vim:
   terminal:
     cmd: 'openterm'
-  vimshell:
-    tmp_dir: '~/.vimshell'
 
 features:
   - powerline

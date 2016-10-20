@@ -50,22 +50,27 @@ function! plugins#neocomplete#configure() abort
   let g:acp_enableAtStartup=0
   " Enable neocomplete.
   let g:neocomplete#enable_at_startup=1
+  " Enable neopairs
   let g:neopairs#enable=1
   " ────────────────────────────────────────────────── Behaviour ← Configure ──┤
   " Use smartcase.
   let g:neocomplete#enable_smart_case=1
+  " Enable match camel case.
+  let g:neocomplete#enable_camel_case=1
   " Don't display more than 32 items.
   let g:neocomplete#max_list=32
   " Minimum char completion lengths.
   let g:neocomplete#sources#syntax#min_keyword_length=2
   " Don't preselect entries.
   let g:neocomplete#enable_auto_select=0
-  " Don't add automatic delimiters.
+  " Insert delimiter automatically.
   let g:neocomplete#enable_auto_delimiter=0
-  let g:neocomplete#enable_cursor_hold_i=1
-  let g:neocomplete#cursor_hold_i_time=48
+  " Add delay
+  let g:neocomplete#auto_complete_delay = 32
+  " Automatically close the preview.
+  let g:neocomplete#enable_auto_close_preview = 1
   " ─────────────────────────────────────────────── Dictionaries ← Configure ──┤
-  let g:neocomplete#sources#dictionary#dictionaries = {'default' : ''} 
+  let g:neocomplete#sources#dictionary#dictionaries = {'default' : ''}
   " ─────────────────────────────────────────── Keyword Patterns ← Configure ──┤
   " Define keywords patterns for completion.
   if !exists('g:neocomplete#keyword_patterns')
@@ -80,17 +85,17 @@ function! plugins#neocomplete#configure() abort
   if !exists('g:neocomplete#sources#omni#input_patterns')
     let g:neocomplete#sources#omni#input_patterns = {}
   endif
-  
+
   let g:neocomplete#sources#omni#input_patterns.tex =
         \ '\v\\\a*(ref|cite)\a*([^]]*\])?\{([^}]*,)*[^}]*'
-  
+
   " Enable forcing per-language completion based on input patterns.
   " The following input patterns definitions will force to use the corresponding
   " omni func when they match; in that case, the other sources will be ignored.
   if !exists('g:neocomplete#force_omni_input_patterns')
     let g:neocomplete#force_omni_input_patterns = {}
   endif
-  
+
   let g:neocomplete#force_omni_input_patterns.c =
         \ '[^.[:digit:] *\t]\%(\.\|->\)\w*'
   let g:neocomplete#force_omni_input_patterns.cpp =
@@ -105,22 +110,44 @@ function! plugins#neocomplete#configure() abort
         \ '[^. *\t]\.\h\w*\|\h\w*::'
   let g:neocomplete#force_omni_input_patterns.javascript = '\h\w*\|[^. \t]\.\w*'
   " ──────────────────────────────────────────────────── Hotkeys ← Configure ──┤
+  " <TAB>: completion.
+  inoremap <silent><expr> <TAB>
+        \ pumvisible() ? "\<C-n>" :
+        \ <SID>check_back_space() ? "\<TAB>" :
+        \ neocomplete#start_manual_complete()
+
+  " <S-TAB>: completion back.
+  inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
   inoremap <expr><C-g> neocomplete#undo_completion()
   inoremap <expr><C-l> neocomplete#complete_common_string()
-  
+
   " <C-y>: Close popup.
   inoremap <expr><C-y>  neocomplete#close_popup()
   " <C-e>: to close popup and cancel selection
   inoremap <expr><C-e>  neocomplete#cancel_popup()
-  
+
+  inoremap <expr> <C-g>     neocomplete#undo_completion()
+
+  inoremap <expr> <C-l>     neocomplete#mappings#complete_common_string()
+
   " <C-h> or <BS>: Close popup before deleting the char.
   inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
   inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-  
+
   " <CR>: Close the popup.
-  inoremap <silent> <CR> <C-r>=<SID>RC_Plugins_Hooks_NeoComplete_ClosePopup()<CR>
+  inoremap <silent> <CR> <C-r>=<SID>close_popup()<CR>
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
+
+function! s:close_popup() abort
+  return neocomplete#smart_close_popup() . "\<CR>"
+endfunction
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1] =~ '\s'
+endfunction
 
 
 " vim: set filetype=eruby.vim :
