@@ -1,0 +1,25 @@
+# => inherits: generic, vim, vanilla, tmux, zsh <= #
+
+
+colorscheme:
+  name: jellybeans
+
+fonts:
+  main:
+    has_italic: false
+
+vim:
+  terminal:
+    cmd: 'openterm'
+  vimshell:
+    tmp_dir: '~/.vimshell'
+
+features:
+  - powerline
+#  - mono
+#  - go
+#  - rust
+#  - javascript
+
+
+# vim: set filetype=eruby.yaml :
