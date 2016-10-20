@@ -1,4 +1,4 @@
-# => inherits: generic, vim, vanilla, tmux, zsh <= #
+# => inherits: generic, vanilla, tmux, zsh <= #
 
 
 colorscheme:

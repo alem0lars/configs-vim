@@ -38,8 +38,8 @@ end -%>
 " ────────────────────────────────────────────────────────────────── Declare ──┐
 function! plugins#neocomplete#declare() abort
   Plug 'Shougo/neocomplete'
-  Plug 'Shougo/neopairs'
-  Plug 'Shougo/neoinclude'
+  Plug 'Shougo/neopairs.vim'
+  Plug 'Shougo/neoinclude.vim'
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 
