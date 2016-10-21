@@ -86,9 +86,6 @@ function! plugins#neocomplete#configure() abort
     let g:neocomplete#sources#omni#input_patterns = {}
   endif
 
-  let g:neocomplete#sources#omni#input_patterns.tex =
-        \ '\v\\\a*(ref|cite)\a*([^]]*\])?\{([^}]*,)*[^}]*'
-
   " Enable forcing per-language completion based on input patterns.
   " The following input patterns definitions will force to use the corresponding
   " omni func when they match; in that case, the other sources will be ignored.
@@ -96,14 +93,6 @@ function! plugins#neocomplete#configure() abort
     let g:neocomplete#force_omni_input_patterns = {}
   endif
 
-  let g:neocomplete#force_omni_input_patterns.c =
-        \ '[^.[:digit:] *\t]\%(\.\|->\)\w*'
-  let g:neocomplete#force_omni_input_patterns.cpp =
-        \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
-  let g:neocomplete#force_omni_input_patterns.objc =
-        \ '\[\h\w*\s\h\?\|\h\w*\%(\.\|->\)'
-  let g:neocomplete#force_omni_input_patterns.objcpp =
-        \ '\[\h\w*\s\h\?\|\h\w*\%(\.\|->\)\|\h\w*::\w*'
   let g:neocomplete#force_omni_input_patterns.python =
         \ '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
   let g:neocomplete#force_omni_input_patterns.ruby =

@@ -33,13 +33,14 @@
 "                                                                              │
 " ─────────────────────────────────────────────────────────────────────────────┘
 
-" ────────────────────────────────────────────────────────────── Declaration ──┐
+
+" ────────────────────────────────────────────────────────────────── Declare ──┐
 function! plugins#choosewin#declare() abort
   Plug 't9md/vim-choosewin'
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 
-" ──────────────────────────────────────────────────────────── Configuration ──┐
+" ──────────────────────────────────────────────────────────────── Configure ──┐
 function! plugins#choosewin#configure() abort
   call plugins#choosewin#configure_settings()
   call plugins#choosewin#configure_mappings()
@@ -55,5 +56,6 @@ function! plugins#choosewin#configure_mappings() abort
   nnoremap <Leader>wc :<C-u>ChooseWin<CR>
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
+
 
 " vim: set filetype=eruby.vim :

@@ -10,10 +10,14 @@ fonts:
 
 vim:
   terminal:
-    cmd: 'openterm'
+    cmd: openterm
 
 features:
   - powerline
+  # Langs
+  - tmux
+  - tex
+  - c
 #  - mono
 #  - go
 #  - rust

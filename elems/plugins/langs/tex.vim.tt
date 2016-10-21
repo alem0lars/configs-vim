@@ -1,7 +1,7 @@
 " ─────────────────────────────────────────────────────────────────────────────┐
 "                                                                              │
-" Name:    elems/plugins/better_whitespace.vim.tt                              │
-" Summary: Configure plugin `ntpeters/vim-better-whitespace`.                  │
+" Name:    elems/plugins/langs/tex.vim.tt                                      │
+" Summary: Configure plugins related to language: `tex`.                       │
 "                                                                              │
 " Authors:                                                                     │
 "   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              │
@@ -33,14 +33,41 @@
 
 
 " ────────────────────────────────────────────────────────────────── Declare ──┐
-function! plugins#better_whitespace#declare() abort
-  Plug 'ntpeters/vim-better-whitespace'
+function! plugins#langs#tex#declare() abort
+  Plug 'lervag/vimtex'
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 " ──────────────────────────────────────────────────────────────── Configure ──┐
-function! plugins#better_whitespace#configure() abort
-  autocmd BufWritePre * StripWhitespace
+function! plugins#langs#tex#configure() abort
+  " Build options.
+  let g:vimtex_latexmk_options=''     .
+        \ '-xelatex '                 .
+        \ '--shell-escape '           .
+        \ '-interaction=nonstopmode ' .
+        \ '-bibtex '                  .
+        \ '-synctex=1 '               .
+        \ '-file-line-error '         .
+        \ '-synctex=1'
+  " A tolerance for the number of lines to search for matching delimiters in
+  " each direction.
+  let g:vimtex_delim_stopline=512
+  " Detect tex files correctly.
+  let g:tex_flavor='latex'
+  " NeoComplete source.
+  let g:neocomplete#sources#omni#input_patterns.tex =
+        \ '\v\\%('
+        \ . '\a*cite\a*%(\s*\[[^]]*\]){0,2}\s*\{[^}]*'
+        \ . '|\a*ref%(\s*\{[^}]*|range\s*\{[^,}]*%(}\{)?)'
+        \ . '|hyperref\s*\[[^]]*'
+        \ . '|includegraphics\*?%(\s*\[[^]]*\]){0,2}\s*\{[^}]*'
+        \ . '|%(include%(only)?|input)\s*\{[^}]*'
+        \ . '|\a*(gls|Gls|GLS)(pl)?\a*%(\s*\[[^]]*\]){0,2}\s*\{[^}]*'
+        \ . '|includepdf%(\s*\[[^]]*\])?\s*\{[^}]*'
+        \ . '|includestandalone%(\s*\[[^]]*\])?\s*\{[^}]*'
+        \ . ')'
+  " Enable specific folding.
+  let g:vimtex_fold_enabled=1
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 

@@ -33,7 +33,9 @@
 "                                                                              │
 " ─────────────────────────────────────────────────────────────────────────────┤
 <% define_locals do
-  variable :"vim.terminal.cmd",     type: :string, as: :terminal_cmd
+  variable :"vim.terminal.cmd",     type: :string,    as: :terminal_cmd
+  variable :"vim.vimshell.tmp_dir", type: :directory, as: :tmp_dir,
+           default: "~/.cache/vimshell"
 end -%>
 " ─────────────────────────────────────────────────────────────────────────────┘
 
@@ -58,6 +60,7 @@ function! plugins#vimshell#configure_settings() abort
   " ──────────────────────────────────────── Terminal ← Settings ← Configure ──┤
   let g:vimshell_use_terminal_command='<%= local! :terminal_cmd %>'
   " ──────────────────────────── History & Scrollback ← Settings ← Configure ──┤
+  let g:vimshell_temporary_directory = expand('<%= local! :tmp_dir %>')
   " Maximum number of commands to keep in history.
   let g:vimshell_max_command_history=1024
   " Read from the external history file.
@@ -69,25 +72,13 @@ function! plugins#vimshell#configure_settings() abort
   " ──────────────────────────────────── Autocomplete ← Settings ← Configure ──┤
   let g:vimshell_enable_smart_case=1
   " Configure NeoComplete dictionary.
-  let g:neocomplete#sources#dictionary#dictionaries['vimshell']=expand(
-        \ '~/.cache/vimshell/command-history')
+  let g:neocomplete#sources#dictionary#dictionaries['vimshell'] =  expand(
+        \ '<%= local! :tmp_dir %>')
 endfunction
 " ───────────────────────────────────────────────────── Mappings ← Configure ──┤
 function! plugins#vimshell#configure_mappings() abort
   nnoremap <Leader>vsh :<C-u>VimShell<CR>
   nnoremap <Leader>vsp :<C-u>VimShellPop<CR>
-
-  autocmd FileType vimshell call <SID>configure_ft_mappings()
-endfunction
-
-function! s:configure_ft_mappings() abort
-  " TODO
-  "  nnoremap <silent><buffer> <C-j>
-  "        \ :<C-u>Unite -buffer-name=files -default-action=lcd directory_mru<CR>
-  "
-  "  " Autojump.
-  "  call vimshell#set_alias('j', ':Unite -buffer-name=files
-  "        \ -default-action=lcd -no-split -input=$$args directory_mru')
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 

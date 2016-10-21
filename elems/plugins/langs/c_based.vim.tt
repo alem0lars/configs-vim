@@ -1,9 +1,8 @@
 " ─────────────────────────────────────────────────────────────────────────────┐
 "                                                                              │
-" Name:    elems/plugins/vimtex.vim.tt                                         │
-" Summary: Configure plugin `lervag/vimtex`.                                   │
-" Depends:                                                                     │
-"   - `youcompleteme`                                                          │
+" Name:    elems/plugins/langs/c_based.vim.tt                                  │
+" Summary: Configure plugins related to `c`-based languages                    │
+"          (`c` and derivatives).                                              │
 "                                                                              │
 " Authors:                                                                     │
 "   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              │
@@ -33,43 +32,47 @@
 "                                                                              │
 " ─────────────────────────────────────────────────────────────────────────────┘
 
-" ────────────────────────────────────────────────────────────── Declaration ──┐
-function! plugins#vimtex#declare() abort
-  Plug 'lervag/vimtex'
+
+" ────────────────────────────────────────────────────────────────── Declare ──┐
+function! plugins#langs#c_based#declare() abort
+  Plug 'Rip-Rip/clang_complete', {'do': 'make install'}
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 
-" ──────────────────────────────────────────────────────────── Configuration ──┐
-function! plugins#vimtex#configure() abort
-  " Build options.
-  let g:vimtex_latexmk_options=''     .
-        \ '-xelatex '                 .
-        \ '--shell-escape '           .
-        \ '-interaction=nonstopmode ' .
-        \ '-bibtex '                  .
-        \ '-synctex=1 '               .
-        \ '-file-line-error '         .
-        \ '-synctex=1'
-  " A tolerance for the number of lines to search for matching delimiters in
-  " each direction.
-  let g:vimtex_delim_stopline=512
-  " Detect tex files correctly.
-  let g:tex_flavor='latex'
-  " YouCompleteMe support.
-  if !exists('g:ycm_semantic_triggers')
-    let g:ycm_semantic_triggers = {}
+" ──────────────────────────────────────────────────────────────── Configure ──┐
+function! plugins#langs#c_based#configure() abort
+  " ───────────────────────────────────────────── CLang Complete ← Configure ──┤
+  " Disable autocomplete using clang_complete because neocomplete will be used.
+  let g:clang_complete_auto = 0
+  " Disable autoselect of the first element.
+  let g:clang_auto_select = 0
+  " Instead of calling the clang/clang++ tool use libclang directly. This gives
+  " access to many more clang features. Furthermore it automatically caches all
+  " includes in memory.
+  " Updates after changes in the same file will therefore be a lot faster.
+  let g:clang_use_library = 1
+  <% if is_osx? %>
+  let s:clang_library_path = '/Library/Developer/CommandLineTools/usr/lib'
+  if isdirectory(s:clang_library_path)
+    let g:clang_library_path = s:clang_library_path
   endif
-  let g:ycm_semantic_triggers.tex = [
-        \ 're!\\[A-Za-z]*cite[A-Za-z]*(\[[^]]*\]){0,2}{[^}]*',
-        \ 're!\\[A-Za-z]*ref({[^}]*|range{([^,{}]*(}{)?))',
-        \ 're!\\hyperref\[[^]]*',
-        \ 're!\\includegraphics\*?(\[[^]]*\]){0,2}{[^}]*',
-        \ 're!\\(include(only)?|input){[^}]*',
-        \ 're!\\\a*(gls|Gls|GLS)(pl)?\a*(\s*\[[^]]*\]){0,2}\s*\{[^}]*',
-        \ 're!\\includepdf(\s*\[[^]]*\])?\s*\{[^}]*',
-        \ 're!\\includestandalone(\s*\[[^]]*\])?\s*\{[^}]*',
-        \ ]
+  <% end %>
+  " NeoComplete source.
+  let g:neocomplete#force_omni_input_patterns.c =
+        \ '[^.[:digit:] *\t]\%(\.\|->\)\w*'
+  let g:neocomplete#force_omni_input_patterns.cpp =
+        \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
+  let g:neocomplete#force_omni_input_patterns.objc =
+        \ '\[\h\w*\s\h\?\|\h\w*\%(\.\|->\)'
+  let g:neocomplete#force_omni_input_patterns.objcpp =
+        \ '\[\h\w*\s\h\?\|\h\w*\%(\.\|->\)\|\h\w*::\w*'
+  " Enable specific folding.
+  autocmd FileType c      setlocal foldmethod=syntax
+  autocmd FileType cpp    setlocal foldmethod=syntax
+  autocmd FileType objc   setlocal foldmethod=syntax
+  autocmd FileType objcpp setlocal foldmethod=syntax
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
+
 
 " vim: set filetype=eruby.vim :

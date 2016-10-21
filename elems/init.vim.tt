@@ -83,6 +83,7 @@ else
 
   " Load plugins settings.
   call s:source_rc('plugins')
+  call s:source_rc('plugins/langs')
 
   " Load the plugins.
   call s:source_rc('plugins.vim')

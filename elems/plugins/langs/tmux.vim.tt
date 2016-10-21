@@ -1,7 +1,7 @@
 " ─────────────────────────────────────────────────────────────────────────────┐
 "                                                                              │
-" Name:    elems/plugins/tmux.vim.tt                                           │
-" Summary: Configure plugin `tmux-plugins/vim-tmux`.                           │
+" Name:    elems/plugins/langs/tmux.vim.tt                                     │
+" Summary: Configure plugins related to language: `tmux`.                      │
 "                                                                              │
 " Authors:                                                                     │
 "   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              │
@@ -31,10 +31,12 @@
 "                                                                              │
 " ─────────────────────────────────────────────────────────────────────────────┘
 
-" ────────────────────────────────────────────────────────────── Declaration ──┐
-function! plugins#tmux#declare() abort
+
+" ────────────────────────────────────────────────────────────────── Declare ──┐
+function! plugins#langs#tmux#declare() abort
   Plug 'tmux-plugins/vim-tmux'
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
+
 
 " vim: set filetype=eruby.vim :
