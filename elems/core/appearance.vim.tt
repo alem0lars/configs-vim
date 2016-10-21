@@ -30,6 +30,7 @@
 "                                                                              │
 " ─────────────────────────────────────────────────────────────────────────────┘
 
+
 " ─────────────────────────────────────────────────────────────── Statusline ──┐
 " Always show the statusline.
 set laststatus=2
@@ -48,6 +49,18 @@ set ruler
 set modeline
 " The number of lines that is checked for set commands.
 set modelines=5
+" ─────────────────────────────────────────────────────────────── Cursorline ──┤
+" Show horizontal line under cursor.
+set cursorline
+" ─────────────────────────────────────────────────────────────────── Redraw ──┤
+" Indicates a fast terminal connection.  More characters will be sent to
+" the screen for redrawing, instead of using insert/delete line commands.
+set ttyfast
+" When this option is set, the screen will not be redrawn while executing
+" macros, registers and other commands that have not been typed.
+" Also, updating the window title is postponed.
+set lazyredraw
 " ─────────────────────────────────────────────────────────────────────────────┘
+
 
 " vim: set filetype=eruby.vim :

@@ -41,6 +41,8 @@ endfunction
 function! plugins#indentline#configure() abort
   " Character to be used for indentation.
   let g:indentLine_char='┆'
+  " Better performance.
+  let g:indentLine_faster=1
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 
