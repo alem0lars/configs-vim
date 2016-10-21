@@ -39,6 +39,7 @@ set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
 set foldminlines=0
 " Maximum nesting of folds.
 set foldnestmax=3
+set foldmethod=marker
 
 
 " vim: set filetype=eruby.vim :
