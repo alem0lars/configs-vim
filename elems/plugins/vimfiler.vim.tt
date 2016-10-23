@@ -44,6 +44,7 @@ end -%>
 function! plugins#vimfiler#declare() abort
   Plug 'Shougo/vimfiler.vim'
   Plug 'Shougo/neossh.vim'
+  Plug 'Shougo/unite-sudo'
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 

@@ -1,8 +1,7 @@
 " ─────────────────────────────────────────────────────────────────────────────┐
 "                                                                              │
-" Name:    elems/plugins/langs/c_based.vim.tt                                  │
-" Summary: Configure plugins related to `c`-based languages                    │
-"          (`c` and derivatives).                                              │
+" Name:    elems/plugins/langs/python.vim.tt                                   │
+" Summary: Configure plugins related to language: `python`.                    │
 "                                                                              │
 " Authors:                                                                     │
 "   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              │
@@ -34,44 +33,42 @@
 
 
 " ────────────────────────────────────────────────────────────────── Declare ──┐
-function! plugins#langs#c_based#declare() abort
-  Plug 'Rip-Rip/clang_complete', {'do': 'make install'}
+function! plugins#langs#python#declare() abort
+  Plug 'davidhalter/jedi-vim'
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 " ──────────────────────────────────────────────────────────────── Configure ──┐
-function! plugins#langs#c_based#configure() abort
-  " ───────────────────────────────────────────── CLang Complete ← Configure ──┤
-  " Disable autocomplete using clang_complete because neocomplete will be used.
-  let g:clang_complete_auto = 0
-  " Disable autoselect of the first element.
-  let g:clang_auto_select = 0
-  " Instead of calling the clang/clang++ tool use libclang directly. This gives
-  " access to many more clang features. Furthermore it automatically caches all
-  " includes in memory.
-  " Updates after changes in the same file will therefore be a lot faster.
-  let g:clang_use_library = 1
-  <% if is_osx? %>
-  let s:clang_library_path = '/Library/Developer/CommandLineTools/usr/lib'
-  if isdirectory(s:clang_library_path)
-    let g:clang_library_path = s:clang_library_path
-  endif
-  <% end %>
+function! plugins#langs#python#configure() abort
+  " ──────────────────────────────────────── Enable ← `jedi-vim` ← Configure ──┤
+  " Disable the standalone completion (jedi is only used as backend for
+  " NeoComplete.
+  let g:jedi#completions_enabled=0
+  let g:jedi#auto_vim_configuration=0
+  " Don't popup automatically the first completion element.
+  let g:jedi#popup_select_first=0
+  " ────────────────────────────────── Misc Options ← `jedi-vim` ← Configure ──┤
+  " Jedi displays function call signatures in insert mode in real-time,
+  " highlighting the current argument. The call signatures will be displayed in
+  " Vim's command line aligned with the function call.
+  let g:jedi#show_call_signatures='2'
   " ─────────────────────────────────────────────────── Complete ← Configure ──┤
-  " NeoComplete source.
-  let g:neocomplete#force_omni_input_patterns.c =
-        \ '[^.[:digit:] *\t]\%(\.\|->\)\w*'
-  let g:neocomplete#force_omni_input_patterns.cpp =
-        \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
-  let g:neocomplete#force_omni_input_patterns.objc =
-        \ '\[\h\w*\s\h\?\|\h\w*\%(\.\|->\)'
-  let g:neocomplete#force_omni_input_patterns.objcpp =
-        \ '\[\h\w*\s\h\?\|\h\w*\%(\.\|->\)\|\h\w*::\w*'
+  " Needed because we set `g:jedi#completions_enabled=0` to skip the
+  " direct usage of jedi-vim, but it's there where the plugin also
+  " registers the omnifunc.
+  autocmd FileType python setlocal omnifunc=jedi#completions
+  " Set NeoComplete source.
+  let g:neocomplete#force_omni_input_patterns.python =
+        \ '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
   " ─────────────────────────────────────────────────────── Fold ← Configure ──┤
-  autocmd FileType c      setlocal foldmethod=syntax
-  autocmd FileType cpp    setlocal foldmethod=syntax
-  autocmd FileType objc   setlocal foldmethod=syntax
-  autocmd FileType objcpp setlocal foldmethod=syntax
+  autocmd FileType python setlocal foldmethod=syntax
+  " ──────────────────────────────────────────────────── Hotkeys ← Configure ──┤
+  let s:jedi_leader='<Leader>je'
+  let g:jedi#goto_command=s:jedi_leader . 'gc'
+  let g:jedi#goto_assignments_command=s:jedi_leader . 'ga'
+  let g:jedi#documentation_command=s:jedi_leader . 'd'
+  let g:jedi#rename_command=s:jedi_leader . 'r'
+  let g:jedi#usages_command=s:jedi_leader . 'u'
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 

@@ -80,14 +80,24 @@ call plugins#neosnippet#declare()
 " ────────────────────────────────────────────────── Doc ← Declare ← Plugins ──┤
 call plugins#man#declare()
 " ──────────────────────────────────────────────── Langs ← Declare ← Plugins ──┤
+call plugins#langs#vimscript#declare()
+<% if has_feature? :c, :cpp, :objc, :objcpp, match: :any? %>
+call plugins#langs#c_based#declare()
+<% end %>
+<% if has_feature? :ruby %>
+call plugins#langs#ruby#declare()
+<% end %>
+<% if has_feature? :python %>
+call plugins#langs#python#declare()
+<% end %>
+<% if has_feature? :javascript %>
+call plugins#langs#javascript#declare()
+<% end %>
 <% if has_feature? :tex %>
 call plugins#langs#tex#declare()
 <% end %>
 <% if has_feature? :tmux %>
 call plugins#langs#tmux#declare()
-<% end %>
-<% if has_feature? :c, :cpp, :objc, :objcpp, match: :any? %>
-call plugins#langs#c_based#declare()
 <% end %>
 " ──────────────────────────────────────────────── Shell ← Declare ← Plugins ──┤
 call plugins#vimshell#declare()
@@ -146,11 +156,21 @@ call plugins#neosnippet#configure()
 " ──────────────────────────────────────────────── Doc ← Configure ← Plugins ──┤
 call plugins#man#configure()
 " ────────────────────────────────────────────── Langs ← Configure ← Plugins ──┤
-<% if has_feature? :tex %>
-call plugins#langs#tex#configure()
-<% end %>
+call plugins#langs#vimscript#configure()
 <% if has_feature? :c, :cpp, :objc, :objcpp, match: :any? %>
 call plugins#langs#c_based#configure()
+<% end %>
+<% if has_feature? :ruby %>
+call plugins#langs#ruby#configure()
+<% end %>
+<% if has_feature? :python %>
+call plugins#langs#python#configure()
+<% end %>
+<% if has_feature? :javascript %>
+call plugins#langs#javascript#configure()
+<% end %>
+<% if has_feature? :tex %>
+call plugins#langs#tex#configure()
 <% end %>
 " ────────────────────────────────────────────── Shell ← Configure ← Plugins ──┤
 call plugins#vimshell#configure()

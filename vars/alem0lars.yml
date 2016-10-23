@@ -15,9 +15,15 @@ vim:
 features:
   - powerline
   # Langs
-  - tmux
-  - tex
   - c
+  - cpp
+  - objc
+  - objcpp
+  - ruby
+  - python
+  - javascript
+  - tex
+  - tmux
 #  - mono
 #  - go
 #  - rust

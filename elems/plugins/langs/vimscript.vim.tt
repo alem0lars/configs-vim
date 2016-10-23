@@ -1,8 +1,7 @@
 " ─────────────────────────────────────────────────────────────────────────────┐
 "                                                                              │
-" Name:    elems/plugins/langs/c_based.vim.tt                                  │
-" Summary: Configure plugins related to `c`-based languages                    │
-"          (`c` and derivatives).                                              │
+" Name:    elems/plugins/langs/vimscript.vim.tt                                │
+" Summary: Configure plugins related to language: `vimscript`.                 │
 "                                                                              │
 " Authors:                                                                     │
 "   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              │
@@ -34,44 +33,15 @@
 
 
 " ────────────────────────────────────────────────────────────────── Declare ──┐
-function! plugins#langs#c_based#declare() abort
-  Plug 'Rip-Rip/clang_complete', {'do': 'make install'}
+function! plugins#langs#vimscript#declare() abort
+  Plug 'Shougo/neco-vim'
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 " ──────────────────────────────────────────────────────────────── Configure ──┐
-function! plugins#langs#c_based#configure() abort
-  " ───────────────────────────────────────────── CLang Complete ← Configure ──┤
-  " Disable autocomplete using clang_complete because neocomplete will be used.
-  let g:clang_complete_auto = 0
-  " Disable autoselect of the first element.
-  let g:clang_auto_select = 0
-  " Instead of calling the clang/clang++ tool use libclang directly. This gives
-  " access to many more clang features. Furthermore it automatically caches all
-  " includes in memory.
-  " Updates after changes in the same file will therefore be a lot faster.
-  let g:clang_use_library = 1
-  <% if is_osx? %>
-  let s:clang_library_path = '/Library/Developer/CommandLineTools/usr/lib'
-  if isdirectory(s:clang_library_path)
-    let g:clang_library_path = s:clang_library_path
-  endif
-  <% end %>
-  " ─────────────────────────────────────────────────── Complete ← Configure ──┤
-  " NeoComplete source.
-  let g:neocomplete#force_omni_input_patterns.c =
-        \ '[^.[:digit:] *\t]\%(\.\|->\)\w*'
-  let g:neocomplete#force_omni_input_patterns.cpp =
-        \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
-  let g:neocomplete#force_omni_input_patterns.objc =
-        \ '\[\h\w*\s\h\?\|\h\w*\%(\.\|->\)'
-  let g:neocomplete#force_omni_input_patterns.objcpp =
-        \ '\[\h\w*\s\h\?\|\h\w*\%(\.\|->\)\|\h\w*::\w*'
+function! plugins#langs#vimscript#configure() abort
   " ─────────────────────────────────────────────────────── Fold ← Configure ──┤
-  autocmd FileType c      setlocal foldmethod=syntax
-  autocmd FileType cpp    setlocal foldmethod=syntax
-  autocmd FileType objc   setlocal foldmethod=syntax
-  autocmd FileType objcpp setlocal foldmethod=syntax
+  let g:vimsyn_folding='af'
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 

@@ -92,12 +92,6 @@ function! plugins#neocomplete#configure() abort
   if !exists('g:neocomplete#force_omni_input_patterns')
     let g:neocomplete#force_omni_input_patterns = {}
   endif
-
-  let g:neocomplete#force_omni_input_patterns.python =
-        \ '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
-  let g:neocomplete#force_omni_input_patterns.ruby =
-        \ '[^. *\t]\.\h\w*\|\h\w*::'
-  let g:neocomplete#force_omni_input_patterns.javascript = '\h\w*\|[^. \t]\.\w*'
   " ──────────────────────────────────────────────────── Hotkeys ← Configure ──┤
   " <TAB>: completion.
   inoremap <silent><expr> <TAB>
@@ -116,9 +110,9 @@ function! plugins#neocomplete#configure() abort
   " <C-e>: to close popup and cancel selection
   inoremap <expr><C-e>  neocomplete#cancel_popup()
 
-  inoremap <expr> <C-g>     neocomplete#undo_completion()
+  inoremap <expr> <C-g> neocomplete#undo_completion()
 
-  inoremap <expr> <C-l>     neocomplete#mappings#complete_common_string()
+  inoremap <expr> <C-l> neocomplete#mappings#complete_common_string()
 
   " <C-h> or <BS>: Close popup before deleting the char.
   inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"

@@ -1,8 +1,7 @@
 " ─────────────────────────────────────────────────────────────────────────────┐
 "                                                                              │
-" Name:    elems/plugins/langs/c_based.vim.tt                                  │
-" Summary: Configure plugins related to `c`-based languages                    │
-"          (`c` and derivatives).                                              │
+" Name:    elems/plugins/langs/javascript.vim.tt                               │
+" Summary: Configure plugins related to language: `javascript`.                │
 "                                                                              │
 " Authors:                                                                     │
 "   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              │
@@ -34,44 +33,36 @@
 
 
 " ────────────────────────────────────────────────────────────────── Declare ──┐
-function! plugins#langs#c_based#declare() abort
-  Plug 'Rip-Rip/clang_complete', {'do': 'make install'}
+function! plugins#langs#javascript#declare() abort
+  Plug 'pangloss/vim-javascript'
+  Plug 'ternjs/tern_for_vim', {'do': 'npm install'}
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 " ──────────────────────────────────────────────────────────────── Configure ──┐
-function! plugins#langs#c_based#configure() abort
-  " ───────────────────────────────────────────── CLang Complete ← Configure ──┤
-  " Disable autocomplete using clang_complete because neocomplete will be used.
-  let g:clang_complete_auto = 0
-  " Disable autoselect of the first element.
-  let g:clang_auto_select = 0
-  " Instead of calling the clang/clang++ tool use libclang directly. This gives
-  " access to many more clang features. Furthermore it automatically caches all
-  " includes in memory.
-  " Updates after changes in the same file will therefore be a lot faster.
-  let g:clang_use_library = 1
-  <% if is_osx? %>
-  let s:clang_library_path = '/Library/Developer/CommandLineTools/usr/lib'
-  if isdirectory(s:clang_library_path)
-    let g:clang_library_path = s:clang_library_path
-  endif
-  <% end %>
+function! plugins#langs#javascript#configure() abort
+  " ─────────────────────────────────────────── Syntax Highlight ← Configure ──┤
+  " Enable syntax highlighting for JSDocs.
+  let g:javascript_plugin_jsdoc=1
+  " Enable syntax highlighting for NGDocs.
+  let g:javascript_plugin_ngdoc=1
+  " Enables syntax highlighting for Flow.
+  let g:javascript_plugin_flow=1
+  " ────────────────────────────── Misc Options ← `tern_for_vim` ← Configure ──┤
+  let tern_show_argument_hints='on_hold'
+  let tern_show_signature_in_pum=1
   " ─────────────────────────────────────────────────── Complete ← Configure ──┤
-  " NeoComplete source.
-  let g:neocomplete#force_omni_input_patterns.c =
-        \ '[^.[:digit:] *\t]\%(\.\|->\)\w*'
-  let g:neocomplete#force_omni_input_patterns.cpp =
-        \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
-  let g:neocomplete#force_omni_input_patterns.objc =
-        \ '\[\h\w*\s\h\?\|\h\w*\%(\.\|->\)'
-  let g:neocomplete#force_omni_input_patterns.objcpp =
-        \ '\[\h\w*\s\h\?\|\h\w*\%(\.\|->\)\|\h\w*::\w*'
+  " Set omnifunc.
+  autocmd FileType javascript setlocal omnifunc=tern#Complete
+  autocmd FileType coffee     setlocal omnifunc=tern#Complete
+  " Set NeoComplete source.
+  let g:neocomplete#force_omni_input_patterns.javascript = '\h\w*\|[^. \t]\.\w*'
   " ─────────────────────────────────────────────────────── Fold ← Configure ──┤
-  autocmd FileType c      setlocal foldmethod=syntax
-  autocmd FileType cpp    setlocal foldmethod=syntax
-  autocmd FileType objc   setlocal foldmethod=syntax
-  autocmd FileType objcpp setlocal foldmethod=syntax
+  autocmd FileType javascript setlocal foldmethod=syntax
+  autocmd FileType coffee     setlocal foldmethod=syntax
+  " ──────────────────────────────────────────────────── Hotkeys ← Configure ──┤
+  let tern_map_prefix='<LocalLeader>te'
+  let tern_map_keys=1
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 

@@ -40,6 +40,7 @@ endfunction
 
 " ──────────────────────────────────────────────────────────────── Configure ──┐
 function! plugins#langs#tex#configure() abort
+  " ────────────────────────────────────────────────────── Build ← Configure ──┤
   " Build options.
   let g:vimtex_latexmk_options=''     .
         \ '-xelatex '                 .
@@ -49,11 +50,13 @@ function! plugins#langs#tex#configure() abort
         \ '-synctex=1 '               .
         \ '-file-line-error '         .
         \ '-synctex=1'
+  " ──────────────────────────────────── Misc Options ← `vimtex` ← Configure ──┤
   " A tolerance for the number of lines to search for matching delimiters in
   " each direction.
   let g:vimtex_delim_stopline=512
   " Detect tex files correctly.
   let g:tex_flavor='latex'
+  " ─────────────────────────────────────────────────── Complete ← Configure ──┤
   " NeoComplete source.
   let g:neocomplete#sources#omni#input_patterns.tex =
         \ '\v\\%('
@@ -66,7 +69,7 @@ function! plugins#langs#tex#configure() abort
         \ . '|includepdf%(\s*\[[^]]*\])?\s*\{[^}]*'
         \ . '|includestandalone%(\s*\[[^]]*\])?\s*\{[^}]*'
         \ . ')'
-  " Enable specific folding.
+  " ─────────────────────────────────────────────────────── Fold ← Configure ──┤
   let g:vimtex_fold_enabled=1
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
