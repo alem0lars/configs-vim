@@ -99,6 +99,9 @@ call plugins#langs#tex#declare()
 <% if has_feature? :tmux %>
 call plugins#langs#tmux#declare()
 <% end %>
+<% if has_feature? :systemd %>
+call plugins#langs#systemd#declare()
+<% end %>
 " ──────────────────────────────────────────────── Shell ← Declare ← Plugins ──┤
 call plugins#vimshell#declare()
 " ────────────────────────────────────────────────── VCS ← Declare ← Plugins ──┤

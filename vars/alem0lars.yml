@@ -24,6 +24,7 @@ features:
   - javascript
   - tex
   - tmux
+  - systemd
 #  - mono
 #  - go
 #  - rust
