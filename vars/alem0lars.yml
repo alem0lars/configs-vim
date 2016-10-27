@@ -24,11 +24,14 @@ features:
   - javascript
   - tex
   - tmux
+  - plantuml
   - systemd
 #  - mono
 #  - go
 #  - rust
 #  - javascript
+  # Misc
+  - figlet
 
 
 # vim: set filetype=eruby.yaml :

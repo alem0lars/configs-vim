@@ -62,6 +62,10 @@ call plugins#table_mode#declare()
 call plugins#better_whitespace#declare()
 call plugins#fastfold#declare()
 call plugins#foldtext#declare()
+call plugins#drawit#declare()
+<% if has_feature? :figlet %>
+call plugins#figlet#declare()
+<% end %>
 " ─────────────────────────────────────────────────── UI ← Declare ← Plugins ──┤
 call plugins#tagbar#declare()
 call plugins#indentline#declare()
@@ -98,6 +102,9 @@ call plugins#langs#tex#declare()
 <% end %>
 <% if has_feature? :tmux %>
 call plugins#langs#tmux#declare()
+<% end %>
+<% if has_feature? :plantuml %>
+call plugins#langs#plantuml#declare()
 <% end %>
 <% if has_feature? :systemd %>
 call plugins#langs#systemd#declare()
@@ -174,6 +181,9 @@ call plugins#langs#javascript#configure()
 <% end %>
 <% if has_feature? :tex %>
 call plugins#langs#tex#configure()
+<% end %>
+<% if has_feature? :plantuml %>
+call plugins#langs#plantuml#configure()
 <% end %>
 " ────────────────────────────────────────────── Shell ← Configure ← Plugins ──┤
 call plugins#vimshell#configure()
