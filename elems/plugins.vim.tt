@@ -31,9 +31,7 @@
 "                                                                              │
 " ─────────────────────────────────────────────────────────────────────────────┤
 <% define_locals do
-  prefixed(:"vim.") do
-    variable :cache_dir, type: :directory, default: "~/.cache/vimplug"
-  end
+  variable :"vim.vimplug.cache_dir", type: :directory, as: :cache_dir
 end -%>
 " ─────────────────────────────────────────────────────────────────────────────┘
 
@@ -140,7 +138,9 @@ call plugins#peekaboo#declare()
 " ────────────────────────────────────────────── Session ← Declare ← Plugins ──┤
 call plugins#obsession#declare()
 " ───────────────────────────────────── Files Management ← Declare ← Plugins ──┤
+<% if has_feature? :vanilla %>
 call plugins#vimfiler#declare()
+<% end %>
 call plugins#sudoedit#declare()
 call plugins#rooter#declare()
 " ───────────────────────────────────────────────── Misc ← Declare ← Plugins ──┤
@@ -234,7 +234,9 @@ call plugins#peekaboo#configure()
 " ──────────────────────────────────────────── Session ← Configure ← Plugins ──┤
 call plugins#obsession#configure()
 " ─────────────────────────────────── Files Management ← Configure ← Plugins ──┤
+<% if has_feature? :vanilla %>
 call plugins#vimfiler#configure()
+<% end %>
 " ─────────────────────────────────────────────── Misc ← Configure ← Plugins ──┤
 " ───────────────────────────────────────── Statusline ← Configure ← Plugins ──┤
 call plugins#airline#configure()

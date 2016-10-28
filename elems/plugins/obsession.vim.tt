@@ -34,9 +34,7 @@
 " ─────────────────────────────────────────────────────────────────────────────┤
 <% define_locals do
   prefixed(:"vim.") do
-    variable :base_dir,     type: :directory
-    variable :sessions_dir, type: :directory,
-             default: local!(:base_dir).join("sessions")
+    variable :sessions_dir
   end
 end -%>
 " ─────────────────────────────────────────────────────────────────────────────┘

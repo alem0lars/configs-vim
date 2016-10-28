@@ -48,12 +48,7 @@ endfunction
 set background=dark
 
 " Set colorscheme.
-if s:has_colorscheme('<%= local! :colorscheme_name %>')
-  colorscheme <%= local! :colorscheme_name %>
-else
-  echomsg 'Invalid colorscheme: <%= local! :colorscheme_name %>'
-  " If colorscheme isn't available set a fallback.
-  colorscheme desert
-endif
+colorscheme <%= local! :colorscheme_name %>
+
 
 " vim: set filetype=eruby.vim :

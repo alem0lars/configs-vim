@@ -4,6 +4,8 @@
 vim:
   base_dir:     /etc/xdg/nvim
   autoload_dir: /etc/xdg/nvim/autoload
+  vimplug:
+    cache_dir: /etc/xdg/nvim/cache/vimplug
 
 
 # vim: set filetype=eruby.yaml :

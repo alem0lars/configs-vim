@@ -1,3 +1,10 @@
+vim:
+  backups_dir:  ~/.cache/nvim/backups
+  swaps_dir:    ~/.cache/nvim/swaps
+  views_dir:    ~/.cache/nvim/views
+  undos_dir:    ~/.cache/nvim/undos
+  sessions_dir: ~/.cache/nvim/sessions
+
 features:
   - neovim
 
