@@ -1,7 +1,7 @@
 " ─────────────────────────────────────────────────────────────────────────────┐
 "                                                                              │
-" Name:    elems/plugins/neocomplete.vim.tt                                    │
-" Summary: Configure plugin `Shougo/neocomplete`                               │
+" Name:    elems/plugins/deoplete.vim.tt                                       │
+" Summary: Configure plugin `Shougo/deoplete.nvim`                             │
 "                                                                              │
 " Authors:                                                                     │
 "   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              │
@@ -32,89 +32,69 @@
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 
-" ────────────────────────────────────────────────────────────────── Declare ──┐
-function! plugins#neocomplete#declare() abort
-  Plug 'Shougo/neocomplete'
+" ────────────────────────────────────────────────────────────── Declaration ──┐
+function! plugins#deoplete#declare() abort
+  Plug 'Shougo/deoplete.nvim'
   Plug 'Shougo/neopairs.vim'
   Plug 'Shougo/neoinclude.vim'
   Plug 'Shougo/echodoc.vim'
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 
-" ──────────────────────────────────────────────────────────────── Configure ──┐
-function! plugins#neocomplete#configure() abort
+" ──────────────────────────────────────────────────────────── Configuration ──┐
+function! plugins#deoplete#configure() abort
   " ───────────────────────────────────────────────── `neopairs` ← Configure ──┤
   " Enable `neopairs`.
   let g:neopairs#enable=1
-  " ───────────────────────────────────────────────────── Enable ← Configure ──┤
+  " ──────────────────────────────────────── Enable ← `deoplete` ← Configure ──┤
   " Disable autocomplpop.
   let g:acp_enableAtStartup=0
   " Enable neocomplete.
   let g:neocomplete#enable_at_startup=1
-  " ────────────────────────────────────────────────── Behaviour ← Configure ──┤
+  " ───────────────────────────────────── Behaviour ← `deoplete` ← Configure ──┤
   " Use smartcase.
-  let g:neocomplete#enable_smart_case=1
+  let g:deoplete#enable_smart_case=1
   " Enable match camel case.
-  let g:neocomplete#enable_camel_case=1
-  " Don't display more than 32 items.
-  let g:neocomplete#max_list=32
+  let g:deoplete#enable_camel_case=1
+  " Refresh the candidates automatically.
+  let g:deoplete#enable_refresh_always=1
   " Minimum char completion lengths.
-  let g:neocomplete#sources#syntax#min_keyword_length=2
-  " Don't preselect entries.
-  let g:neocomplete#enable_auto_select=0
-  " Insert delimiter automatically.
-  let g:neocomplete#enable_auto_delimiter=0
+  let g:deoplete#auto_complete_start_length=2
   " Add delay
-  let g:neocomplete#auto_complete_delay=128
-  " Automatically close the preview.
-  let g:neocomplete#enable_auto_close_preview=1
-  " ─────────────────────────────────────────────── Dictionaries ← Configure ──┤
-  let g:neocomplete#sources#dictionary#dictionaries={'default' : ''}
-  " ─────────────────────────────────────────── Keyword Patterns ← Configure ──┤
-  " Define keywords patterns for completion.
-  if !exists('g:neocomplete#keyword_patterns')
-    let g:neocomplete#keyword_patterns = {}
-  endif
-  let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-  " ───────────────────────────────────────────── Input Patterns ← Configure ──┤
-  " Enable per-language completion based on input patterns.
-  " The following input patterns definitions will add corresponding
-  " omni function to the available completion sources, without
-  " forcing it over the other sources available.
-  if !exists('g:neocomplete#sources#omni#input_patterns')
-    let g:neocomplete#sources#omni#input_patterns = {}
-  endif
-
-  " Enable forcing per-language completion based on input patterns.
-  " The following input patterns definitions will force to use the corresponding
-  " omni func when they match; in that case, the other sources will be ignored.
-  if !exists('g:neocomplete#force_omni_input_patterns')
-    let g:neocomplete#force_omni_input_patterns = {}
-  endif
-  " ──────────────────────────────────────────────────── Hotkeys ← Configure ──┤
+  let g:deoplete#auto_complete_delay=128
+  " Automatically close preview after completion is done.
+  autocmd! CompleteDone * pclose!
+  " ────────────────────────────── Keyword Patterns ← `deoplete` ← Configure ──┤
+  let g:deoplete#keyword_patterns = {}
+  let g:deoplete#keyword_patterns._ = '[a-zA-Z_]\k*\(?'
+  " ──────────────────────────────── Input Patterns ← `deoplete` ← Configure ──┤
+  let g:deoplete#omni#input_patterns = {}
+  " ───────────────────────────────────── Functions ← `deoplete` ← Configure ──┤
+  let g:deoplete#omni#functions = {}
+  " ─────────────────────────────────────── Hotkeys ← `deoplete` ← Configure ──┤
   " <TAB>: completion.
   inoremap <silent><expr> <TAB>
         \ pumvisible() ? "\<C-n>" :
         \ <SID>check_back_space() ? "\<TAB>" :
-        \ neocomplete#start_manual_complete()
+        \ deoplete#mappings#manual_complete()
 
   " <S-TAB>: completion back.
-  inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+  inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<C-h>"
 
   " <C-h> or <BS>: Close popup and delete backward char.
-  inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-  inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+  inoremap <expr><C-h> deoplete#mappings#smart_close_popup()."\<C-h>"
+  inoremap <expr><BS> deoplete#mappings#smart_close_popup()."\<C-h>"
+
+  inoremap <expr><C-g> deoplete#mappings#undo_completion()
 
   " <CR>: Close the popup (and save indent).
   inoremap <silent> <CR> <C-r>=<SID>close_popup()<CR>
-
-  inoremap <expr><C-g> neocomplete#undo_completion()
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 " ───────────────────────────────────────────────────────────────── Internal ──┐
 function! s:close_popup() abort
-  return neocomplete#smart_close_popup() . "\<CR>"
+  return deoplete#mappings#close_popup() . "\<CR>"
 endfunction
 
 function! s:check_back_space() abort
@@ -122,6 +102,31 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1] =~ '\s'
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
+
+" call deoplete#custom#set('_', 'matchers', ['matcher_head'])
+" call deoplete#custom#set('ghc', 'sorters', ['sorter_word'])
+" call deoplete#custom#set('buffer', 'mark', '')
+" call deoplete#custom#set('_', 'matchers', ['matcher_full_fuzzy'])
+" call deoplete#custom#set('_', 'disabled_syntaxes', ['Comment', 'String'])
+" call deoplete#custom#set('buffer', 'mark', '*')
+
+" Use auto delimiter
+" call deoplete#custom#set('_', 'converters',
+"       \ ['converter_auto_paren',
+"       \  'converter_auto_delimiter', 'remove_overlap'])
+" call deoplete#custom#set('_', 'converters', [
+"       \ 'converter_remove_paren',
+"       \ 'converter_remove_overlap',
+"       \ 'converter_truncate_abbr',
+"       \ 'converter_truncate_menu',
+"       \ 'converter_auto_delimiter',
+"       \ ])
+
+" call deoplete#custom#set('buffer', 'min_pattern_length', 9999)
+" call deoplete#custom#set('clang', 'input_pattern', '\.\w*|\.->\w*|\w+::\w*')
+" call deoplete#custom#set('clang', 'max_pattern_length', -1)
+
+" inoremap <silent><expr> <C-t> deoplete#mappings#manual_complete('file')
 
 
 " vim: set filetype=eruby.vim :

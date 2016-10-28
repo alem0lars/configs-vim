@@ -1,0 +1,9 @@
+# => inherits: neovim <= #
+
+
+vim:
+  base_dir:     <%= xdg_config_home(:nvim) %>
+  autoload_dir: <%= xdg_config_home(:nvim).join("autoload") %>
+
+
+# vim: set filetype=eruby.yaml :

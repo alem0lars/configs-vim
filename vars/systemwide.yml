@@ -1,5 +1,5 @@
 features:
-  - neovim
+  - systemwide
 
 
 # vim: set filetype=eruby.yaml :

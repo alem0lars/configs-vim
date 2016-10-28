@@ -39,38 +39,36 @@
 " ────────────────────────────────────────────────────────────── Declaration ──┐
 function! plugins#easymotion#declare() abort
   Plug 'easymotion/vim-easymotion'
+  Plug 'haya14busa/incsearch-easymotion.vim'
+  Plug 'haya14busa/incsearch-fuzzy.vim'
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 " ──────────────────────────────────────────────────────────── Configuration ──┐
 function! plugins#easymotion#configure() abort
-  call plugins#easymotion#configure_settings()
-  call plugins#easymotion#configure_mappings()
-endfunction
-" ───────────────────────────────────────────────────── Settings ← Configure ──┤
-function! plugins#easymotion#configure_settings() abort
-  let g:EasyMotion_smartcase = 1
-  let g:EasyMotion_use_smartsign_us = 1
-endfunction
-" ───────────────────────────────────────────────────── Mappings ← Configure ──┤
-function! plugins#easymotion#configure_mappings() abort
-  " ───────────────────────────────────────── OverWin ← Mappings ← Configure ──┤
-  "  " <Leader>f{char} to move to {char}
-  "  map  <Leader>f <Plug>(easymotion-bd-f)
-  "  nmap <Leader>f <Plug>(easymotion-overwin-f)
-  "
-  "  " s{char}{char} to move to {char}{char}
-  "  nmap s <Plug>(easymotion-overwin-f2)
-  "
-  "  " Move to line
-  "  map  <Leader>L <Plug>(easymotion-bd-jk)
-  "  nmap <Leader>L <Plug>(easymotion-overwin-line)
-  "
-  "  " Move to word
-  "  map  <Leader>w <Plug>(easymotion-bd-w)
-  "  nmap <Leader>w <Plug>(easymotion-overwin-w)
-  " ───────────────────────────────────────────────────────────────────────────┤
+  let g:EasyMotion_smartcase=1
+  let g:EasyMotion_use_smartsign_us=1
+  " Set easy-motion's leader to `\`.
+  let g:EasyMotion_leader_key='\'
+  " ──────────────────────────────────────────────── Hotkeys ← Configuration ──┤
+  noremap <silent><expr> <Space>/ incsearch#go(<SID>config_easyfuzzymotion())
+  noremap <silent><expr> <Space>? incsearch#go(
+        \ extend(<SID>config_easyfuzzymotion(), {'command': '?'}))
+  noremap <silent><expr> <Space>g? incsearch#go(
+        \ extend(<SID>config_easyfuzzymotion(), {'is_stay': 1}))
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
+
+" ───────────────────────────────────────────────────────────────── Internal ──┐
+function! s:config_easyfuzzymotion(...) abort
+  return extend(deepcopy({
+  \   'converters': [incsearch#config#fuzzy#converter()],
+  \   'modules': [incsearch#config#easymotion#module()],
+  \   'keymap': {"\<CR>": '<Over>(easymotion)'},
+  \   'is_expr': 0,
+  \ }), get(a:, 1, {}))
+endfunction
+" ─────────────────────────────────────────────────────────────────────────────┘
+
 
 " vim: set filetype=eruby.vim :

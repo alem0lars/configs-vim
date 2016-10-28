@@ -1,7 +1,7 @@
 " ─────────────────────────────────────────────────────────────────────────────┐
 "                                                                              │
-" Name:    elems/plugins/over.vim.tt                                           │
-" Summary: Configure plugin `osyo-manga/vim-over`.                             │
+" Name:    elems/plugins/cleverf.vim.tt                                        │
+" Summary: Configure plugin `rhysd/clever-f.vim`.                              │
 "                                                                              │
 " Authors:                                                                     │
 "   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              │
@@ -31,10 +31,19 @@
 "                                                                              │
 " ─────────────────────────────────────────────────────────────────────────────┘
 
-" ────────────────────────────────────────────────────────────── Declaration ──┐
-function! plugins#over#declare() abort
-  Plug 'osyo-manga/vim-over'
+
+" ────────────────────────────────────────────────────────────────── Declare ──┐
+function! plugins#cleverf#declare() abort
+  Plug 'rhysd/clever-f.vim'
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
+
+" ──────────────────────────────────────────────────────────────── Configure ──┐
+function! plugins#cleverf#configure() abort
+  let g:clever_f_smart_case=1
+  let g:clever_f_show_prompt=1
+endfunction
+" ─────────────────────────────────────────────────────────────────────────────┘
+
 
 " vim: set filetype=eruby.vim :

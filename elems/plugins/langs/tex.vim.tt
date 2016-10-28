@@ -40,8 +40,7 @@ endfunction
 
 " ──────────────────────────────────────────────────────────────── Configure ──┐
 function! plugins#langs#tex#configure() abort
-  " ────────────────────────────────────────────────────── Build ← Configure ──┤
-  " Build options.
+  " ─────────────────────────────────────────── Build ← `vimtex` ← Configure ──┤
   let g:vimtex_latexmk_options=''     .
         \ '-xelatex '                 .
         \ '--shell-escape '           .
@@ -56,8 +55,20 @@ function! plugins#langs#tex#configure() abort
   let g:vimtex_delim_stopline=512
   " Detect tex files correctly.
   let g:tex_flavor='latex'
+  " ─────────────────────────────────────────────────────── Fold ← Configure ──┤
+  let g:vimtex_fold_enabled=1
+  " ────────────────────────────────────────── Vim-Kind-specific ← Configure ──┤
+  <% if has_feature? :vanilla %>
+  call s:configure_vanilla()
+  <% end %>
+  <% if has_feature? :neovim %>
+  call s:configure_neovim()
+  <% end %>
+endfunction
+" ────────────────────────────────────────────────────── Vanilla ← Configure ──┤
+function! s:configure_vanilla() abort
   " ─────────────────────────────────────────────────── Complete ← Configure ──┤
-  " NeoComplete source.
+  " Set source.
   let g:neocomplete#sources#omni#input_patterns.tex =
         \ '\v\\%('
         \ . '\a*cite\a*%(\s*\[[^]]*\]){0,2}\s*\{[^}]*'
@@ -69,8 +80,20 @@ function! plugins#langs#tex#configure() abort
         \ . '|includepdf%(\s*\[[^]]*\])?\s*\{[^}]*'
         \ . '|includestandalone%(\s*\[[^]]*\])?\s*\{[^}]*'
         \ . ')'
-  " ─────────────────────────────────────────────────────── Fold ← Configure ──┤
-  let g:vimtex_fold_enabled=1
+endfunction
+" ─────────────────────────────────────────────────────── NeoVim ← Configure ──┤
+function! s:configure_neovim() abort
+  " ──────────────────────────────────────── `deoplete` ← NeoVim ← Configure ──┤
+  let g:deoplete#omni#input_patterns.tex = '\\(?:'
+        \ .  '\w*cite\w*(?:\s*\[[^]]*\]){0,2}\s*{[^}]*'
+        \ . '|\w*ref(?:\s*\{[^}]*|range\s*\{[^,}]*(?:}{)?)'
+        \ . '|hyperref\s*\[[^]]*'
+        \ . '|includegraphics\*?(?:\s*\[[^]]*\]){0,2}\s*\{[^}]*'
+        \ . '|(?:include(?:only)?|input)\s*\{[^}]*'
+        \ . '|\w*(gls|Gls|GLS)(pl)?\w*(\s*\[[^]]*\]){0,2}\s*\{[^}]*'
+        \ . '|includepdf(\s*\[[^]]*\])?\s*\{[^}]*'
+        \ . '|includestandalone(\s*\[[^]]*\])?\s*\{[^}]*'
+        \ .')'
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 

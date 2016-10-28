@@ -1,0 +1,9 @@
+# => inherits: neovim, systemwide <= #
+
+
+vim:
+  base_dir:     /etc/xdg/nvim
+  autoload_dir: /etc/xdg/nvim/autoload
+
+
+# vim: set filetype=eruby.yaml :

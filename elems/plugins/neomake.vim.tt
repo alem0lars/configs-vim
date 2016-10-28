@@ -1,7 +1,7 @@
 " ─────────────────────────────────────────────────────────────────────────────┐
 "                                                                              │
-" Name:    elems/plugins/langs/ruby.vim.tt                                     │
-" Summary: Configure plugins related to language: `ruby`.                      │
+" Name:    elems/plugins/neomake.vim.tt                                        │
+" Summary: Configure plugin `neomake/neomake`                                  │
 "                                                                              │
 " Authors:                                                                     │
 "   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              │
@@ -32,54 +32,15 @@
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 
-" ────────────────────────────────────────────────────────────────── Declare ──┐
-function! plugins#langs#ruby#declare() abort
-  <% if has_feature? :vanilla %>
-  Plug 'vim-ruby/vim-ruby'
-  <% end %>
-  <% if has_feature? :neovim %>
-  Plug 'fishbullet/deoplete-ruby'
-  <% end %>
+" ────────────────────────────────────────────────────────────── Declaration ──┐
+function! plugins#neomake#declare() abort
+  Plug 'neomake/neomake'
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 
-" ──────────────────────────────────────────────────────────────── Configure ──┐
-function! plugins#langs#ruby#configure() abort
-  " ────────────────────────────────────────── Vim-Kind-specific ← Configure ──┤
-  <% if has_feature? :vanilla %>
-  call s:configure_vanilla()
-  <% end %>
-  <% if has_feature? :neovim %>
-  call s:configure_neovim()
-  <% end %>
-endfunction
-" ────────────────────────────────────────────────────── Vanilla ← Configure ──┤
-function! s:configure_vanilla() abort
-  " ───────────────────────────────── Syntax Highlight ← Vanilla ← Configure ──┤
-  let g:ruby_operators=1
-  let g:ruby_space_errors=1
-  " ────────────────────────────────────── Indentation ← Vanilla ← Configure ──┤
-  let g:ruby_indent_block_style='do'
-  " ───────────────────────────────────────── Complete ← Vanilla ← Configure ──┤
-  autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
-  " Load/evaluate code in order to provide completions.
-  let g:rubycomplete_buffer_loading=1
-  " Parse the entire buffer to add a list of classes to the completion results.
-  let g:rubycomplete_classes_in_global=1
-  " Detect and load the Rails environment for files within a rails project.
-  let g:rubycomplete_rails=1
-  " Parse the Gemfile: gems are being implicitly required.
-  let g:rubycomplete_load_gemfile=1
-  " Use `Bundler.require` instead of parsing the Gemfile.
-  let g:rubycomplete_use_bundler=1
-  " Set NeoComplete source.
-  let g:neocomplete#force_omni_input_patterns.ruby='[^. *\t]\.\h\w*\|\h\w*::'
-  " ───────────────────────────────────────────── Fold ← Vanilla ← Configure ──┤
-  let g:ruby_fold=1
-  let g:ruby_foldable_groups='module class def % # << __END__'
-endfunction
-" ─────────────────────────────────────────────────────── NeoVim ← Configure ──┤
-function! s:configure_neovim() abort
+" ──────────────────────────────────────────────────────────── Configuration ──┐
+function! plugins#neomake#configure() abort
+  let g:neomake_list_height=16
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 

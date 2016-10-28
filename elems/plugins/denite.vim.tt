@@ -1,7 +1,7 @@
 " ─────────────────────────────────────────────────────────────────────────────┐
 "                                                                              │
-" Name:    elems/plugins/ctrlp.vim.tt                                          │
-" Summary: Configure plugin `ctrlpvim/ctrlp.vim`.                              │
+" Name:    elems/plugins/denite.vim.tt                                         │
+" Summary: Configure plugin `Shougo/denite.nvim`                               │
 "                                                                              │
 " Authors:                                                                     │
 "   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              │
@@ -31,16 +31,17 @@
 "                                                                              │
 " ─────────────────────────────────────────────────────────────────────────────┘
 
-" ────────────────────────────────────────────────────────────── Declaration ──┐
-function! plugins#ctrlp#declare() abort
-  Plug 'ctrlpvim/ctrlp.vim'
+
+" ────────────────────────────────────────────────────────────────── Declare ──┐
+function! plugins#denite#declare() abort
+  Plug 'Shougo/denite.nvim'
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 
-" ──────────────────────────────────────────────────────────── Configuration ──┐
-function! plugins#ctrlp#configure() abort
-  nnoremap <Leader>p :<C-u>CtrlP<CR>
+" ──────────────────────────────────────────────────────────────── Configure ──┐
+function! plugins#denite#configure() abort
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
+
 
 " vim: set filetype=eruby.vim :

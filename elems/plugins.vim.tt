@@ -41,7 +41,9 @@ end -%>
 " ──────────────────────────────────────────────────────── Declare ← Plugins ──┐
 call plug#begin('<%= local! :cache_dir %>')
 " ──────────────────────────────────────────────── Async ← Declare ← Plugins ──┤
+<% if has_feature? :vanilla %>
 call plugins#vimproc#declare()
+<% end %>
 " ────────────────────────────────────────────── Editing ← Declare ← Plugins ──┤
 call plugins#context_filetype#declare()
 call plugins#repeat#declare()
@@ -56,7 +58,6 @@ call plugins#multiple_cursors#declare()
 call plugins#easymotion#declare()
 call plugins#incsearch#declare()
 call plugins#bbye#declare()
-call plugins#over#declare()
 call plugins#nrrwrgn#declare()
 call plugins#table_mode#declare()
 call plugins#better_whitespace#declare()
@@ -67,6 +68,7 @@ call plugins#drawit#declare()
 call plugins#figlet#declare()
 <% end %>
 call plugins#autotype#declare()
+call plugins#cleverf#declare()
 " ─────────────────────────────────────────────────── UI ← Declare ← Plugins ──┤
 call plugins#tagbar#declare()
 call plugins#indentline#declare()
@@ -76,11 +78,26 @@ call plugins#choosewin#declare()
 call plugins#windowswap#declare()
 call plugins#taboo#declare()
 call plugins#numbers#declare()
+<% if has_feature? :vanilla %>
 call plugins#unite#declare()
+<% end %>
+<% if has_feature? :neovim %>
+call plugins#denite#declare()
+<% end %>
 " ───────────────────────────────────────── Syntax Check ← Declare ← Plugins ──┤
+<% if has_feature? :vanilla %>
 call plugins#syntastic#declare()
+<% end %>
+<% if has_feature? :neovim %>
+call plugins#neomake#declare()
+<% end %>
 " ────────────────────────────── AutoComplete & Snippets ← Declare ← Plugins ──┤
+<% if has_feature? :vanilla %>
 call plugins#neocomplete#declare()
+<% end %>
+<% if has_feature? :neovim %>
+call plugins#deoplete#declare()
+<% end %>
 call plugins#neosnippet#declare()
 " ────────────────────────────────────────────────── Doc ← Declare ← Plugins ──┤
 call plugins#man#declare()
@@ -140,7 +157,9 @@ call plug#end()
 
 " ────────────────────────────────────────────────────── Configure ← Plugins ──┐
 " ────────────────────────────────────────────── Async ← Configure ← Plugins ──┤
+<% if has_feature? :vanilla %>
 call plugins#vimproc#configure()
+<% end %>
 " ──────────────────────────────────────────── Editing ← Configure ← Plugins ──┤
 call plugins#surround#configure()
 call plugins#tcomment#configure()
@@ -152,6 +171,7 @@ call plugins#bbye#configure()
 call plugins#better_whitespace#configure()
 call plugins#fastfold#configure()
 call plugins#foldtext#configure()
+call plugins#cleverf#declare()
 " ───────────────────────────────────────────────── UI ← Configure ← Plugins ──┤
 call plugins#tagbar#configure()
 call plugins#indentline#configure()
@@ -161,11 +181,26 @@ call plugins#choosewin#configure()
 call plugins#windowswap#configure()
 call plugins#taboo#configure()
 call plugins#numbers#configure()
+<% if has_feature? :vanilla %>
 call plugins#unite#configure()
+<% end %>
+<% if has_feature? :neovim %>
+call plugins#denite#configure()
+<% end %>
 " ─────────────────────────────────────── Syntax Check ← Configure ← Plugins ──┤
+<% if has_feature? :vanilla %>
 call plugins#syntastic#configure()
+<% end %>
+<% if has_feature? :neovim %>
+call plugins#neomake#configure()
+<% end %>
 " ──────────────────────────── AutoComplete & Snippets ← Configure ← Plugins ──┤
+<% if has_feature? :vanilla %>
 call plugins#neocomplete#configure()
+<% end %>
+<% if has_feature? :neovim %>
+call plugins#deoplete#configure()
+<% end %>
 call plugins#neosnippet#configure()
 " ──────────────────────────────────────────────── Doc ← Configure ← Plugins ──┤
 call plugins#man#configure()

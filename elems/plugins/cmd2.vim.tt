@@ -2,10 +2,6 @@
 "                                                                              │
 " Name:    elems/plugins/cmd2.vim.tt                                           │
 " Summary: Configure plugin `gelguy/Cmd2.vim`                                  │
-" Mappings:                                                                    │
-"   - `/`, `:`: Redefined builtins.                                            │
-" Depends:                                                                     │
-"   - `airline`                                                                │
 "                                                                              │
 " Authors:                                                                     │
 "   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              │
@@ -89,5 +85,6 @@ function! plugins#cmd2#configure_mappings() abort
         \ '\<Tab>'
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
+
 
 " vim: set filetype=eruby.vim :
