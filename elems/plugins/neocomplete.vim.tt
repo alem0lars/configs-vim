@@ -29,9 +29,6 @@
 " See the License for the specific language governing permissions and          │
 " limitations under the License.                                               │
 "                                                                              │
-" ─────────────────────────────────────────────────────────────────────────────┤
-<% define_locals do
-end -%>
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 
@@ -40,6 +37,7 @@ function! plugins#neocomplete#declare() abort
   Plug 'Shougo/neocomplete'
   Plug 'Shougo/neopairs.vim'
   Plug 'Shougo/neoinclude.vim'
+  Plug 'Shougo/echodoc.vim'
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 
@@ -66,11 +64,11 @@ function! plugins#neocomplete#configure() abort
   " Insert delimiter automatically.
   let g:neocomplete#enable_auto_delimiter=0
   " Add delay
-  let g:neocomplete#auto_complete_delay = 32
+  let g:neocomplete#auto_complete_delay=128
   " Automatically close the preview.
-  let g:neocomplete#enable_auto_close_preview = 1
+  let g:neocomplete#enable_auto_close_preview=1
   " ─────────────────────────────────────────────── Dictionaries ← Configure ──┤
-  let g:neocomplete#sources#dictionary#dictionaries = {'default' : ''}
+  let g:neocomplete#sources#dictionary#dictionaries={'default' : ''}
   " ─────────────────────────────────────────── Keyword Patterns ← Configure ──┤
   " Define keywords patterns for completion.
   if !exists('g:neocomplete#keyword_patterns')

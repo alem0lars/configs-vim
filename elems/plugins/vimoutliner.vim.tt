@@ -1,7 +1,8 @@
 " ─────────────────────────────────────────────────────────────────────────────┐
 "                                                                              │
-" Name:    elems/core/appearance.vim.tt                                        │
-" Summary: Settings related to the Vim appearance                              │
+" Name:    elems/plugins/langs/vimoutliner.vim.tt                              │
+" Summary: Configure plugin `vimoutliner/vimoutliner`.                         │
+"                                                                              │
 " Authors:                                                                     │
 "   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              │
 "                                                                              │
@@ -31,35 +32,10 @@
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 
-" ─────────────────────────────────────────────────────────────── Statusline ──┐
-" Always show the statusline.
-set laststatus=2
-" ─────────────────────────────────────────────────────────────────── Column ──┤
-" Display column numbers.
-set number
-" Set the maximum line length.
-set textwidth=80
-"  ────────────────────────────────────────────────────────────────── Syntax ──┤
-" Maximum column in which to search for syntax items.
-set synmaxcol=1024
-" ──────────────────────────────────────────────────────────────────── Ruler ──┤
-" Always show the current position both in ruler and highlighting the line.
-set ruler
-" ───────────────────────────────────────────────────────────────── Modeline ──┤
-set modeline
-" The number of lines that is checked for set commands.
-set modelines=5
-" ─────────────────────────────────────────────────────────────── Cursorline ──┤
-" Show horizontal line under cursor.
-set cursorline
-" ─────────────────────────────────────────────────────────────────── Redraw ──┤
-" Indicates a fast terminal connection. More characters will be sent to the
-" screen for redrawing, instead of using insert/delete line commands.
-set ttyfast
-" When this option is set, the screen will not be redrawn while executing
-" macros, registers and other commands that have not been typed.
-" Also, updating the window title is postponed.
-set lazyredraw
+" ────────────────────────────────────────────────────────────────── Declare ──┐
+function! plugins#vimoutliner#declare() abort
+  Plug 'vimoutliner/vimoutliner'
+endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 

@@ -66,6 +66,7 @@ call plugins#drawit#declare()
 <% if has_feature? :figlet %>
 call plugins#figlet#declare()
 <% end %>
+call plugins#autotype#declare()
 " ─────────────────────────────────────────────────── UI ← Declare ← Plugins ──┤
 call plugins#tagbar#declare()
 call plugins#indentline#declare()
@@ -83,7 +84,10 @@ call plugins#neocomplete#declare()
 call plugins#neosnippet#declare()
 " ────────────────────────────────────────────────── Doc ← Declare ← Plugins ──┤
 call plugins#man#declare()
+" ──────────────────────────────────────────────── Notes ← Declare ← Plugins ──┤
+call plugins#vimoutliner#declare()
 " ──────────────────────────────────────────────── Langs ← Declare ← Plugins ──┤
+call plugins#langs#txt#declare()
 call plugins#langs#vimscript#declare()
 <% if has_feature? :c, :cpp, :objc, :objcpp, match: :any? %>
 call plugins#langs#c_based#declare()
@@ -166,6 +170,7 @@ call plugins#neosnippet#configure()
 " ──────────────────────────────────────────────── Doc ← Configure ← Plugins ──┤
 call plugins#man#configure()
 " ────────────────────────────────────────────── Langs ← Configure ← Plugins ──┤
+call plugins#langs#txt#configure()
 call plugins#langs#vimscript#configure()
 <% if has_feature? :c, :cpp, :objc, :objcpp, match: :any? %>
 call plugins#langs#c_based#configure()
