@@ -48,7 +48,7 @@ endfunction
 
 " ──────────────────────────────────────────────────────────── Configuration ──┐
 function! plugins#obsession#configure() abort
-  let g:prosession_dir='<%= local! :sessions_dir %>'
+  let g:prosession_dir=expand('<%= local! :sessions_dir %>')
   let g:prosession_tmux_title=<%= has_feature?(:tmux) ? 1 : 0 %>
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘

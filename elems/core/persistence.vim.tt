@@ -38,11 +38,12 @@
     variable :undos_dir
   end
 
-  computed(:history_size, type: :int) {8192}
-  computed(:undo_levels,  type: :int) {2048}
-  computed(:undo_lines,   type: :int) {10240}
+  computed(:history_size, type: :int) { 8192  }
+  computed(:undo_levels,  type: :int) { 2048  }
+  computed(:undo_lines,   type: :int) { 10240 }
 end -%>
 " ─────────────────────────────────────────────────────────────────────────────┘
+
 
 " ────────────────────────────────────────────────────────────────── Buffers ──┐
 " Allow unsaved background buffers and remember marks/undo for them.
@@ -60,22 +61,22 @@ set history=<%= local! :history_size %>
 set backup
 " Set the directory for saving files backups.
 set backupdir=<%= local! :backups_dir %>
-if !isdirectory("<%= local! :backups_dir %>")
-  call mkdir("<%= local! :backups_dir %>", "p")
+if !isdirectory(&backupdir)
+  call mkdir(&backupdir, "p")
 endif
 " ───────────────────────────────────────────────────────────────────── Swap ──┤
 " Set the directory for saving swap files.
 set directory=<%= local! :swaps_dir %>
-if !isdirectory("<%= local! :swaps_dir %>")
-  call mkdir("<%= local! :swaps_dir %>", "p")
+if !isdirectory(&directory)
+  call mkdir(&directory, "p")
 endif
 " Delay for writing swap on disk.
 set updatetime=1024
 " ──────────────────────────────────────────────────────────────────── Views ──┤
 " Set the directory for saving views state.
 set viewdir=<%= local! :views_dir %>
-if !isdirectory("<%= local! :views_dir %>")
-  call mkdir("<%= local! :views_dir %>", "p")
+if !isdirectory(&viewdir)
+  call mkdir(&viewdir, "p")
 endif
 " When entering and exiting from a buffer load the view state.
 au BufWinLeave \* silent! mkview
@@ -83,8 +84,8 @@ au BufWinEnter \* silent! loadview
 " ───────────────────────────────────────────────────────────────────── Undo ──┤
 " Set the directory for saving undos.
 set undodir=<%= local! :undos_dir %>
-if !isdirectory("<%= local! :undos_dir %>")
-  call mkdir("<%= local! :undos_dir %>", "p")
+if !isdirectory(&undodir)
+  call mkdir(&undodir, "p")
 endif
 " How many undos.
 set undolevels=<%= local! :undo_levels %>
@@ -121,5 +122,6 @@ augroup AutoMkdir
   autocmd BufNewFile * :call <SID>ensure_dir_exists()
 augroup END
 " ─────────────────────────────────────────────────────────────────────────────┘
+
 
 " vim: set filetype=eruby.vim :
