@@ -38,5 +38,12 @@ function! plugins#drawit#declare() abort
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 
+" ────────────────────────────────────────────────────────────────── Declare ──┐
+function! plugins#drawit#configure() abort
+  " Use utf-8 drawing characters.
+  let g:drawit_mode='S'
+endfunction
+" ─────────────────────────────────────────────────────────────────────────────┘
+
 
 " vim: set filetype=eruby.vim :
