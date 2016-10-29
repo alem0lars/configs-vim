@@ -6,6 +6,7 @@ vim:
   views_dir:    ~/.cache/vim/views
   undos_dir:    ~/.cache/vim/undos
   sessions_dir: ~/.cache/vim/sessions
+  tmp_dir:      ~/.cache/vim/tmp
 
 features:
   - vanilla

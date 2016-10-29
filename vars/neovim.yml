@@ -4,6 +4,7 @@ vim:
   views_dir:    $HOME/.cache/nvim/views
   undos_dir:    $HOME/.cache/nvim/undos
   sessions_dir: $HOME/.cache/nvim/sessions
+  tmp_dir:      $HOME/.cache/nvim/tmp
 
 features:
   - neovim

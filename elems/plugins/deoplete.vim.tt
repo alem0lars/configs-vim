@@ -49,8 +49,8 @@ function! plugins#deoplete#configure() abort
   " ──────────────────────────────────────── Enable ← `deoplete` ← Configure ──┤
   " Disable autocomplpop.
   let g:acp_enableAtStartup=0
-  " Enable neocomplete.
-  let g:neocomplete#enable_at_startup=1
+  " Enable deoplete.
+  let g:deoplete#enable_at_startup=1
   " ───────────────────────────────────── Behaviour ← `deoplete` ← Configure ──┤
   " Use smartcase.
   let g:deoplete#enable_smart_case=1
@@ -63,7 +63,7 @@ function! plugins#deoplete#configure() abort
   " Add delay
   let g:deoplete#auto_complete_delay=128
   " Automatically close preview after completion is done.
-  autocmd! CompleteDone * pclose!
+  autocmd! InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
   " ────────────────────────────── Keyword Patterns ← `deoplete` ← Configure ──┤
   let g:deoplete#keyword_patterns = {}
   let g:deoplete#keyword_patterns._ = '[a-zA-Z_]\k*\(?'

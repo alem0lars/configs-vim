@@ -1,0 +1,94 @@
+" ─────────────────────────────────────────────────────────────────────────────┐
+"                                                                              │
+" Name:    elems/contrib/ranger.vim.tt                                         │
+" Summary: Use ranger as vim's file explorer.                                  │
+" Authors:                                                                     │
+"   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              │
+"                                                                              │
+" Project:                                                                     │
+"   - Homepage:        https://github.com/alem0lars/configs-vim                │
+"   - Getting started: see README.md in the project root folder                │
+"                                                                              │
+" License: Apache v2.0 (see below)                                             │
+"                                                                              │
+" ─────────────────────────────────────────────────────────────────────────────┤
+"                                                                              │
+" Licensed to the Apache Software Foundation (ASF) under one more contributor  │
+" license agreements.  See the NOTICE file distributed with this work for      │
+" additional information regarding copyright ownership. The ASF licenses this  │
+" file to you under the Apache License, Version 2.0 (the "License"); you may   │
+" not use this file except in compliance with the License.                     │
+" You may obtain a copy of the License at                                      │
+"                                                                              │
+"   http://www.apache.org/licenses/LICENSE-2.0                                 │
+"                                                                              │
+" Unless required by applicable law or agreed to in writing, software          │
+" distributed under the License is distributed on an "AS IS" BASIS, WITHOUT    │
+" WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.             │
+" See the License for the specific language governing permissions and          │
+" limitations under the License.                                               │
+"                                                                              │
+" ─────────────────────────────────────────────────────────────────────────────┤
+<% define_locals do
+  prefixed(:"vim.") do
+    variable :tmp_dir, as: :tmp_dir
+  end
+end %>
+" ─────────────────────────────────────────────────────────────────────────────┘
+
+
+" ────────────────────────────────────────────────────────────────── Options ──┐
+let s:edit_cmd='tabedit '
+" let s:edit_cmd='edit '
+
+let s:tmp_dir = expand('<%= local! :tmp_dir %>')
+let s:tmp_file = s:tmp_dir . '/ranger_tmp_file'
+if !isdirectory(s:tmp_dir) | call mkdir(s:tmp_dir, 'p') | endif
+" ──────────────────────────────────────────────────── Define `OpenRangerIn` ──┤
+if has('nvim')
+  " ───────────────────────────────────────── NeoVim ← Define `OpenRangerIn` ──┤
+  function! OpenRangerIn(path)
+    let currentpth = expand(a:path)
+    let rangercbk = { 'name': 'ranger' }
+    function! rangercbk.on_exit(id, code)
+      silent! Bdelete!
+      try
+        if filereadable(s:tmp_file)
+          exec system('sed -ie "s/ /\\\ /g" ' . shellescape(s:tmp_file))
+          exec 'argadd ' . system('cat ' . shellescape(s:tmp_file) . ' | tr "\\n" " "')
+          exec s:edit_cmd . system('head -n1 ' . shellescape(s:tmp_file))
+          call system('rm ' . shellescape(s:tmp_file))
+        endif
+      endtry
+    endfunction
+    enew
+    call termopen('ranger --choosefiles=' . shellescape(s:tmp_file) . ' ' . shellescape(currentpth), rangercbk)
+    startinsert
+  endfunction
+else
+  " ──────────────────────────────────────── Vanilla ← Define `OpenRangerIn` ──┤
+  function! OpenRangerIn(path)
+    let currentpth = expand(a:path)
+    exec 'silent !ranger --choosefiles=' . shellescape(s:tmp_file) . ' ' . shellescape(currentpth)
+    if filereadable(s:tmp_file)
+      exec system('sed -ie "s/ /\\\ /g" ' . shellescape(s:tmp_file))
+      exec 'argadd ' . system('cat ' . shellescape(s:tmp_file) . ' | tr "\\n" " "')
+      exec s:edit_cmd . system('head -n1 ' . shellescape(s:tmp_file))
+      call system('rm ' . shellescape(s:tmp_file))
+    endif
+    redraw!
+  endfun
+endif
+" ───────────────────────────────────────────────────────────────── Commands ──┤
+" Open ranger in the current file's parent directory.
+command! RangerCurrentDirectory call OpenRangerIn("%:p:h")
+" Open ranger in the working directory.
+command! RangerWorkingDirectory call OpenRangerIn("")
+" Ranger command defaults to the current file's parent directory.
+command! Ranger RangerCurrentDirectory
+" ────────────────────────────────────────────────────────────────── Hotkeys ──┤
+nnoremap <leader>e :Ranger<CR>
+" ─────────────────────────────────────────────────────────────────────────────┘
+
+
+" vim: set filetype=eruby.vim :

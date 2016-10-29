@@ -70,9 +70,11 @@ endfunction
 " ────────────────────────────────────────────────────────────── Entry point ──┤
 " Skip initialization for vim-tiny or vim-small.
 if !1 | finish | endif
-" Disable vi-compatibility.
-if &compatible
-  set nocompatible
+if !has('nvim')
+  " Disable vi-compatibility.
+  if &compatible
+    set nocompatible
+  endif
 endif
 " Load testing or normal vim configuration.
 if s:has_vimrc_test()
@@ -87,6 +89,9 @@ else
 
   " Load the plugins.
   call s:source_rc('plugins.vim')
+
+  " Load contrib.
+  call s:source_rc('contrib')
 
   call s:source_rc('colorscheme.vim')
 
