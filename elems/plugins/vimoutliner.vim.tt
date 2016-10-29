@@ -29,12 +29,25 @@
 " See the License for the specific language governing permissions and          │
 " limitations under the License.                                               │
 "                                                                              │
+" ─────────────────────────────────────────────────────────────────────────────┤
+<% define_locals do
+  variable :"vim.leaders.local", type: :string, as: :leader
+end -%>
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 
 " ────────────────────────────────────────────────────────────────── Declare ──┐
 function! plugins#vimoutliner#declare() abort
   Plug 'vimoutliner/vimoutliner'
+endfunction
+" ─────────────────────────────────────────────────────────────────────────────┘
+
+" ──────────────────────────────────────────────────────────────── Configure ──┐
+function! plugins#vimoutliner#configure() abort
+  " ──────────────────────────────────────────────────────────────── Hotkeys ──┤
+  let maplocalleader = '<%= local! :leader %>'
+  nnoremap <silent> <buffer> <C-K> <Plug>VO_FollowLink
+  nnoremap <silent> <buffer> <C-N> <Plug>VO_JumpBack
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 

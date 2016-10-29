@@ -1,0 +1,8 @@
+vim:
+  leaders:
+    global:     ','
+    local:      '\'
+    easymotion: ';'
+
+
+# vim: set filetype=eruby.yaml :

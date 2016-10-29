@@ -1,4 +1,4 @@
-# => inherits: neovim, systemwide <= #
+# => inherits: with-neovim, with-systemwide <= #
 
 
 vim:

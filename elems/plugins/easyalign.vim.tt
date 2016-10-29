@@ -33,13 +33,14 @@
 "                                                                              │
 " ─────────────────────────────────────────────────────────────────────────────┘
 
-" ────────────────────────────────────────────────────────────── Declaration ──┐
+
+" ────────────────────────────────────────────────────────────────── Declare ──┐
 function! plugins#easyalign#declare() abort
   Plug 'junegunn/vim-easy-align'
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 
-" ──────────────────────────────────────────────────────────── Configuration ──┐
+" ──────────────────────────────────────────────────────────────── Configure ──┐
 function! plugins#easyalign#configure() abort
   " Start interactive EasyAlign in visual mode (e.g. `vip<Enter>`).
   vnoremap <Enter> <Plug>(EasyAlign)
@@ -49,5 +50,6 @@ function! plugins#easyalign#configure() abort
   xnoremap ga <Plug>(EasyAlign)
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
+
 
 " vim: set filetype=eruby.vim :

@@ -29,6 +29,10 @@
 " See the License for the specific language governing permissions and          │
 " limitations under the License.                                               │
 "                                                                              │
+" ─────────────────────────────────────────────────────────────────────────────┤
+<% define_locals do
+  variable :"vim.leaders.local", type: :string, as: :leader
+end %>
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 
@@ -79,7 +83,7 @@ function! s:configure_vanilla() abort
   let g:neocomplete#force_omni_input_patterns.python =
         \ '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
   " ────────────────────────────────────────── Hotkeys ← Vanilla ← Configure ──┤
-  let s:jedi_leader='\'
+  let s:jedi_leader='<%= local! :leader %>'
   let g:jedi#goto_command=s:jedi_leader . 'gc'
   let g:jedi#goto_assignments_command=s:jedi_leader . 'ga'
   let g:jedi#documentation_command=s:jedi_leader . 'd'

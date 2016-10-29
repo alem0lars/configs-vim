@@ -205,6 +205,8 @@ call plugins#deoplete#configure()
 call plugins#neosnippet#configure()
 " ──────────────────────────────────────────────── Doc ← Configure ← Plugins ──┤
 call plugins#man#configure()
+" ────────────────────────────────────────────── Notes ← Configure ← Plugins ──┤
+call plugins#vimoutliner#configure()
 " ────────────────────────────────────────────── Langs ← Configure ← Plugins ──┤
 call plugins#langs#txt#configure()
 call plugins#langs#vimscript#configure()

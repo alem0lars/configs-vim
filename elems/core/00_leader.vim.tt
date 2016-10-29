@@ -29,8 +29,14 @@
 " See the License for the specific language governing permissions and          │
 " limitations under the License.                                               │
 "                                                                              │
+" ─────────────────────────────────────────────────────────────────────────────┤
+<% define_locals do
+  variable :"vim.leaders.global", type: :string, as: :leader
+end -%>
 " ─────────────────────────────────────────────────────────────────────────────┘
 
-let mapleader=','
+
+let mapleader='<%= local! :leader %>'
+
 
 " vim: set filetype=eruby.vim :

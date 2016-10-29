@@ -1,4 +1,4 @@
-# => inherits: generic, neovim_systemwide, tmux, zsh <= #
+# => inherits: generic, with-user-alem0lars, with-neovim-systemwide, with-tmux, with-zsh <= #
 
 
 colorscheme:

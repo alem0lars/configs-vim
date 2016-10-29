@@ -34,9 +34,14 @@
 " See the License for the specific language governing permissions and          │
 " limitations under the License.                                               │
 "                                                                              │
+" ─────────────────────────────────────────────────────────────────────────────┤
+<% define_locals do
+  variable :"vim.leaders.easymotion", type: :string, as: :leader
+end %>
 " ─────────────────────────────────────────────────────────────────────────────┘
 
-" ────────────────────────────────────────────────────────────── Declaration ──┐
+
+" ────────────────────────────────────────────────────────────────── Declare ──┐
 function! plugins#easymotion#declare() abort
   Plug 'easymotion/vim-easymotion'
   Plug 'haya14busa/incsearch-easymotion.vim'
@@ -44,13 +49,13 @@ function! plugins#easymotion#declare() abort
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 
-" ──────────────────────────────────────────────────────────── Configuration ──┐
+" ──────────────────────────────────────────────────────────────── Configure ──┐
 function! plugins#easymotion#configure() abort
   let g:EasyMotion_smartcase=1
   let g:EasyMotion_use_smartsign_us=1
-  " Set easy-motion's leader to `\`.
-  let g:EasyMotion_leader_key='\'
-  " ──────────────────────────────────────────────── Hotkeys ← Configuration ──┤
+  " Set easy-motion's leader.
+  let g:EasyMotion_leader_key='<%= local! :leader %>'
+  " ──────────────────────────────────────────────────── Hotkeys ← Configure ──┤
   noremap <silent><expr> <Space>/ incsearch#go(<SID>config_easyfuzzymotion())
   noremap <silent><expr> <Space>? incsearch#go(
         \ extend(<SID>config_easyfuzzymotion(), {'command': '?'}))
