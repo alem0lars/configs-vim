@@ -67,6 +67,7 @@ call plugins#figlet#declare()
 <% end %>
 call plugins#autotype#declare()
 call plugins#cleverf#declare()
+call plugins#txtfmt#declare()
 " ─────────────────────────────────────────────────── UI ← Declare ← Plugins ──┤
 call plugins#tagbar#declare()
 call plugins#indentline#declare()
@@ -102,7 +103,6 @@ call plugins#man#declare()
 " ──────────────────────────────────────────────── Notes ← Declare ← Plugins ──┤
 call plugins#vimoutliner#declare()
 " ──────────────────────────────────────────────── Langs ← Declare ← Plugins ──┤
-call plugins#langs#txt#declare()
 call plugins#langs#vimscript#declare()
 <% if has_feature? :c, :cpp, :objc, :objcpp, match: :any? %>
 call plugins#langs#c_based#declare()
@@ -173,6 +173,7 @@ call plugins#fastfold#configure()
 call plugins#foldtext#configure()
 call plugins#drawit#configure()
 call plugins#cleverf#configure()
+call plugins#txtfmt#configure()
 " ───────────────────────────────────────────────── UI ← Configure ← Plugins ──┤
 call plugins#tagbar#configure()
 call plugins#indentline#configure()
@@ -208,7 +209,6 @@ call plugins#man#configure()
 " ────────────────────────────────────────────── Notes ← Configure ← Plugins ──┤
 call plugins#vimoutliner#configure()
 " ────────────────────────────────────────────── Langs ← Configure ← Plugins ──┤
-call plugins#langs#txt#configure()
 call plugins#langs#vimscript#configure()
 <% if has_feature? :c, :cpp, :objc, :objcpp, match: :any? %>
 call plugins#langs#c_based#configure()
