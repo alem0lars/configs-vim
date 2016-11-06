@@ -70,13 +70,13 @@ call plugins#cleverf#declare()
 call plugins#txtfmt#declare()
 " ─────────────────────────────────────────────────── UI ← Declare ← Plugins ──┤
 call plugins#tagbar#declare()
-call plugins#indentline#declare()
+"call plugins#indentline#declare() TODO not always working (sometimes doesnt show up)
 call plugins#signature#declare()
 call plugins#gitgutter#declare()
 call plugins#choosewin#declare()
 call plugins#windowswap#declare()
 call plugins#taboo#declare()
-call plugins#numbers#declare()
+"call plugins#numbers#declare() TODO slows down vim
 <% if has_feature? :vanilla %>
 call plugins#unite#declare()
 <% end %>
@@ -100,15 +100,22 @@ call plugins#deoplete#declare()
 call plugins#neosnippet#declare()
 " ────────────────────────────────────────────────── Doc ← Declare ← Plugins ──┤
 call plugins#man#declare()
+<% if has_feature? :dasht %>
+call plugins#dasht#declare()
+<% end %>
 " ──────────────────────────────────────────────── Notes ← Declare ← Plugins ──┤
 call plugins#vimoutliner#declare()
 " ──────────────────────────────────────────────── Langs ← Declare ← Plugins ──┤
 call plugins#langs#vimscript#declare()
+call plugins#langs#toml#declare()
 <% if has_feature? :c, :cpp, :objc, :objcpp, match: :any? %>
 call plugins#langs#c_based#declare()
 <% end %>
 <% if has_feature? :ruby %>
 call plugins#langs#ruby#declare()
+<% end %>
+<% if has_feature? :rust %>
+call plugins#langs#rust#declare()
 <% end %>
 <% if has_feature? :python %>
 call plugins#langs#python#declare()
@@ -176,13 +183,13 @@ call plugins#cleverf#configure()
 call plugins#txtfmt#configure()
 " ───────────────────────────────────────────────── UI ← Configure ← Plugins ──┤
 call plugins#tagbar#configure()
-call plugins#indentline#configure()
+"call plugins#indentline#configure() TODO (see declare)
 call plugins#signature#configure()
 call plugins#gitgutter#configure()
 call plugins#choosewin#configure()
 call plugins#windowswap#configure()
 call plugins#taboo#configure()
-call plugins#numbers#configure()
+"call plugins#numbers#configure() TODO (see declare)
 <% if has_feature? :vanilla %>
 call plugins#unite#configure()
 <% end %>
@@ -206,6 +213,9 @@ call plugins#deoplete#configure()
 call plugins#neosnippet#configure()
 " ──────────────────────────────────────────────── Doc ← Configure ← Plugins ──┤
 call plugins#man#configure()
+<% if has_feature? :dasht %>
+call plugins#dasht#configure()
+<% end %>
 " ────────────────────────────────────────────── Notes ← Configure ← Plugins ──┤
 call plugins#vimoutliner#configure()
 " ────────────────────────────────────────────── Langs ← Configure ← Plugins ──┤
@@ -218,6 +228,9 @@ call plugins#langs#ruby#configure()
 <% end %>
 <% if has_feature? :python %>
 call plugins#langs#python#configure()
+<% end %>
+<% if has_feature? :rust %>
+call plugins#langs#rust#configure()
 <% end %>
 <% if has_feature? :javascript %>
 call plugins#langs#javascript#configure()

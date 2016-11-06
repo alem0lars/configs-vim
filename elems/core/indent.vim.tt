@@ -34,6 +34,7 @@
 end -%>
 " ─────────────────────────────────────────────────────────────────────────────┘
 
+
 " ──────────────────────────────────────────────────────────────────── Rules ──┐
 " Automatically expand tab into spaces.
 set expandtab
@@ -59,5 +60,6 @@ set shiftwidth=<%= local! :indent_size %>
 set list
 set listchars=tab:›\ ,trail:•
 " ─────────────────────────────────────────────────────────────────────────────┘
+
 
 " vim: set filetype=eruby.vim :

@@ -67,6 +67,11 @@ function! plugins#langs#c_based#configure() abort
   " ──────────────────────────────────────────────────── Hotkeys ← Configure ──┤
   " Disable default keymapping.
   let g:clang_make_default_keymappings=0
+  " ──────────────────────────────────────────── `dasht` support ← Configure ──┤
+  <% if has_feature? :dasht %>
+  " When in C++, also search C, Boost, and OpenGL:
+  let g:dasht_filetype_docsets['cpp'] = ['^c$', 'boost', 'OpenGL']
+  <% end %>
   " ────────────────────────────────────────── Vim-Kind-specific ← Configure ──┤
   <% if has_feature? :vanilla %>
   call s:configure_vanilla()

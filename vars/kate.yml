@@ -26,11 +26,11 @@ features:
   - tmux
   - plantuml
   - systemd
+  - rust
 #  - mono
 #  - go
-#  - rust
-#  - javascript
-  # Misc
+  # Tools
+  - dasht
   - figlet
 
 

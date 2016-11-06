@@ -1,7 +1,8 @@
 " ─────────────────────────────────────────────────────────────────────────────┐
 "                                                                              │
-" Name:    elems/core/appearance.vim.tt                                        │
-" Summary: Settings related to the Vim appearance                              │
+" Name:    elems/plugins/dasht.vim.tt                                          │
+" Summary: Configure plugin `sunaku/vim-dasht`.                                │
+"                                                                              │
 " Authors:                                                                     │
 "   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              │
 "                                                                              │
@@ -31,38 +32,33 @@
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 
-" ─────────────────────────────────────────────────────────────── Statusline ──┐
-" Always show the statusline.
-set laststatus=2
-" ─────────────────────────────────────────────────────────────────── Column ──┤
-" Display column numbers.
-set number
-" Set the maximum line length.
-set textwidth=80
-"  ────────────────────────────────────────────────────────────────── Syntax ──┤
-" Maximum column in which to search for syntax items.
-set synmaxcol=1024
-" ──────────────────────────────────────────────────────────────────── Ruler ──┤
-" Always show the current position both in ruler and highlighting the line.
-set ruler
-" ───────────────────────────────────────────────────────────────── Modeline ──┤
-set modeline
-" The number of lines that is checked for set commands.
-set modelines=5
-" ─────────────────────────────────────────────────────────────── Cursorline ──┤
-" Show horizontal line under cursor.
-" set cursorline TODO too slow
-" ─────────────────────────────────────────────────────────────────── Redraw ──┤
-if !has('nvim')
-  " Indicates a fast terminal connection. More characters will be sent to the
-  " screen for redrawing, instead of using insert/delete line commands.
-  set ttyfast
+" ────────────────────────────────────────────────────────────────── Declare ──┐
+function! plugins#dasht#declare() abort
+  Plug 'sunaku/vim-dasht'
+endfunction
+" ─────────────────────────────────────────────────────────────────────────────┘
 
-  " When this option is set, the screen will not be redrawn while executing
-  " macros, registers and other commands that have not been typed.
-  " Also, updating the window title is postponed.
-  set lazyredraw
-endif
+" ──────────────────────────────────────────────────────────────── Configure ──┐
+function! plugins#dasht#configure() abort
+  " ──────────────────────────────────────────────────── Options ← Configure ──┤
+  " Mapping of: `<filetype> => <list of docset name regexp>`
+  let g:dasht_filetype_docsets = {}
+  " ───────────────────────────────────────────── Type ← Hotkeys ← Configure ──┤
+  " Search related docsets.
+  nnoremap <leader>k :Dasht<Space>
+  " search all the docsets.
+  nnoremap <leader><leader>k :Dasht!<Space>
+  " ─────────────────────────────── Words under Cursor ← Hotkeys ← Configure ──┤
+  " Search related docsets.
+  nnoremap <silent> <leader>K :call Dasht([expand('<cWORD>'), expand('<cword>')])<Return>
+  " search all the docsets.
+  nnoremap <silent> <leader><leader>K :call Dasht([expand('<cWORD>'), expand('<cword>')], '!')<Return>
+  " ──────────────────────────────────── Selected text ← Hotkeys ← Configure ──┤
+  " Search related docsets.
+  vnoremap <silent> <leader>K y:<C-U>call Dasht(getreg(0))<Return>
+  " search all the docsets.
+  vnoremap <silent> <leader><leader>K y:<C-U>call Dasht(getreg(0), '!')<Return>
+endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 

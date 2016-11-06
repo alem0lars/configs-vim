@@ -51,6 +51,10 @@ endfunction
 function! plugins#langs#python#configure() abort
   " ─────────────────────────────────────────────────────── Fold ← Configure ──┤
   autocmd FileType python setlocal foldmethod=syntax
+  " ──────────────────────────────────────────── `dasht` support ← Configure ──┤
+  <% if has_feature? :dasht %>
+  let g:dasht_filetype_docsets['python'] = ['(num|sci)py', 'pandas']
+  <% end %>
   " ────────────────────────────────────────── Vim-Kind-specific ← Configure ──┤
   <% if has_feature? :vanilla %>
   call s:configure_vanilla()

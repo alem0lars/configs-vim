@@ -30,6 +30,7 @@
 "                                                                              │
 " ─────────────────────────────────────────────────────────────────────────────┘
 
+
 " ──────────────────────────────────────────────────────────────── Clipboard ──┐
 " Use the system clipboard for all clipboard operations
 " (i.e. use the register '+' instead of '*' by default).
@@ -38,5 +39,6 @@ set clipboard^=unnamedplus
 " <F12>: Enable the pastetoggle mode, which preserves formatting on paste.
 set pastetoggle=<F12>
 " ─────────────────────────────────────────────────────────────────────────────┘
+
 
 " vim: set filetype=eruby.vim :

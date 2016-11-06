@@ -2,8 +2,6 @@
 "                                                                              │
 " Name:    elems/plugins/abolish.vim.tt                                        │
 " Summary: Configure plugin `tpope/vim-abolish`.                               │
-" Depends:                                                                     │
-"   - `vim-repeat`                                                             │
 "                                                                              │
 " Authors:                                                                     │
 "   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              │
@@ -33,10 +31,12 @@
 "                                                                              │
 " ─────────────────────────────────────────────────────────────────────────────┘
 
-" ────────────────────────────────────────────────────────────── Declaration ──┐
+
+" ────────────────────────────────────────────────────────────────── Declare ──┐
 function! plugins#abolish#declare() abort
   Plug 'tpope/vim-abolish'
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
+
 
 " vim: set filetype=eruby.vim :
