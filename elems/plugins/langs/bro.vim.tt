@@ -1,7 +1,8 @@
 " ─────────────────────────────────────────────────────────────────────────────┐
 "                                                                              │
-" Name:    elems/init.vim.tt                                                   │
-" Summary: The vim configuration entry point.                                  │
+" Name:    elems/plugins/langs/bro.vim.tt                                      │
+" Summary: Configure plugins related to language: `bro`.                       │
+"                                                                              │
 " Authors:                                                                     │
 "   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              │
 "                                                                              │
@@ -28,76 +29,18 @@
 " See the License for the specific language governing permissions and          │
 " limitations under the License.                                               │
 "                                                                              │
-" ─────────────────────────────────────────────────────────────────────────────┤
-<% define_locals do
-  variable :"vim.base_dir", as: :base_dir, type: :directory
-end %>
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 
-" ──────────────────────────────────────────────────────── Utility functions ──┐
-" Check if the testing vim configuration is available.
-function! s:has_vimrc_test() abort
-  return filereadable(expand('~/.vimrc-test.vim'))
+" ────────────────────────────────────────────────────────────────── Declare ──┐
+function! plugins#langs#bro#declare() abort
+  Plug 'mephux/bro.vim'
 endfunction
-" Load the testing vim configuration.
-function! s:source_vimrc_test() abort
-  exe 'source ' . expand('~/.vimrc-test.vim')
+" ─────────────────────────────────────────────────────────────────────────────┘
+
+" ──────────────────────────────────────────────────────────────── Configure ──┐
+function! plugins#langs#bro#configure() abort
 endfunction
-" Load a configuration file providing a path relative to the base directory
-" of this file.
-" The relative path can be either:
-" - A directory containing '*.vim' files.
-" - A path to a single file ('.vim' can be omitted).
-function! s:source_rc(rel_path) abort
-  let l:path = '<%= local! :base_dir %>/' . a:rel_path
-  if l:path !~# '.*\.disabled$'
-    if isdirectory(l:path)
-      for l:file_path in split(globpath(l:path, '*.vim'), '\n')
-        exe 'source ' . l:file_path
-      endfor
-    elseif filereadable(l:path)
-      exe 'source ' . l:path
-    elseif filereadable(l:path . '.vim')
-      exe 'source ' . l:path . '.vim'
-    else
-      echoerr 'Failed to load ' . l:path
-    end
-  else
-    echomsg 'Skipped loading of ' . l:path . ' because it is disabled'
-  end
-endfunction
-" ────────────────────────────────────────────────────────────── Entry point ──┤
-" Skip initialization for vim-tiny or vim-small.
-if !1 | finish | endif
-if !has('nvim')
-  " Disable vi-compatibility.
-  if &compatible
-    set nocompatible
-  endif
-endif
-" Load testing or normal vim configuration.
-if s:has_vimrc_test()
-  call s:source_vimrc_test()
-else
-  " Load core settings.
-  call s:source_rc('core')
-
-  " Load plugins settings.
-  call s:source_rc('plugins')
-  call s:source_rc('plugins/langs')
-
-  " Load the plugins.
-  call s:source_rc('plugins.vim')
-
-  " Load contrib.
-  call s:source_rc('contrib')
-
-  call s:source_rc('colorscheme.vim')
-
-  filetype plugin indent on
-  syntax enable
-endif
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 

@@ -27,6 +27,7 @@ features:
   - plantuml
   - systemd
   - rust
+  - bro
 #  - mono
 #  - go
   # Tools

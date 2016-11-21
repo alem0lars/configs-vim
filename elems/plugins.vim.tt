@@ -135,6 +135,9 @@ call plugins#langs#plantuml#declare()
 <% if has_feature? :systemd %>
 call plugins#langs#systemd#declare()
 <% end %>
+<% if has_feature? :bro %>
+call plugins#langs#bro#declare()
+<% end %>
 " ──────────────────────────────────────────────── Shell ← Declare ← Plugins ──┤
 call plugins#vimshell#declare()
 " ────────────────────────────────────────────────── VCS ← Declare ← Plugins ──┤
@@ -158,6 +161,8 @@ call plugins#airline#declare()
 call plugins#cmd2#declare()
 " ────────────────────────────────────────── Colorscheme ← Declare ← Plugins ──┤
 call plugins#colorscheme#declare()
+" ────────────────────────────── Collaborative Editing ← Configure ← Plugins ──┤
+call plugins#covim#declare()
 " ─────────────────────────────────────────────────────────────────────────────┤
 call plug#end()
 " ─────────────────────────────────────────────────────────────────────────────┘
@@ -241,6 +246,9 @@ call plugins#langs#tex#configure()
 <% if has_feature? :plantuml %>
 call plugins#langs#plantuml#configure()
 <% end %>
+<% if has_feature? :bro %>
+call plugins#langs#bro#configure()
+<% end %>
 " ────────────────────────────────────────────── Shell ← Configure ← Plugins ──┤
 call plugins#vimshell#configure()
 " ──────────────────────────────────────────────── VCS ← Configure ← Plugins ──┤
@@ -260,6 +268,8 @@ call plugins#airline#configure()
 call plugins#cmd2#configure()
 " ──────────────────────────────────────── Colorscheme ← Configure ← Plugins ──┤
 call plugins#colorscheme#configure()
+" ────────────────────────────── Collaborative Editing ← Configure ← Plugins ──┤
+call plugins#covim#configure()
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 
