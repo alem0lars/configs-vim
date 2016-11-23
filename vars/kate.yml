@@ -28,6 +28,7 @@ features:
   - systemd
   - rust
   - bro
+  - salt
 #  - mono
 #  - go
   # Tools

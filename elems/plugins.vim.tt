@@ -138,6 +138,9 @@ call plugins#langs#systemd#declare()
 <% if has_feature? :bro %>
 call plugins#langs#bro#declare()
 <% end %>
+<% if has_feature? :salt %>
+call plugins#langs#salt#declare()
+<% end %>
 " ──────────────────────────────────────────────── Shell ← Declare ← Plugins ──┤
 call plugins#vimshell#declare()
 " ────────────────────────────────────────────────── VCS ← Declare ← Plugins ──┤
@@ -248,6 +251,9 @@ call plugins#langs#plantuml#configure()
 <% end %>
 <% if has_feature? :bro %>
 call plugins#langs#bro#configure()
+<% end %>
+<% if has_feature? :salt %>
+call plugins#langs#salt#configure()
 <% end %>
 " ────────────────────────────────────────────── Shell ← Configure ← Plugins ──┤
 call plugins#vimshell#configure()
