@@ -29,6 +29,10 @@
 " See the License for the specific language governing permissions and          │
 " limitations under the License.                                               │
 "                                                                              │
+" ─────────────────────────────────────────────────────────────────────────────┤
+<% define_locals do
+  variable :"vim.template_dirs", as: :template_dirs
+end %>
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 
@@ -40,6 +44,7 @@ endfunction
 
 " ──────────────────────────────────────────────────────────────── Configure ──┐
 function! plugins#template#configure() abort
+  let g:templates_directory = [<%= local!(:template_dirs).map{ |t| "'#{t}'" }.join(", ") %>]
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 

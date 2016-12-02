@@ -6,6 +6,8 @@ vim:
   autoload_dir: <%= xdg_config_home(:nvim).join("autoload") %>
   vimplug:
     cache_dir: ~/.cache
+  template_dirs:
+    - $HOME/.vim-templates
 
 
 # vim: set filetype=eruby.yaml :
