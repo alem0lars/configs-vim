@@ -40,6 +40,22 @@ endfunction
 
 " ──────────────────────────────────────────────────────────────── Configure ──┐
 function! plugins#autoformat#configure() abort
+  " ──────────────────────────────────────────── Formatters path ← Configure ──┤
+  let g:formatterpath = ['./node_modules/.bin']
+  " ─────────────────────────────────────────── `eslint` support ← Configure ──┤
+  let l:tmpf = '/tmp/vim-autoformat-eslint'
+  " XXX: brutality to make eslint work
+  "      by default eslint doesn't accept the file from stdin if `--fix`
+  "      argument is provided.
+  let g:formatdef_eslint_javascript =
+        \ '"' .
+        \ 'tee ' . l:tmpf . ' > /dev/null && ' .
+        \ 'eslint -c .eslintrc.js --fix ' . l:tmpf . ' > /dev/null ; ' .
+        \ 'cat ' . l:tmpf .
+        \ '"'
+  let g:formatters_javascript = ['eslint_javascript']
+
+  nnoremap <Leader>f :Autoformat<CR>
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 
