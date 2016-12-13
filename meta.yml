@@ -5,6 +5,11 @@ commands:
     dst:  '<%= get_var!(:"vim.autoload_dir", type: :directory).join("plug.vim") %>'
     only: f?vim
 
+  - type: sync
+    repo: 'git@github.com:alem0lars/vim-templates'
+    dst:  '<%= get_var!(:"vim.template_dirs")[0] %>'
+    only: f?vim && v?vim.template_dirs
+
 elems:
 
   - src:  ^(vimrc)$

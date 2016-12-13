@@ -8,6 +8,7 @@ vim:
     cache_dir: /etc/xdg/nvim/cache/vimplug
   template_dirs:
     - /etc/xdg/nvim/templates
+    - $HOME/.vim-templates # allow users to override
 
 
 # vim: set filetype=eruby.yaml :
