@@ -26,6 +26,7 @@ features:
   - tmux
   - plantuml
   - systemd
+  - haskell
   - rust
   - bro
   - salt

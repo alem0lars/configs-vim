@@ -118,6 +118,9 @@ call plugins#langs#c_based#declare()
 <% if has_feature? :ruby %>
 call plugins#langs#ruby#declare()
 <% end %>
+<% if has_feature? :haskell %>
+call plugins#langs#haskell#declare()
+<% end %>
 <% if has_feature? :rust %>
 call plugins#langs#rust#declare()
 <% end %>
@@ -242,6 +245,9 @@ call plugins#langs#ruby#configure()
 <% end %>
 <% if has_feature? :python %>
 call plugins#langs#python#configure()
+<% end %>
+<% if has_feature? :haskell %>
+call plugins#langs#haskell#configure()
 <% end %>
 <% if has_feature? :rust %>
 call plugins#langs#rust#configure()
