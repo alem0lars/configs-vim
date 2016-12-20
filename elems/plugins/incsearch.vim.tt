@@ -34,7 +34,17 @@
 "                                                                              │
 " ─────────────────────────────────────────────────────────────────────────────┘
 
+
 " ──────────────────────────────────────────────────────────────── Utilities ──┐
+function! s:config_easymotion(...) abort
+  return extend(copy({
+        \ 'modules': [incsearch#config#easymotion#module()],
+        \ 'keymap': {"\<CR>": '<Over>(easymotion)'},
+        \ 'is_expr': 0,
+        \ 'is_stay': 1
+        \ }), get(a:, 1, {}))
+endfunction
+
 function! s:config_efm(...) abort
   return extend(copy({
         \ 'converters': [
@@ -82,12 +92,24 @@ function! plugins#incsearch#configure_mappings() abort
   " map g# <Plug>(incsearch-nohl-g#)
 
   noremap <silent><expr> <Space>/
-        \ incsearch#go(<SID>config_efm())
+        \ incsearch#go(<SID>config_easymotion())
   noremap <silent><expr> <Space>?
-        \ incsearch#go(<SID>config_efm({'command': '?'}))
+        \ incsearch#go(<SID>config_easymotion({'command': '?'}))
+  noremap <silent><expr> <Space>g/
+        \ incsearch#go(<SID>config_easymotion({'is_stay': 1}))
   noremap <silent><expr> <Space>g?
+        \ incsearch#go(<SID>config_easymotion({'command': '?', 'is_stay': 1}))
+
+  noremap <silent><expr> <Space>f/
+        \ incsearch#go(<SID>config_efm())
+  noremap <silent><expr> <Space>f?
+        \ incsearch#go(<SID>config_efm({'command': '?'}))
+  noremap <silent><expr> <Space>fg/
         \ incsearch#go(<SID>config_efm({'is_stay': 1}))
+  noremap <silent><expr> <Space>fg?
+        \ incsearch#go(<SID>config_efm({'command': '?', 'is_stay': 1}))
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
+
 
 " vim: set filetype=eruby.vim :

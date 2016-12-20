@@ -1,7 +1,7 @@
 " ─────────────────────────────────────────────────────────────────────────────┐
 "                                                                              │
-" Name:    elems/plugins/covim.vim.tt                                        │
-" Summary: Configure plugin `tpope/vim-covim`.                               │
+" Name:    elems/plugins/langs/haskell.vim.tt                                  │
+" Summary: Configure plugins related to language: `haskell`.                   │
 "                                                                              │
 " Authors:                                                                     │
 "   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              │
@@ -33,13 +33,36 @@
 
 
 " ────────────────────────────────────────────────────────────────── Declare ──┐
-function! plugins#covim#declare() abort
-  Plug 'FredKSchott/CoVim'
+function! plugins#langs#haskell#declare() abort
+  Plug 'eagletmt/neco-ghc'
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 
-" ────────────────────────────────────────────────────────────────── Declare ──┐
-function! plugins#covim#configure() abort
+" ──────────────────────────────────────────────────────────────── Configure ──┐
+function! plugins#langs#haskell#configure() abort
+  " ───────────────────────────────────────────────── `neco-ghc` ← Configure ──┤
+  let g:haskellmode_completion_ghc = 0
+  " ─────────────────────────────────────────────────────── Fold ← Configure ──┤
+  autocmd FileType haskell setlocal foldmethod=syntax
+  " ────────────────────────────────────────── Vim-Kind-specific ← Configure ──┤
+  <% if has_feature? :vanilla %>
+  call s:configure_vanilla()
+  <% end %>
+  <% if has_feature? :neovim %>
+  call s:configure_neovim()
+  <% end %>
+endfunction
+" ────────────────────────────────────────────────────── Vanilla ← Configure ──┤
+function! s:configure_vanilla() abort
+  " ──────────────────────────────────── `neocomplete` ← Vanilla ← Configure ──┤
+  " Set `omnifunc`.
+  autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+  " Set source.
+  let g:neocomplete#force_omni_input_patterns.haskell =
+        \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
+endfunction
+" ─────────────────────────────────────────────────────── NeoVim ← Configure ──┤
+function! s:configure_neovim() abort
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 

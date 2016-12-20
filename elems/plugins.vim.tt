@@ -168,8 +168,6 @@ call plugins#airline#declare()
 call plugins#cmd2#declare()
 " ────────────────────────────────────────── Colorscheme ← Declare ← Plugins ──┤
 call plugins#colorscheme#declare()
-" ────────────────────────────── Collaborative Editing ← Configure ← Plugins ──┤
-call plugins#covim#declare()
 " ─────────────────────────────────────────────────────────────────────────────┤
 call plug#end()
 " ─────────────────────────────────────────────────────────────────────────────┘
@@ -282,8 +280,6 @@ call plugins#airline#configure()
 call plugins#cmd2#configure()
 " ──────────────────────────────────────── Colorscheme ← Configure ← Plugins ──┤
 call plugins#colorscheme#configure()
-" ────────────────────────────── Collaborative Editing ← Configure ← Plugins ──┤
-call plugins#covim#configure()
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 

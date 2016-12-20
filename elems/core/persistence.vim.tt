@@ -121,6 +121,9 @@ augroup AutoMkdir
   autocmd!
   autocmd BufNewFile * :call <SID>ensure_dir_exists()
 augroup END
+" ─────────────────────────────────────── Automatically reload changed files ──┤
+set autoread
+autocmd! CursorHold * if getcmdwintype() == '' | checktime | endif
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 
