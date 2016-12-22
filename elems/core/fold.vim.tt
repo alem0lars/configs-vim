@@ -41,5 +41,11 @@ set foldminlines=0
 set foldnestmax=3
 set foldmethod=marker
 
+" For conceal markers.
+if has('conceal')
+  set conceallevel=1
+  set concealcursor=
+endif
+
 
 " vim: set filetype=eruby.vim :
