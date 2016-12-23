@@ -1,0 +1,75 @@
+" ─────────────────────────────────────────────────────────────────────────────┐
+"                                                                              │
+" Name:    elems/contrib/gentoo.vim.tt                                         │
+" Summary: Gentoo integration.                                                 │
+" Authors:                                                                     │
+"   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              │
+"                                                                              │
+" Project:                                                                     │
+"   - Homepage:        https://github.com/alem0lars/configs-vim                │
+"   - Getting started: see README.md in the project root folder                │
+"                                                                              │
+" License: Apache v2.0 (see below)                                             │
+"                                                                              │
+" ─────────────────────────────────────────────────────────────────────────────┤
+"                                                                              │
+" Licensed to the Apache Software Foundation (ASF) under one more contributor  │
+" license agreements.  See the NOTICE file distributed with this work for      │
+" additional information regarding copyright ownership. The ASF licenses this  │
+" file to you under the Apache License, Version 2.0 (the "License"); you may   │
+" not use this file except in compliance with the License.                     │
+" You may obtain a copy of the License at                                      │
+"                                                                              │
+"   http://www.apache.org/licenses/LICENSE-2.0                                 │
+"                                                                              │
+" Unless required by applicable law or agreed to in writing, software          │
+" distributed under the License is distributed on an "AS IS" BASIS, WITHOUT    │
+" WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.             │
+" See the License for the specific language governing permissions and          │
+" limitations under the License.                                               │
+"                                                                              │
+" ─────────────────────────────────────────────────────────────────────────────┘
+
+
+" ────────────────────────────────────────────────────────────────── Options ──┐
+augroup gentoo
+  au!
+
+  " Gentoo-specific settings for ebuilds.  These are the federally-mandated
+  " required tab settings.  See the following for more information:
+  " http://www.gentoo.org/proj/en/devrel/handbook/handbook.xml
+  " Note that the rules below are very minimal and don't cover everything.
+  " Better to emerge app-vim/gentoo-syntax, which provides full syntax,
+  " filetype and indent settings for all things Gentoo.
+  au BufRead,BufNewFile *.e{build,class} let is_bash=1|setfiletype sh
+  au BufRead,BufNewFile *.e{build,class} set ts=4 sw=4 noexpandtab
+
+  " In text files, limit the width of text to 78 characters, but be careful
+  " that we don't override the user's setting.
+  autocmd BufNewFile,BufRead *.txt
+        \ if &tw == 0 && ! exists("g:leave_my_textwidth_alone") |
+        \     setlocal textwidth=78 |
+        \ endif
+
+  " When editing a file, always jump to the last cursor position
+  autocmd BufReadPost *
+        \ if ! exists("g:leave_my_cursor_position_alone") |
+        \     if line("'\"") > 0 && line ("'\"") <= line("$") |
+        \         exe "normal! g'\"" |
+        \     endif |
+        \ endif
+
+  " When editing a crontab file, set backupcopy to yes rather than auto. See
+  " :help crontab and bug #53437.
+  autocmd FileType crontab set backupcopy=yes
+
+augroup END
+" ──────────────────────────────────────── Load vimfiles available in gentoo ──┤
+let s:rpaths = ['/usr/share/vim/vimfiles', '/usr/share/vim/vimfiles/after']
+for rp in s:rpaths
+  let &runtimepath .= ','.escape(expand(rp), '\,')
+endfor
+" ─────────────────────────────────────────────────────────────────────────────┘
+
+
+" vim: set filetype=eruby.vim :
