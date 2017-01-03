@@ -40,7 +40,11 @@ endfunction
 
 " ──────────────────────────────────────────────────────────── Configuration ──┐
 function! plugins#neomake#configure() abort
-  let g:neomake_list_height=16
+  let g:neomake_list_height=32
+
+  " lint-as-you-type
+  " see https://www.gregjs.com/vim/2015/lint-as-you-type-with-neovim-and-neomake
+  autocmd! InsertChange,TextChanged * update | Neomake
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 
