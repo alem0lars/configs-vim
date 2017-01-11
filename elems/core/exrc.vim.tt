@@ -1,8 +1,8 @@
 " ─────────────────────────────────────────────────────────────────────────────┐
 "                                                                              │
-" Name:    elems/plugins/neomake.vim.tt                                        │
-" Summary: Configure plugin `neomake/neomake`                                  │
-"                                                                              │
+" Name:    elems/core/exrc.vim.tt                                              │
+" Summary: Settings related to how Vim configuration files in current          │
+"          directory should be loaded.                                         │
 " Authors:                                                                     │
 "   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              │
 "                                                                              │
@@ -32,18 +32,11 @@
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 
-" ────────────────────────────────────────────────────────────── Declaration ──┐
-function! plugins#neomake#declare() abort
-  Plug 'neomake/neomake'
-endfunction
-" ─────────────────────────────────────────────────────────────────────────────┘
+" Enable the reading of `.nvimrc` and .exrc in the current directory.
+set exrc
 
-" ──────────────────────────────────────────────────────────── Configuration ──┐
-function! plugins#neomake#configure() abort
-  let g:neomake_list_height=16
-  let g:neomake_open_list=2
-endfunction
-" ─────────────────────────────────────────────────────────────────────────────┘
+" Disallow unsafe commands in `.nvimrc` and `.exrc` in the current directory.
+set secure
 
 
 " vim: set filetype=eruby.vim :
