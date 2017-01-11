@@ -53,9 +53,6 @@ function! plugins#langs#javascript#configure() abort
   let g:javascript_plugin_ngdoc=1
   " Enables syntax highlighting for Flow.
   let g:javascript_plugin_flow=1
-  " ─────────────────────────────────────────────────────── Fold ← Configure ──┤
-  autocmd FileType javascript setlocal foldmethod=syntax
-  autocmd FileType coffee     setlocal foldmethod=syntax
   " ────────────────────────────────────────── Vim-Kind-specific ← Configure ──┤
   <% if has_feature? :vanilla %>
   call s:configure_vanilla()
@@ -67,9 +64,14 @@ endfunction
 " ────────────────────────────────────────────────────── Vanilla ← Configure ──┤
 function! s:configure_vanilla() abort
   " ──────────────────────────────────── `neocomplete` ← Vanilla ← Configure ──┤
-  " Set `omnifunc`.
-  autocmd FileType javascript setlocal omnifunc=tern#Complete
-  autocmd FileType coffee     setlocal omnifunc=tern#Complete
+  autocmd filetype_javascript
+    autocmd!
+    autocmd FileType javascript setlocal omnifunc=term#Complete
+  augroup END
+  autocmd filetype_coffee
+    autocmd!
+    autocmd FileType coffee setlocal omnifunc=term#Complete
+  augroup END
   " Set source.
   let g:neocomplete#force_omni_input_patterns.javascript = '\h\w*\|[^. \t]\.\w*'
   " ────────────────────────────────────────── Hotkeys ← Vanilla ← Configure ──┤
