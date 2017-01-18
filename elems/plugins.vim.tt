@@ -163,6 +163,7 @@ call plugins#vimfiler#declare()
 <% end %>
 call plugins#sudoedit#declare()
 call plugins#rooter#declare()
+call plugins#fzf#configure()
 " ───────────────────────────────────────────────── Misc ← Declare ← Plugins ──┤
 call plugins#prettyprint#declare()
 " ─────────────────────────────────────────── Statusline ← Declare ← Plugins ──┤
@@ -279,6 +280,7 @@ call plugins#obsession#configure()
 <% if has_feature? :vanilla %>
 call plugins#vimfiler#configure()
 <% end %>
+call plugins#fzf#configure()
 " ─────────────────────────────────────────────── Misc ← Configure ← Plugins ──┤
 " ───────────────────────────────────────── Statusline ← Configure ← Plugins ──┤
 call plugins#airline#configure()
