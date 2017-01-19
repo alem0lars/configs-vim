@@ -49,10 +49,10 @@ function! plugins#esearch#configure() abort
         \ }
 
   " Start esearch prompt autofilled with one of g:esearch.use initial patterns
-  call esearch#map('<leader>ee', 'esearch')
+  call esearch#map('<leader>ss', 'esearch')
 
   " Start esearch autofilled with a word under the cursor
-  call esearch#map('<leader>ew', 'esearch-word-under-cursor')
+  call esearch#map('<leader>sw', 'esearch-word-under-cursor')
 
   call esearch#out#win#map('t',       'tab')
   call esearch#out#win#map('i',       'split')

@@ -40,7 +40,7 @@ endfunction
 " ──────────────────────────────────────────────────────────── Configuration ──┐
 function! plugins#fzf#configure() abort
   " <Leader>p: Open fzf
-  nnoremap <silent> <Leader>p :<C-u>FZF<CR>
+  nnoremap <silent> <Leader>e :<C-u>FZF<CR>
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 
