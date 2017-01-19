@@ -89,7 +89,7 @@ command! RangerWorkingDirectory call OpenRangerIn("")
 " Ranger command defaults to the current file's parent directory.
 command! Ranger RangerCurrentDirectory
 " ────────────────────────────────────────────────────────────────── Hotkeys ──┤
-nnoremap <leader>e :Ranger<CR>
+nnoremap <leader>r :Ranger<CR>
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 

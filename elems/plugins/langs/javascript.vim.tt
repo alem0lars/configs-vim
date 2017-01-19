@@ -29,6 +29,10 @@
 " See the License for the specific language governing permissions and          │
 " limitations under the License.                                               │
 "                                                                              │
+" ─────────────────────────────────────────────────────────────────────────────┤
+<% define_locals do
+  variable :"vim.leaders.local", type: :string, as: :leader
+end %>
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 
@@ -75,7 +79,7 @@ function! s:configure_vanilla() abort
   " Set source.
   let g:neocomplete#force_omni_input_patterns.javascript = '\h\w*\|[^. \t]\.\w*'
   " ────────────────────────────────────────── Hotkeys ← Vanilla ← Configure ──┤
-  let g:tern_map_prefix = '\'
+  let g:tern_map_prefix = '<%= local! :leader %>'
   let g:tern_map_keys = 1
 endfunction
 " ─────────────────────────────────────────────────────── NeoVim ← Configure ──┤
