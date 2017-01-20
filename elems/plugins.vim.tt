@@ -112,6 +112,7 @@ call plugins#vimoutliner#declare()
 " ──────────────────────────────────────────────── Langs ← Declare ← Plugins ──┤
 call plugins#langs#vimscript#declare()
 call plugins#langs#toml#declare()
+call plugins#langs#mediawiki#declare()
 <% if has_feature? :c, :cpp, :objc, :objcpp, match: :any? %>
 call plugins#langs#c_based#declare()
 <% end %>
