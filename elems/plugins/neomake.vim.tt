@@ -40,8 +40,10 @@ endfunction
 
 " ──────────────────────────────────────────────────────────── Configuration ──┐
 function! plugins#neomake#configure() abort
-  let g:neomake_list_height=16
+  let g:neomake_list_height=8
   let g:neomake_open_list=2
+
+  autocmd! BufWritePost * Neomake
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 

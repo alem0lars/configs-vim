@@ -1,7 +1,7 @@
 " ─────────────────────────────────────────────────────────────────────────────┐
 "                                                                              │
-" Name:    elems/plugins/langs/javascript.vim.tt                               │
-" Summary: Configure plugins related to language: `javascript`.                │
+" Name:    elems/plugins/iron.vim.tt                                           │
+" Summary: Configure plugin `hkupty/iron.nvim`.                                │
 "                                                                              │
 " Authors:                                                                     │
 "   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              │
@@ -29,72 +29,17 @@
 " See the License for the specific language governing permissions and          │
 " limitations under the License.                                               │
 "                                                                              │
-" ─────────────────────────────────────────────────────────────────────────────┤
-<% define_locals do
-  variable :"vim.leaders.local", type: :string, as: :leader
-end %>
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 
 " ────────────────────────────────────────────────────────────────── Declare ──┐
-function! plugins#langs#javascript#declare() abort
-  Plug 'pangloss/vim-javascript'
-  <% if has_feature? :vanilla %>
-  Plug 'ternjs/tern_for_vim', {'do': 'npm install'}
-  <% end %>
-  <% if has_feature? :neovim %>
-  Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
-  <% end %>
+function! plugins#iron#declare() abort
+  Plug 'hkupty/iron.nvim'
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 " ──────────────────────────────────────────────────────────────── Configure ──┐
-function! plugins#langs#javascript#configure() abort
-  " ─────────────────────────────────────────── `vim-javascript` ← Configure ──┤
-  " Enable syntax highlighting for JSDocs.
-  let g:javascript_plugin_jsdoc=1
-  " Enable syntax highlighting for NGDocs.
-  let g:javascript_plugin_ngdoc=1
-  " Enables syntax highlighting for Flow.
-  let g:javascript_plugin_flow=1
-  " ────────────────────────────────────────── Vim-Kind-specific ← Configure ──┤
-  <% if has_feature? :vanilla %>
-  call s:configure_vanilla()
-  <% end %>
-  <% if has_feature? :neovim %>
-  call s:configure_neovim()
-  <% end %>
-endfunction
-" ────────────────────────────────────────────────────── Vanilla ← Configure ──┤
-function! s:configure_vanilla() abort
-  " ──────────────────────────────────── `neocomplete` ← Vanilla ← Configure ──┤
-  autocmd filetype_javascript
-    autocmd!
-    autocmd FileType javascript setlocal omnifunc=term#Complete
-  augroup END
-  autocmd filetype_coffee
-    autocmd!
-    autocmd FileType coffee setlocal omnifunc=term#Complete
-  augroup END
-  " Set source.
-  let g:neocomplete#force_omni_input_patterns.javascript = '\h\w*\|[^. \t]\.\w*'
-  " ────────────────────────────────────────── Hotkeys ← Vanilla ← Configure ──┤
-  let g:tern_map_prefix = '<%= local! :leader %>'
-  let g:tern_map_keys = 1
-endfunction
-" ─────────────────────────────────────────────────────── NeoVim ← Configure ──┤
-function! s:configure_neovim() abort
-  " ──────────────────────────────────────── `deoplete` ← NeoVim ← Configure ──┤
-  " Use deoplete.
-  let g:tern_request_timeout = 1
-  " This do disable full signature type on autocomplete
-  let g:tern_show_signature_in_pum = '0'
-  " ───────────────────────────────────────── `neomake` ← NeoVim ← Configure ──┤
-  let s:eslint_path = system('PATH=$(npm bin):$PATH && which eslint')
-  let g:neomake_javascript_eslint_maker = {
-        \ 'exe': substitute(s:eslint_path, '^\n*\s*\(.\{-}\)\n*\s*$', '\1', '')
-        \ }
-  let g:neomake_javascript_enabled_makers = ['eslint']
+function! plugins#iron#configure() abort
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 

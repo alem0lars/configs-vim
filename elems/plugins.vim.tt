@@ -150,6 +150,9 @@ call plugins#langs#salt#declare()
 <% end %>
 " ──────────────────────────────────────────────── Shell ← Declare ← Plugins ──┤
 call plugins#vimshell#declare()
+<% if has_feature? :neovim %>
+call plugins#iron#declare()
+<% end %>
 " ────────────────────────────────────────────────── VCS ← Declare ← Plugins ──┤
 call plugins#fugitive#declare()
 " ───────────────────────────────────────────────── Undo ← Declare ← Plugins ──┤
@@ -164,7 +167,9 @@ call plugins#vimfiler#declare()
 call plugins#sudoedit#declare()
 call plugins#rooter#declare()
 call plugins#fzf#declare()
-call plugins#esearch#declare()
+<% if has_feature? :neovim %>
+call plugins#far#declare()
+<% end %>
 " ───────────────────────────────────────────────── Misc ← Declare ← Plugins ──┤
 call plugins#prettyprint#declare()
 " ─────────────────────────────────────────── Statusline ← Declare ← Plugins ──┤
@@ -271,6 +276,9 @@ call plugins#langs#salt#configure()
 <% end %>
 " ────────────────────────────────────────────── Shell ← Configure ← Plugins ──┤
 call plugins#vimshell#configure()
+<% if has_feature? :neovim %>
+call plugins#iron#configure()
+<% end %>
 " ──────────────────────────────────────────────── VCS ← Configure ← Plugins ──┤
 " ─────────────────────────────────────────────── Undo ← Configure ← Plugins ──┤
 call plugins#undotree#configure()
@@ -282,7 +290,9 @@ call plugins#obsession#configure()
 call plugins#vimfiler#configure()
 <% end %>
 call plugins#fzf#configure()
-call plugins#esearch#configure()
+<% if has_feature? :neovim %>
+call plugins#far#configure()
+<% end %>
 " ─────────────────────────────────────────────── Misc ← Configure ← Plugins ──┤
 " ───────────────────────────────────────── Statusline ← Configure ← Plugins ──┤
 call plugins#airline#configure()

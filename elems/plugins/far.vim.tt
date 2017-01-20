@@ -1,7 +1,7 @@
 " ─────────────────────────────────────────────────────────────────────────────┐
 "                                                                              │
-" Name:    elems/plugins/esearch.vim.tt                                        │
-" Summary: Configure plugin `eugen0329/vim-esearch`.                           │
+" Name:    elems/plugins/far.vim.tt                                            │
+" Summary: Configure plugin `brooth/far.vim`.                                  │
 "                                                                              │
 " Authors:                                                                     │
 "   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              │
@@ -33,48 +33,30 @@
 
 
 " ────────────────────────────────────────────────────────────────── Declare ──┐
-function! plugins#esearch#declare() abort
-  Plug 'eugen0329/vim-esearch'
+function! plugins#far#declare() abort
+  Plug 'brooth/far.vim'
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 " ──────────────────────────────────────────────────────────────── Configure ──┐
-function! plugins#esearch#configure() abort
-  let g:esearch = {
-        \   'adapter':    'ag',
-        \   'backend':    '<%= has_feature?(:neovim) ? :nvim : :vimproc %>',
-        \   'out':        'qflist',
-        \   'batch_size': 1024,
-        \   'use':        ['visual', 'hlsearch', 'last'],
-        \ }
-
-  " Start esearch prompt autofilled with one of g:esearch.use initial patterns
-  call esearch#map('<leader>ss', 'esearch')
-
-  " Start esearch autofilled with a word under the cursor
-  call esearch#map('<leader>sw', 'esearch-word-under-cursor')
-
-  call esearch#out#win#map('t',       'tab')
-  call esearch#out#win#map('i',       'split')
-  call esearch#out#win#map('s',       'vsplit')
-  call esearch#out#win#map('<Enter>', 'open')
-  call esearch#out#win#map('o',       'open')
-
-  " Open silently (keep focus on the results window)
-  call esearch#out#win#map('T', 'tab-silent')
-  call esearch#out#win#map('I', 'split-silent')
-  call esearch#out#win#map('S', 'vsplit-silent')
-
-  " Move cursor with snapping
-  call esearch#out#win#map('<C-n>', 'next')
-  call esearch#out#win#map('<C-j>', 'next-file')
-  call esearch#out#win#map('<C-p>', 'prev')
-  call esearch#out#win#map('<C-k>', 'prev-file')
-
-  call esearch#cmdline#map('<C-o><C-r>', 'toggle-regex')
-  call esearch#cmdline#map('<C-o><C-s>', 'toggle-case')
-  call esearch#cmdline#map('<C-o><C-w>', 'toggle-word')
-  call esearch#cmdline#map('<C-o><C-h>', 'cmdline-help')
+function! plugins#far#configure() abort
+  let g:far#source = '<%= has_feature?(:neovim) ? :agnvim : :ag %>'
+  let g:far#limit = 1024
+  let g:far#window_width = 96
+  let g:far#window_height = 24
+  let g:far#preview_window_width = 96
+  let g:far#preview_window_height = 12
+  let g:far#file_mask_favorites = [
+        \   '%',
+        \   '**/*.*',
+        \   '**/*.html',
+        \   '**/*.js',
+        \   '**/*.rb',
+        \   '**/*.css',
+        \   '**/*.py',
+        \   '**/*.hs',
+        \   '**/*.java',
+        \ ]
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 
