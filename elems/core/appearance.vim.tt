@@ -39,6 +39,9 @@ set laststatus=2
 set number
 " Set the maximum line length.
 set textwidth=80
+" Show the color column.
+set colorcolumn=80
+highlight ColorColumn ctermbg=0
 "  ────────────────────────────────────────────────────────────────── Syntax ──┤
 " Maximum column in which to search for syntax items.
 set synmaxcol=1024
