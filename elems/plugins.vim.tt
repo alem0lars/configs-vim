@@ -171,6 +171,7 @@ call plugins#fzf#declare()
 <% if has_feature? :neovim %>
 call plugins#far#declare()
 <% end %>
+call plugins#grepper#declare()
 " ───────────────────────────────────────────────── Misc ← Declare ← Plugins ──┤
 call plugins#prettyprint#declare()
 " ─────────────────────────────────────────── Statusline ← Declare ← Plugins ──┤
@@ -294,6 +295,7 @@ call plugins#fzf#configure()
 <% if has_feature? :neovim %>
 call plugins#far#configure()
 <% end %>
+call plugins#grepper#configure()
 " ─────────────────────────────────────────────── Misc ← Configure ← Plugins ──┤
 " ───────────────────────────────────────── Statusline ← Configure ← Plugins ──┤
 call plugins#airline#configure()
