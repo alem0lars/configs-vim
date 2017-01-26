@@ -30,11 +30,15 @@
 "                                                                              │
 " ─────────────────────────────────────────────────────────────────────────────┘
 
+
 " Show matching parenthesis & brackets.
 set showmatch
+
 " Tenths of a second to show the matching paren.
 set matchtime=1
+
 " Add angular brackets to the list of characters that form pairs.
 set matchpairs+=<:>
+
 
 " vim: set filetype=eruby.vim :

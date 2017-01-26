@@ -30,6 +30,7 @@
 "                                                                              │
 " ─────────────────────────────────────────────────────────────────────────────┘
 
+
 set encoding=utf-8
 
 if !has('nvim')
@@ -37,5 +38,6 @@ if !has('nvim')
   " keyboard produces and the display will understand.
   set termencoding=utf-8
 endif
+
 
 " vim: set filetype=eruby.vim :

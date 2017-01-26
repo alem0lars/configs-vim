@@ -41,7 +41,7 @@
   computed(:history_size, type: :int) { 8192  }
   computed(:undo_levels,  type: :int) { 2048  }
   computed(:undo_lines,   type: :int) { 10240 }
-end -%>
+end %>
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 
@@ -62,13 +62,13 @@ set backup
 " Set the directory for saving files backups.
 set backupdir=<%= local! :backups_dir %>
 if !isdirectory(&backupdir)
-  call mkdir(&backupdir, "p")
+  call mkdir(&backupdir, 'p')
 endif
 " ───────────────────────────────────────────────────────────────────── Swap ──┤
 " Set the directory for saving swap files.
 set directory=<%= local! :swaps_dir %>
 if !isdirectory(&directory)
-  call mkdir(&directory, "p")
+  call mkdir(&directory, 'p')
 endif
 " Delay for writing swap on disk.
 set updatetime=1024
@@ -76,7 +76,7 @@ set updatetime=1024
 " Set the directory for saving views state.
 set viewdir=<%= local! :views_dir %>
 if !isdirectory(&viewdir)
-  call mkdir(&viewdir, "p")
+  call mkdir(&viewdir, 'p')
 endif
 " When entering and exiting from a buffer load the view state.
 au BufWinLeave \* silent! mkview
@@ -85,7 +85,7 @@ au BufWinEnter \* silent! loadview
 " Set the directory for saving undos.
 set undodir=<%= local! :undos_dir %>
 if !isdirectory(&undodir)
-  call mkdir(&undodir, "p")
+  call mkdir(&undodir, 'p')
 endif
 " How many undos.
 set undolevels=<%= local! :undo_levels %>
@@ -104,7 +104,7 @@ function! s:ask_quit(msg, options, quit_option) abort
 endfunction
 
 function! s:ensure_dir_exists() abort
-  let required_dir=expand("%:h")
+  let required_dir=expand('%:h')
   if !isdirectory(required_dir)
     call s:ask_quit("Parent directory '" . required_dir . "' doesn't exist.",
           \  "&Create it\nor &Quit?", 2)

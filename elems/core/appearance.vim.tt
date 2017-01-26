@@ -41,7 +41,6 @@ set number
 set textwidth=80
 " Show the color column.
 set colorcolumn=80
-highlight ColorColumn ctermbg=0
 "  ────────────────────────────────────────────────────────────────── Syntax ──┤
 " Maximum column in which to search for syntax items.
 set synmaxcol=1024
@@ -55,6 +54,11 @@ set modelines=5
 " ─────────────────────────────────────────────────────────────── Cursorline ──┤
 " Show horizontal line under cursor.
 " set cursorline TODO too slow
+" ──────────────────────────────────────────────────────────── Custom colors ──┤
+" TODO move to better place (before applying plugins gets overrided >:)
+" TODO handle gui
+highlight ColorColumn ctermbg=232
+highlight QuickFixLine ctermfg=215 guifg=#ffb964
 " ─────────────────────────────────────────────────────────────────── Redraw ──┤
 if !has('nvim')
   " Indicates a fast terminal connection. More characters will be sent to the

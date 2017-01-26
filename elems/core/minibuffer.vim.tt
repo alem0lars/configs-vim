@@ -30,6 +30,7 @@
 "                                                                              │
 " ─────────────────────────────────────────────────────────────────────────────┘
 
+
 " Enable bash-like completion.
 set wildmenu
 
@@ -38,5 +39,6 @@ set wildmode=list:longest,full
 
 " Don't put a message on the last line.
 set noshowmode
+
 
 " vim: set filetype=eruby.vim :

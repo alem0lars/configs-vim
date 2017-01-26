@@ -80,8 +80,7 @@ endif
 if s:has_vimrc_test()
   call s:source_vimrc_test()
 else
-  " Load core settings.
-  call s:source_rc('core')
+  call s:source_rc('leader')
 
   " Load plugins settings.
   call s:source_rc('plugins')
@@ -90,13 +89,16 @@ else
   " Load the plugins.
   call s:source_rc('plugins.vim')
 
-  " Load contrib.
-  call s:source_rc('contrib')
-
   call s:source_rc('colorscheme.vim')
 
   filetype plugin indent on
   syntax enable
+
+  " Load core settings.
+  call s:source_rc('core')
+
+  " Load contrib.
+  call s:source_rc('contrib')
 endif
 " ─────────────────────────────────────────────────────────────────────────────┘
 
