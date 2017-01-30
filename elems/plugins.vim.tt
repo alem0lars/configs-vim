@@ -176,8 +176,6 @@ call plugins#grepper#declare()
 call plugins#prettyprint#declare()
 " ─────────────────────────────────────────── Statusline ← Declare ← Plugins ──┤
 call plugins#airline#declare()
-" ────────────────────────────────────────── Commandline ← Declare ← Plugins ──┤
-call plugins#cmd2#declare()
 " ────────────────────────────────────────── Colorscheme ← Declare ← Plugins ──┤
 call plugins#colorscheme#declare()
 " ─────────────────────────────────────────────────────────────────────────────┤
@@ -299,8 +297,6 @@ call plugins#grepper#configure()
 " ─────────────────────────────────────────────── Misc ← Configure ← Plugins ──┤
 " ───────────────────────────────────────── Statusline ← Configure ← Plugins ──┤
 call plugins#airline#configure()
-" ──────────────────────────────────────── Commandline ← Configure ← Plugins ──┤
-call plugins#cmd2#configure()
 " ──────────────────────────────────────── Colorscheme ← Configure ← Plugins ──┤
 call plugins#colorscheme#configure()
 " ─────────────────────────────────────────────────────────────────────────────┘

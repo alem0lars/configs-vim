@@ -79,34 +79,22 @@ function! plugins#incsearch#configure_settings() abort
 endfunction
 " ───────────────────────────────────────────────────── Mappings ← Configure ──┤
 function! plugins#incsearch#configure_mappings() abort
-  " Basic mappings
-  " TODO: Uncomment when incsearch is compatible with cmd2.
-  " map /  <Plug>(incsearch-forward)
-  " map ?  <Plug>(incsearch-backward)
-  " map g/ <Plug>(incsearch-stay)
-  " map n  <Plug>(incsearch-nohl-n)
-  " map N  <Plug>(incsearch-nohl-N)
-  " map *  <Plug>(incsearch-nohl-*)
-  " map #  <Plug>(incsearch-nohl-#)
-  " map g* <Plug>(incsearch-nohl-g*)
-  " map g# <Plug>(incsearch-nohl-g#)
-
-  noremap <silent><expr> <Space>/
+  noremap <silent><expr> /
         \ incsearch#go(<SID>config_easymotion())
-  noremap <silent><expr> <Space>?
+  noremap <silent><expr> ?
         \ incsearch#go(<SID>config_easymotion({'command': '?'}))
-  noremap <silent><expr> <Space>g/
+  noremap <silent><expr> g/
         \ incsearch#go(<SID>config_easymotion({'is_stay': 1}))
-  noremap <silent><expr> <Space>g?
+  noremap <silent><expr> g?
         \ incsearch#go(<SID>config_easymotion({'command': '?', 'is_stay': 1}))
 
-  noremap <silent><expr> <Space>f/
+  noremap <silent><expr> f/
         \ incsearch#go(<SID>config_efm())
-  noremap <silent><expr> <Space>f?
+  noremap <silent><expr> f?
         \ incsearch#go(<SID>config_efm({'command': '?'}))
-  noremap <silent><expr> <Space>fg/
+  noremap <silent><expr> fg/
         \ incsearch#go(<SID>config_efm({'is_stay': 1}))
-  noremap <silent><expr> <Space>fg?
+  noremap <silent><expr> fg?
         \ incsearch#go(<SID>config_efm({'command': '?', 'is_stay': 1}))
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
