@@ -39,6 +39,8 @@ end %>
 " ────────────────────────────────────────────────────────────────── Declare ──┐
 function! plugins#langs#javascript#declare() abort
   Plug 'pangloss/vim-javascript'
+  Plug 'heavenshell/vim-jsdoc'
+
   <% if has_feature? :vanilla %>
   Plug 'ternjs/tern_for_vim', {'do': 'npm install'}
   <% end %>
@@ -57,6 +59,11 @@ function! plugins#langs#javascript#configure() abort
   let g:javascript_plugin_ngdoc=1
   " Enables syntax highlighting for Flow.
   let g:javascript_plugin_flow=1
+  " ──────────────────────────────────────────────── `vim-jsdoc` ← Configure ──┤
+  let g:jsdoc_underscore_private=1
+  let g:jsdoc_access_descriptions=1
+  let g:jsdoc_underscore_private=1
+  let g:jsdoc_enable_es6=1
   " ────────────────────────────────────────── Vim-Kind-specific ← Configure ──┤
   <% if has_feature? :vanilla %>
   call s:configure_vanilla()
