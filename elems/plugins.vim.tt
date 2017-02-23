@@ -160,8 +160,6 @@ call plugins#fugitive#declare()
 " ───────────────────────────────────────────────── Undo ← Declare ← Plugins ──┤
 call plugins#undotree#declare()
 call plugins#peekaboo#declare()
-" ────────────────────────────────────────────── Session ← Declare ← Plugins ──┤
-call plugins#obsession#declare()
 " ───────────────────────────────────── Files Management ← Declare ← Plugins ──┤
 <% if has_feature? :vanilla %>
 call plugins#vimfiler#declare()
@@ -285,8 +283,6 @@ call plugins#iron#configure()
 " ─────────────────────────────────────────────── Undo ← Configure ← Plugins ──┤
 call plugins#undotree#configure()
 call plugins#peekaboo#configure()
-" ──────────────────────────────────────────── Session ← Configure ← Plugins ──┤
-call plugins#obsession#configure()
 " ─────────────────────────────────── Files Management ← Configure ← Plugins ──┤
 <% if has_feature? :vanilla %>
 call plugins#vimfiler#configure()
