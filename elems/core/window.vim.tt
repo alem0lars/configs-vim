@@ -35,10 +35,10 @@
 
 " ───────────────────────────────────────────────────────────────── Mappings ──┐
 " ──────────────────────────────────────────────────────── Resize ← Mappings ──┤
-noremap <silent> <C-w><C-k> :vertical resize +4<CR>
-noremap <silent> <C-w><C-j> :vertical resize -4<CR>
-noremap <silent> <C-w><C-l> :resize +4<CR>
-noremap <silent> <C-w><C-h> :resize -4<CR>
+noremap <silent> <C-w><C-l> :vertical resize +4<CR>
+noremap <silent> <C-w><C-h> :vertical resize -4<CR>
+noremap <silent> <C-w><C-k> :resize +4<CR>
+noremap <silent> <C-w><C-j> :resize -4<CR>
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 " vim: set filetype=eruby.vim :
