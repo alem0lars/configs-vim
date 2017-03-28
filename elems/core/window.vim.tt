@@ -33,29 +33,12 @@
 "                                                                              │
 " ─────────────────────────────────────────────────────────────────────────────┘
 
-" ──────────────────────────────────────────────────────────────── Utilities ──┐
-function! s:vert_resize() abort
-  let l:len = max(map(getline(1, '$'), 'len(v:val)'))
-  exec 'vertical resize ' . l:len
-endfunction
-
-function! s:vert_increment() abort
-  exe 'vertical resize +8'
-endfunction
-
-function! s:vert_decrement() abort
-  exe 'vertical resize -8'
-endfunction
-" ─────────────────────────────────────────────────────────────────────────────┘
-
 " ───────────────────────────────────────────────────────────────── Mappings ──┐
-" `<Leader>=`: Resize the window vertically to fit its contents.
-nnoremap <silent> <Leader>wsa :call <SID>vert_resize()<CR>
-" `<Leader>+` or `<Leader>=`: Increment window vertical size (`=`: omit `shift` key).
-nnoremap <silent> <Leader>ws= :call <SID>vert_increment()<CR>
-nnoremap <silent> <Leader>ws+ :call <SID>vert_increment()<CR>
-" `<Leader>-`: Decrement window vertical size
-nnoremap <silent> <Leader>ws- :call <SID>vert_decrement()<CR>
+" ──────────────────────────────────────────────────────── Resize ← Mappings ──┤
+noremap <silent> <C-w><C-k> :vertical resize +4<CR>
+noremap <silent> <C-w><C-j> :vertical resize -4<CR>
+noremap <silent> <C-w><C-l> :resize +4<CR>
+noremap <silent> <C-w><C-h> :resize -4<CR>
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 " vim: set filetype=eruby.vim :
