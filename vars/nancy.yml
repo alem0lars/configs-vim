@@ -1,4 +1,4 @@
-# => inherits: generic, with-user-alem0lars, with-neovim-systemwide, with-tmux, with-zsh <= #
+# => inherits: generic, with-user-alem0lars, with-neovim-systemwide, with-tmux, with-zsh, with-taskwarrior <= #
 
 
 colorscheme:
@@ -23,7 +23,6 @@ features:
   - python
   - javascript
   - tex
-  - tmux
   - plantuml
   - systemd
   - haskell

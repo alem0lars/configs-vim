@@ -171,6 +171,10 @@ call plugins#fzf#declare()
 call plugins#far#declare()
 <% end %>
 call plugins#grepper#declare()
+" ──────────────────────────────────────────────── Tasks ← Declare ← Plugins ──┤
+<% if has_feature? :taskwarrior %>
+call plugins#taskwarrior#declare()
+<% end %>
 " ───────────────────────────────────────────────── Misc ← Declare ← Plugins ──┤
 call plugins#prettyprint#declare()
 " ─────────────────────────────────────────── Statusline ← Declare ← Plugins ──┤
@@ -292,6 +296,10 @@ call plugins#fzf#configure()
 call plugins#far#configure()
 <% end %>
 call plugins#grepper#configure()
+" ──────────────────────────────────────────────── Tasks ← Declare ← Plugins ──┤
+<% if has_feature? :taskwarrior %>
+call plugins#taskwarrior#configure()
+<% end %>
 " ─────────────────────────────────────────────── Misc ← Configure ← Plugins ──┤
 " ───────────────────────────────────────── Statusline ← Configure ← Plugins ──┤
 call plugins#airline#configure()

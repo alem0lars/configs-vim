@@ -1,0 +1,73 @@
+" ─────────────────────────────────────────────────────────────────────────────┐
+"                                                                              │
+" Name:    elems/plugins/taskwarrior.vim.tt                                    │
+" Summary: Configure plugins related to taskwarrior.                           │
+"                                                                              │
+" Authors:                                                                     │
+"   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              │
+"                                                                              │
+" Project:                                                                     │
+"   - Homepage:        https://github.com/alem0lars/configs-vim                │
+"   - Getting started: see README.md in the project root folder                │
+"                                                                              │
+" License: Apache v2.0 (see below)                                             │
+"                                                                              │
+" ─────────────────────────────────────────────────────────────────────────────┤
+"                                                                              │
+" Licensed to the Apache Software Foundation (ASF) under one more contributor  │
+" license agreements.  See the NOTICE file distributed with this work for      │
+" additional information regarding copyright ownership. The ASF licenses this  │
+" file to you under the Apache License, Version 2.0 (the "License"); you may   │
+" not use this file except in compliance with the License.                     │
+" You may obtain a copy of the License at                                      │
+"                                                                              │
+"   http://www.apache.org/licenses/LICENSE-2.0                                 │
+"                                                                              │
+" Unless required by applicable law or agreed to in writing, software          │
+" distributed under the License is distributed on an "AS IS" BASIS, WITHOUT    │
+" WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.             │
+" See the License for the specific language governing permissions and          │
+" limitations under the License.                                               │
+"                                                                              │
+" ─────────────────────────────────────────────────────────────────────────────┘
+
+" ────────────────────────────────────────────────────────────── Declaration ──┐
+function! plugins#taskwarrior#declare() abort
+  Plug 'blindFS/vim-taskwarrior'
+endfunction
+" ─────────────────────────────────────────────────────────────────────────────┘
+
+" ──────────────────────────────────────────────────────────── Configuration ──┐
+function! plugins#taskwarrior#configure() abort
+  " Default task report type.
+  let g:task_report_name     = 'next'
+  " Custom reports have to be listed explicitly to make them available.
+  let g:task_report_command  = []
+  " whether the field under the cursor is highlighted.
+  let g:task_highlight_field = 1
+  " Can not make change to task data when set to 1.
+  let g:task_readonly        = 0
+  " Vim built-in term for task undo in gvim.
+  let g:task_gui_term        = 1
+  " Allows user to override task configurations. Separated by space.
+  let g:task_rc_override     = 'rc.defaultwidth=999'
+  " Default fields to ask when adding a new task.
+  let g:task_default_prompt  = ['due', 'description']
+  " Whether the info window is splited vertically.
+  let g:task_info_vsplit     = 0
+  " Info window size.
+  let g:task_info_size       = 15
+  " Info window position.
+  let g:task_info_position   = 'belowright'
+  " Directory to store log files defaults to taskwarrior `data.location`.
+  let g:task_log_directory   = '~/.task'
+  " Max number of historical entries.
+  let g:task_log_max         = '20'
+  " Forward arrow shown on statusline.
+  let g:task_left_arrow      = ' <<'
+  " Backward arrow shown on statusline.
+  let g:task_left_arrow      = '>> '
+endfunction
+" ─────────────────────────────────────────────────────────────────────────────┘
+
+" vim: set filetype=eruby.vim :
