@@ -1,11 +1,7 @@
 " ─────────────────────────────────────────────────────────────────────────────┐
 "                                                                              │
-" Name:    elems/plugins/windowswap.vim.tt                                     │
-" Summary: Configure plugin `wesQ3/vim-windowswap`.                            │
-" Mappings:                                                                    │
-"   - `<Leader>wy`: Yank window.                                               │
-"   - `<Leader>wp`: Paste window.                                              │
-"   - `<Leader>ww`: Easy window swap.                                          │
+" Name:    elems/plugins/vimwiki.vim.tt                                        │
+" Summary: Configure plugin `vimwiki`.                                         │
 "                                                                              │
 " Authors:                                                                     │
 "   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              │
@@ -36,19 +32,13 @@
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 " ────────────────────────────────────────────────────────────── Declaration ──┐
-function! plugins#windowswap#declare() abort
-  Plug 'wesQ3/vim-windowswap'
+function! plugins#vimwiki#declare() abort
+  Plug 'vimwiki/vimwiki'
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 " ──────────────────────────────────────────────────────────── Configuration ──┐
-function! plugins#windowswap#configure() abort
-  " Prevent default bindings.
-  let g:windowswap_map_keys=0
-  " Custom bindings.
-  nnoremap <silent> <Leader>ce :call WindowSwap#EasyWindowSwap()<CR>
-  nnoremap <silent> <Leader>cy :call WindowSwap#MarkWindowSwap()<CR>
-  nnoremap <silent> <Leader>cp :call WindowSwap#DoWindowSwap()<CR>
+function! plugins#vimwiki#configure() abort
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 

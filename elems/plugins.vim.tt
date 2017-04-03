@@ -69,6 +69,7 @@ call plugins#figlet#declare()
 call plugins#autotype#declare()
 call plugins#cleverf#declare()
 call plugins#txtfmt#declare()
+call plugins#ansiesc#declare()
 " ─────────────────────────────────────────────────── UI ← Declare ← Plugins ──┤
 call plugins#tagbar#declare()
 "call plugins#indentline#declare() TODO not always working (sometimes doesnt show up)
@@ -108,8 +109,12 @@ call plugins#man#declare()
 <% if has_feature? :dasht %>
 call plugins#dasht#declare()
 <% end %>
-" ──────────────────────────────────────────────── Notes ← Declare ← Plugins ──┤
+" ──────────────────────────────────────── Notes & Tasks ← Declare ← Plugins ──┤
 call plugins#vimoutliner#declare()
+call plugins#vimwiki#declare()
+<% if has_feature? :taskwarrior %>
+call plugins#taskwarrior#declare()
+<% end %>
 " ──────────────────────────────────────────────── Langs ← Declare ← Plugins ──┤
 call plugins#langs#vimscript#declare()
 call plugins#langs#toml#declare()
@@ -171,10 +176,6 @@ call plugins#fzf#declare()
 call plugins#far#declare()
 <% end %>
 call plugins#grepper#declare()
-" ──────────────────────────────────────────────── Tasks ← Declare ← Plugins ──┤
-<% if has_feature? :taskwarrior %>
-call plugins#taskwarrior#declare()
-<% end %>
 " ───────────────────────────────────────────────── Misc ← Declare ← Plugins ──┤
 call plugins#prettyprint#declare()
 " ─────────────────────────────────────────── Statusline ← Declare ← Plugins ──┤
@@ -205,6 +206,7 @@ call plugins#foldtext#configure()
 call plugins#drawit#configure()
 call plugins#cleverf#configure()
 call plugins#txtfmt#configure()
+call plugins#ansiesc#configure()
 " ───────────────────────────────────────────────── UI ← Configure ← Plugins ──┤
 call plugins#tagbar#configure()
 "call plugins#indentline#configure() TODO (see declare)
@@ -244,8 +246,12 @@ call plugins#man#configure()
 <% if has_feature? :dasht %>
 call plugins#dasht#configure()
 <% end %>
-" ────────────────────────────────────────────── Notes ← Configure ← Plugins ──┤
+" ────────────────────────────────────── Notes & Tasks ← Configure ← Plugins ──┤
 call plugins#vimoutliner#configure()
+call plugins#vimwiki#configure()
+<% if has_feature? :taskwarrior %>
+call plugins#taskwarrior#configure()
+<% end %>
 " ────────────────────────────────────────────── Langs ← Configure ← Plugins ──┤
 call plugins#langs#vimscript#configure()
 <% if has_feature? :c, :cpp, :objc, :objcpp, match: :any? %>
@@ -296,10 +302,6 @@ call plugins#fzf#configure()
 call plugins#far#configure()
 <% end %>
 call plugins#grepper#configure()
-" ──────────────────────────────────────────────── Tasks ← Declare ← Plugins ──┤
-<% if has_feature? :taskwarrior %>
-call plugins#taskwarrior#configure()
-<% end %>
 " ─────────────────────────────────────────────── Misc ← Configure ← Plugins ──┤
 " ───────────────────────────────────────── Statusline ← Configure ← Plugins ──┤
 call plugins#airline#configure()

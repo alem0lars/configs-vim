@@ -52,8 +52,8 @@ function! plugins#choosewin#configure_settings() abort
 endfunction
 " ───────────────────────────────────────────────────── Mappings ← Configure ──┤
 function! plugins#choosewin#configure_mappings() abort
-  " `<Leader>wc`: Invoke choosewin.
-  nnoremap <Leader>wc :<C-u>ChooseWin<CR>
+  " `<Leader>cw`: Invoke choosewin.
+  nnoremap <Leader>cw :<C-u>ChooseWin<CR>
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 
