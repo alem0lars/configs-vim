@@ -1,0 +1,31 @@
+# => inherits: generic, with-user-alem0lars, with-neovim-systemwide, with-tmux, with-zsh, with-taskwarrior <= #
+
+
+colorscheme:
+  name: jellybeans
+
+fonts:
+  main:
+    has_italic: false
+
+vim:
+  terminal:
+    cmd: openterm
+
+features:
+  - powerline
+  # Langs
+  - c
+  - ruby
+  - python
+  - javascript
+  - tex
+  - plantuml
+  - systemd
+  - haskell
+  - rust
+  # Tools
+  - figlet
+
+
+# vim: set filetype=eruby.yaml :
