@@ -13,7 +13,7 @@ vim:
     cmd: openterm
   wiki:
     dirs:
-      - /data/tmp/notes/oracle
+      - /data/notes/oracle
 
 features:
   - powerline

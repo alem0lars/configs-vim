@@ -13,8 +13,8 @@ vim:
     cmd: openterm
   wiki:
     dirs:
-      - /data/tmp/notes/oracle
-      - /data/tmp/notes/yoroi
+      - /data/notes/oracle
+      - /data/notes/yoroi
 
 features:
   - powerline
