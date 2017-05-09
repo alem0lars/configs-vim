@@ -11,6 +11,10 @@ fonts:
 vim:
   terminal:
     cmd: openterm
+  wiki:
+    dirs:
+      - /data/tmp/notes/oracle
+      - /data/tmp/notes/yoroi
 
 features:
   - powerline

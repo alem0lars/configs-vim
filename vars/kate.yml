@@ -11,6 +11,9 @@ fonts:
 vim:
   terminal:
     cmd: openterm
+  wiki:
+    dirs:
+      - /data/tmp/notes/oracle
 
 features:
   - powerline

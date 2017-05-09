@@ -29,6 +29,10 @@
 " See the License for the specific language governing permissions and          │
 " limitations under the License.                                               │
 "                                                                              │
+" ─────────────────────────────────────────────────────────────────────────────┤
+<% define_locals do
+  variable :"vim.wiki.dirs", as: :wiki_dirs
+end -%>
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 " ────────────────────────────────────────────────────────────── Declaration ──┐
@@ -39,6 +43,7 @@ endfunction
 
 " ──────────────────────────────────────────────────────────── Configuration ──┐
 function! plugins#vimwiki#configure() abort
+  let g:vimwiki_listsyms=[<%= local!(:wiki_dirs).map { |dir| "'#{dir}'" }.join(", ") -%>]
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 
