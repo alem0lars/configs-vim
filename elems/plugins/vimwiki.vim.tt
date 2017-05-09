@@ -43,7 +43,7 @@ endfunction
 
 " ──────────────────────────────────────────────────────────── Configuration ──┐
 function! plugins#vimwiki#configure() abort
-  let g:vimwiki_list=[<%= local!(:wiki_dirs).map { |dir| "'#{dir}'" }.join(", ") -%>]
+  let g:vimwiki_list=[<%= local!(:wiki_dirs).map { |dir| "{'path': '#{dir}'}" }.join(", ") -%>]
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 
