@@ -16,6 +16,7 @@ vim:
       - /data/notes/oracle
 
 features:
+  - collaborative
   - powerline
   # Langs
   - c

@@ -17,6 +17,7 @@ vim:
       - /data/notes/yoroi
 
 features:
+  - collaborative
   - powerline
   # Langs
   - c

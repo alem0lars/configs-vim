@@ -70,6 +70,10 @@ call plugins#autotype#declare()
 call plugins#cleverf#declare()
 call plugins#txtfmt#declare()
 call plugins#ansiesc#declare()
+" ────────────────────────────── Collaborative ← Editing ← Declare ← Plugins ──┤
+<% if has_feature? :collaborative %>
+" TODO not working see issue call plugins#covim#declare()
+<% end %>
 " ─────────────────────────────────────────────────── UI ← Declare ← Plugins ──┤
 call plugins#tagbar#declare()
 "call plugins#indentline#declare() TODO not always working (sometimes doesnt show up)
@@ -207,6 +211,10 @@ call plugins#drawit#configure()
 call plugins#cleverf#configure()
 call plugins#txtfmt#configure()
 call plugins#ansiesc#configure()
+" ──────────────────────────── Collaborative ← Editing ← Configure ← Plugins ──┤
+<% if has_feature? :collaborative %>
+" TODO not working see issue call plugins#covim#configure()
+<% end %>
 " ───────────────────────────────────────────────── UI ← Configure ← Plugins ──┤
 call plugins#tagbar#configure()
 "call plugins#indentline#configure() TODO (see declare)
