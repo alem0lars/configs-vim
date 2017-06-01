@@ -1,0 +1,91 @@
+" ─────────────────────────────────────────────────────────────────────────────┐
+"                                                                              │
+" Name:    elems/contrib/ranger.vim.tt                                         │
+" Summary: Use ranger as vim's file explorer.                                  │
+" Authors:                                                                     │
+"   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              │
+"                                                                              │
+" Project:                                                                     │
+"   - Homepage:        https://github.com/alem0lars/configs-vim                │
+"   - Getting started: see README.md in the project root folder                │
+"                                                                              │
+" License: Apache v2.0 (see below)                                             │
+"                                                                              │
+" ─────────────────────────────────────────────────────────────────────────────┤
+"                                                                              │
+" Licensed to the Apache Software Foundation (ASF) under one more contributor  │
+" license agreements.  See the NOTICE file distributed with this work for      │
+" additional information regarding copyright ownership. The ASF licenses this  │
+" file to you under the Apache License, Version 2.0 (the "License"); you may   │
+" not use this file except in compliance with the License.                     │
+" You may obtain a copy of the License at                                      │
+"                                                                              │
+"   http://www.apache.org/licenses/LICENSE-2.0                                 │
+"                                                                              │
+" Unless required by applicable law or agreed to in writing, software          │
+" distributed under the License is distributed on an "AS IS" BASIS, WITHOUT    │
+" WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.             │
+" See the License for the specific language governing permissions and          │
+" limitations under the License.                                               │
+"                                                                              │
+" ─────────────────────────────────────────────────────────────────────────────┘
+
+
+command! -nargs=* -complete=file -bang Rename call Rename(<q-args>, '<bang>')
+
+
+function! Rename(name, bang)
+  let l:name    = a:name
+  let l:oldfile = expand('%:p')
+
+  if bufexists(fnamemodify(l:name, ':p'))
+    if (a:bang ==# '!')
+      silent exe bufnr(fnamemodify(l:name, ':p')) . 'bwipe!'
+    else
+      echohl ErrorMsg
+      echomsg 'A buffer with that name already exists (use ! to override).'
+      echohl None
+      return 0
+    endif
+  endif
+
+  let l:status = 1
+
+  let v:errmsg = ''
+  silent! exe 'saveas' . a:bang . ' ' . l:name
+
+  if v:errmsg =~# '^$\|^E329'
+    let l:lastbufnr = bufnr('$')
+
+    if expand('%:p') !=# l:oldfile && filewritable(expand('%:p'))
+      if fnamemodify(bufname(l:lastbufnr), ':p') ==# l:oldfile
+        silent exe l:lastbufnr . 'bwipe!'
+      else
+        echohl ErrorMsg
+        echomsg 'Could not wipe out the old buffer for some reason.'
+        echohl None
+        let l:status = 0
+      endif
+
+      if delete(l:oldfile) != 0
+        echohl ErrorMsg
+        echomsg 'Could not delete the old file: ' . l:oldfile
+        echohl None
+        let l:status = 0
+      endif
+    else
+      echohl ErrorMsg
+      echomsg 'Rename failed for some reason.'
+      echohl None
+      let l:status = 0
+    endif
+  else
+    echoerr v:errmsg
+    let l:status = 0
+  endif
+
+  return l:status
+endfunction
+
+
+" vim: set filetype=eruby.vim :
