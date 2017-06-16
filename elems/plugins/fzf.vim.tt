@@ -33,7 +33,7 @@
 
 " ────────────────────────────────────────────────────────────── Declaration ──┐
 function! plugins#fzf#declare() abort
-  " fzf vim's plugin is automatically installed
+  Plug 'junegunn/fzf'
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 
