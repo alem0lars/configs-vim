@@ -57,6 +57,8 @@ function! plugins#langs#tex#configure() abort
   let g:tex_flavor='latex'
   " ─────────────────────────────────────────────────────── Fold ← Configure ──┤
   let g:vimtex_fold_enabled=1
+  " ──────────────────────────────────────────────────── AutoCmd ← Configure ──┤
+  autocmd FileType tex setlocal spell
   " ────────────────────────────────────────── Vim-Kind-specific ← Configure ──┤
   <% if has_feature? :vanilla %>
     call s:configure_vanilla()
