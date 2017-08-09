@@ -41,14 +41,14 @@ endfunction
 " ──────────────────────────────────────────────────────────────── Configure ──┐
 function! plugins#langs#tex#configure() abort
   " ─────────────────────────────────────────── Build ← `vimtex` ← Configure ──┤
-  let g:vimtex_latexmk_options=''     .
-        \ '-xelatex '                 .
-        \ '--shell-escape '           .
-        \ '-interaction=nonstopmode ' .
-        \ '-bibtex '                  .
-        \ '-synctex=1 '               .
-        \ '-file-line-error '         .
-        \ '-synctex=1'
+  let g:vimtex_latexmk_options=''
+        \ . '-xelatex '
+        \ . '--shell-escape '
+        \ . '-interaction=nonstopmode '
+        \ . '-bibtex '
+        \ . '-synctex=1 '
+        \ . '-file-line-error '
+        \ . '-synctex=1'
   " ──────────────────────────────────── Misc Options ← `vimtex` ← Configure ──┤
   " A tolerance for the number of lines to search for matching delimiters in
   " each direction.
@@ -59,10 +59,10 @@ function! plugins#langs#tex#configure() abort
   let g:vimtex_fold_enabled=1
   " ────────────────────────────────────────── Vim-Kind-specific ← Configure ──┤
   <% if has_feature? :vanilla %>
-  call s:configure_vanilla()
+    call s:configure_vanilla()
   <% end %>
   <% if has_feature? :neovim %>
-  call s:configure_neovim()
+    call s:configure_neovim()
   <% end %>
 endfunction
 " ────────────────────────────────────────────────────── Vanilla ← Configure ──┤
@@ -94,6 +94,12 @@ function! s:configure_neovim() abort
         \ . '|includepdf(\s*\[[^]]*\])?\s*\{[^}]*'
         \ . '|includestandalone(\s*\[[^]]*\])?\s*\{[^}]*'
         \ .')'
+  " ───────────────────────────────────────── `neomake` ← NeoVim ← Configure ──┤
+  let g:neomake_tex_chktex_maker = neomake#makers#ft#tex#chktex()
+  if !has_key(g:neomake_tex_chktex_maker, 'args')
+    let g:neomake_tex_chktex_maker.args=[]
+  endif
+  call add(g:neomake_tex_chktex_maker.args, '-I')
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 

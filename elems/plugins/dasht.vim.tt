@@ -45,19 +45,19 @@ function! plugins#dasht#configure() abort
   let g:dasht_filetype_docsets = {}
   " ───────────────────────────────────────────── Type ← Hotkeys ← Configure ──┤
   " Search related docsets.
-  nnoremap <leader>k :Dasht<Space>
-  " search all the docsets.
-  nnoremap <leader><leader>k :Dasht!<Space>
+  nnoremap <leader>K :Dasht<Space>
+  " Search all the docsets.
+  nnoremap <leader><leader>K :Dasht!<Space>
   " ─────────────────────────────── Words under Cursor ← Hotkeys ← Configure ──┤
   " Search related docsets.
-  nnoremap <silent> <leader>K :call Dasht([expand('<cWORD>'), expand('<cword>')])<Return>
-  " search all the docsets.
-  nnoremap <silent> <leader><leader>K :call Dasht([expand('<cWORD>'), expand('<cword>')], '!')<Return>
+  nnoremap <silent> <leader>k :call Dasht([expand('<cWORD>'), expand('<cword>')])<Return>
+  " Search all the docsets.
+  nnoremap <silent> <leader><leader>k :call Dasht([expand('<cWORD>'), expand('<cword>')], '!')<Return>
   " ──────────────────────────────────── Selected text ← Hotkeys ← Configure ──┤
   " Search related docsets.
-  vnoremap <silent> <leader>K y:<C-U>call Dasht(getreg(0))<Return>
-  " search all the docsets.
-  vnoremap <silent> <leader><leader>K y:<C-U>call Dasht(getreg(0), '!')<Return>
+  vnoremap <silent> <leader>k y:<C-U>call Dasht(getreg(0))<Return>
+  " Search all the docsets.
+  vnoremap <silent> <leader><leader>k y:<C-U>call Dasht(getreg(0), '!')<Return>
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 
