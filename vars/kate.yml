@@ -33,6 +33,7 @@ features:
   - rust
   - bro
   - salt
+  - xml
 #  - mono
 #  - go
   # Tools

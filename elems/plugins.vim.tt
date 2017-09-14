@@ -159,6 +159,9 @@ call plugins#langs#bro#declare()
 <% if has_feature? :salt %>
 call plugins#langs#salt#declare()
 <% end %>
+<% if has_feature? :xml %>
+call plugins#langs#xml#declare()
+<% end %>
 " ──────────────────────────────────────────────── Shell ← Declare ← Plugins ──┤
 call plugins#vimshell#declare()
 <% if has_feature? :neovim %>
@@ -291,6 +294,9 @@ call plugins#langs#bro#configure()
 <% end %>
 <% if has_feature? :salt %>
 call plugins#langs#salt#configure()
+<% end %>
+<% if has_feature? :xml %>
+call plugins#langs#xml#configure()
 <% end %>
 " ────────────────────────────────────────────── Shell ← Configure ← Plugins ──┤
 call plugins#vimshell#configure()
