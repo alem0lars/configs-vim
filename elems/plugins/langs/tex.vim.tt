@@ -47,8 +47,7 @@ function! plugins#langs#tex#configure() abort
         \ . '-interaction=nonstopmode '
         \ . '-bibtex '
         \ . '-synctex=1 '
-        \ . '-file-line-error '
-        \ . '-synctex=1'
+        \ . '-file-line-error'
   " ──────────────────────────────────── Misc Options ← `vimtex` ← Configure ──┤
   " A tolerance for the number of lines to search for matching delimiters in
   " each direction.
