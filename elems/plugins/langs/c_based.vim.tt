@@ -48,6 +48,8 @@ function! plugins#langs#c_based#configure() abort
   let g:clang_auto_select = 0
   " Disable `omnicppcomplete` compatibility mode.
   let g:clang_omnicppcomplete_compliance=0
+  " Enable snippets.
+  let g:clang_snippets = 1
   " Instead of calling the clang/clang++ tool use libclang directly. This gives
   " access to many more clang features. Furthermore it automatically caches all
   " includes in memory.
