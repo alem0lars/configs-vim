@@ -39,6 +39,7 @@ end %>
 " ────────────────────────────────────────────────────────────────── Declare ──┐
 function! plugins#langs#javascript#declare() abort
   Plug 'pangloss/vim-javascript'
+  Plug 'mxw/vim-jsx'
   Plug 'heavenshell/vim-jsdoc'
 
   <% if has_feature? :vanilla %>
