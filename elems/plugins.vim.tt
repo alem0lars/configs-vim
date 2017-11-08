@@ -90,12 +90,7 @@ call plugins#unite#declare()
 call plugins#denite#declare()
 <% end %>
 " ───────────────────────────────────────── Syntax Check ← Declare ← Plugins ──┤
-<% if has_feature? :vanilla %>
-call plugins#syntastic#declare()
-<% end %>
-<% if has_feature? :neovim %>
-call plugins#neomake#declare()
-<% end %>
+call plugins#ale#declare()
 " ───────────────────────────────────────────── Template ← Declare ← Plugins ──┤
 call plugins#template#declare()
 " ────────────────────────────── AutoComplete & Snippets ← Declare ← Plugins ──┤
@@ -106,8 +101,6 @@ call plugins#neocomplete#declare()
 call plugins#deoplete#declare()
 <% end %>
 call plugins#neosnippet#declare()
-" ─────────────────────────────────────────────── Format ← Declare ← Plugins ──┤
-call plugins#autoformat#declare()
 " ────────────────────────────────────────────────── Doc ← Declare ← Plugins ──┤
 call plugins#man#declare()
 <% if has_feature? :dasht %>
@@ -234,12 +227,7 @@ call plugins#unite#configure()
 call plugins#denite#configure()
 <% end %>
 " ─────────────────────────────────────── Syntax Check ← Configure ← Plugins ──┤
-<% if has_feature? :vanilla %>
-call plugins#syntastic#configure()
-<% end %>
-<% if has_feature? :neovim %>
-call plugins#neomake#configure()
-<% end %>
+call plugins#ale#configure()
 " ─────────────────────────────────────────── Template ← Configure ← Plugins ──┤
 call plugins#template#configure()
 " ──────────────────────────── AutoComplete & Snippets ← Configure ← Plugins ──┤
@@ -250,8 +238,6 @@ call plugins#neocomplete#configure()
 call plugins#deoplete#configure()
 <% end %>
 call plugins#neosnippet#configure()
-" ─────────────────────────────────────────────── Format ← Declare ← Plugins ──┤
-call plugins#autoformat#configure()
 " ──────────────────────────────────────────────── Doc ← Configure ← Plugins ──┤
 call plugins#man#configure()
 <% if has_feature? :dasht %>

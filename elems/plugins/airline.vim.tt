@@ -91,6 +91,8 @@ function! plugins#airline#configure_settings() abort
   " Show the close button (with the provided symbol).
   let g:airline#extensions#tabline#show_close_button=1
   let g:airline#extensions#tabline#close_symbol='✗'
+  " ──────────────────────────────── Tabline ← Plugin ← Settings ← Configure ──┤
+  let g:airline#extensions#ale#enabled = 1
 endfunction
 " ───────────────────────────────────────────────────── Mappings ← Configure ──┤
 function! plugins#airline#configure_mappings() abort

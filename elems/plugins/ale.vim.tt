@@ -1,9 +1,7 @@
 " ─────────────────────────────────────────────────────────────────────────────┐
 "                                                                              │
-" Name:    elems/plugins/syntastic.vim.tt                                      │
-" Summary: Configure plugin `scrooloose/syntastic`.                            │
-" Depends:                                                                     │
-"   - `airblade/vim-rooter`                                                    │
+" Name:    elems/plugins/ale.vim.tt                                            │
+" Summary: Configure plugin `w0rp/ale`                                         │
 "                                                                              │
 " Authors:                                                                     │
 "   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              │
@@ -33,16 +31,25 @@
 "                                                                              │
 " ─────────────────────────────────────────────────────────────────────────────┘
 
+
 " ────────────────────────────────────────────────────────────── Declaration ──┐
-function! plugins#syntastic#declare() abort
-  Plug 'scrooloose/syntastic'
+function! plugins#ale#declare() abort
+  Plug 'w0rp/ale'
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 " ──────────────────────────────────────────────────────────── Configuration ──┐
-function! plugins#syntastic#configure() abort
-  let g:syntastic_aggregate_errors=1
+function! plugins#ale#configure() abort
+  let g:ale_lint_on_save = 1
+  let g:ale_lint_on_insert_leave = 1
+  let g:ale_lint_on_enter = 1
+  let g:ale_lint_on_filetype_changed = 1
+  let g:ale_open_list = 1
+
+  let g:ale_max_buffer_history_size = 32
+  let g:ale_maximum_file_size = 67108864 " 64 MiB
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
+
 
 " vim: set filetype=eruby.vim :

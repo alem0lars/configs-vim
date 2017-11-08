@@ -51,9 +51,11 @@ set ruler
 set modeline
 " The number of lines that is checked for set commands.
 set modelines=5
-" ─────────────────────────────────────────────────────────────── Cursorline ──┤
+" ─────────────────────────────────────────────────────────────────── Cursor ──┤
 " Show horizontal line under cursor.
-" set cursorline TODO too slow
+set cursorline
+" Number of context lines you would like to see above and below the cursor.
+set scrolloff=12
 " ──────────────────────────────────────────────────────────── Custom colors ──┤
 " TODO move to better place (before applying plugins gets overrided >:)
 " TODO handle gui

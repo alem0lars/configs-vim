@@ -96,11 +96,11 @@ function! s:configure_neovim() abort
         \ . '|includestandalone(\s*\[[^]]*\])?\s*\{[^}]*'
         \ .')'
   " ───────────────────────────────────────── `neomake` ← NeoVim ← Configure ──┤
-  let g:neomake_tex_chktex_maker = neomake#makers#ft#tex#chktex()
-  if !has_key(g:neomake_tex_chktex_maker, 'args')
-    let g:neomake_tex_chktex_maker.args=[]
-  endif
-  call add(g:neomake_tex_chktex_maker.args, '-I')
+"  let g:neomake_tex_chktex_maker = neomake#makers#ft#tex#chktex()
+"  if !has_key(g:neomake_tex_chktex_maker, 'args')
+"    let g:neomake_tex_chktex_maker.args=[]
+"  endif
+"  call add(g:neomake_tex_chktex_maker.args, '-I')
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 
