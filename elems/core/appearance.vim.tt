@@ -55,7 +55,7 @@ set modelines=5
 " Show horizontal line under cursor.
 set cursorline
 " Number of context lines you would like to see above and below the cursor.
-set scrolloff=12
+set scrolloff=6
 " ──────────────────────────────────────────────────────────── Custom colors ──┤
 " TODO move to better place (before applying plugins gets overrided >:)
 " TODO handle gui
