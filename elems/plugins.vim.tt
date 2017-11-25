@@ -72,7 +72,7 @@ call plugins#txtfmt#declare()
 call plugins#ansiesc#declare()
 " ────────────────────────────── Collaborative ← Editing ← Declare ← Plugins ──┤
 <% if has_feature? :collaborative %>
-" TODO not working see issue call plugins#covim#declare()
+call plugins#floobits#declare()
 <% end %>
 " ─────────────────────────────────────────────────── UI ← Declare ← Plugins ──┤
 call plugins#tagbar#declare()
@@ -209,7 +209,7 @@ call plugins#txtfmt#configure()
 call plugins#ansiesc#configure()
 " ──────────────────────────── Collaborative ← Editing ← Configure ← Plugins ──┤
 <% if has_feature? :collaborative %>
-" TODO not working see issue call plugins#covim#configure()
+call plugins#floobits#configure()
 <% end %>
 " ───────────────────────────────────────────────── UI ← Configure ← Plugins ──┤
 call plugins#tagbar#configure()
