@@ -26,6 +26,7 @@ features:
   - ruby
   - python
   - javascript
+  - typescript
   - tex
   - plantuml
   - systemd
