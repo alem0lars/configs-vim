@@ -47,21 +47,21 @@ set smarttab
 " Prevents inserting two spaces after punctuation on a join between lines.
 set nojoinspaces
 " Rules to apply when using backspace.
-set backspace = indent,eol,start
+set backspace=indent,eol,start
 " ──────────────────────────────────────────────────────────────────── Sizes ──┤
 " Amount of spaces for tabs.
-set tabstop = <%= local! :indent_size %>
+set tabstop=<%= local! :indent_size %>
 " Amount of spaces for indentation.
-set softtabstop =<%= local! :indent_size %>
+set softtabstop=<%= local! :indent_size %>
 " Amount of spaces for back-indentation.
-set shiftwidth = <%= local! :indent_size %>
+set shiftwidth=<%= local! :indent_size %>
 " ──────────────────────────────────────────────────────────────────── Sizes ──┤
 " Allow cursor to go to invalid places.
-set virtualedit = all
+set virtualedit=all
 " ──────────────────────────────────────────────────── Whitespaces Highlight ──┤
 " Highlight special whitespaces.
 set list
-set listchars = tab:›\ ,trail:•
+set listchars=tab:›\ ,trail:•
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 
