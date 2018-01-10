@@ -34,7 +34,13 @@
 
 " ────────────────────────────────────────────────────────────── Declaration ──┐
 function! plugins#deoplete#declare() abort
-  Plug 'Shougo/deoplete.nvim'
+  if has('nvim')
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  else
+    Plug 'Shougo/deoplete.nvim'
+    Plug 'roxma/nvim-yarp'
+    Plug 'roxma/vim-hug-neovim-rpc'
+  endif
   Plug 'Shougo/neopairs.vim'
   Plug 'Shougo/neoinclude.vim'
   Plug 'Shougo/echodoc.vim'
@@ -103,6 +109,7 @@ function! s:check_back_space() abort
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 
+" TODO check if interesting:
 " call deoplete#custom#set('_', 'matchers', ['matcher_head'])
 " call deoplete#custom#set('ghc', 'sorters', ['sorter_word'])
 " call deoplete#custom#set('buffer', 'mark', '')
