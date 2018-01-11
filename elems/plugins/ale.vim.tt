@@ -40,14 +40,20 @@ endfunction
 
 " ──────────────────────────────────────────────────────────── Configuration ──┐
 function! plugins#ale#configure() abort
-  let g:ale_lint_on_save = 1
-  let g:ale_lint_on_enter = 1
-  let g:ale_lint_on_filetype_changed = 1
-  let g:ale_open_list = 1
-  let g:ale_lint_on_text_changed = "never"
+  let g:ale_lint_on_save=1
+  let g:ale_lint_on_enter=1
+  let g:ale_lint_on_filetype_changed=1
+  let g:ale_open_list=1
+  let g:ale_lint_on_text_changed="never"
 
-  let g:ale_max_buffer_history_size = 32
-  let g:ale_maximum_file_size = 67108864 " 64 MiB
+  let g:ale_max_buffer_history_size=32
+  let g:ale_maximum_file_size=67108864 " 64 MiB
+
+  " <Leader>f: Fix files.
+  nnoremap <Leader>f <Plug>(ale_fix)
+
+  " Fix files automatically on save.
+  let g:ale_fix_on_save=1
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 
