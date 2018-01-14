@@ -1,7 +1,7 @@
 " ─────────────────────────────────────────────────────────────────────────────┐
 "                                                                              │
-" Name:    elems/plugins/easyalign.vim.tt                                      │
-" Summary: Configure plugin `junegunn/vim-easy-align`.                         │
+" Name:    elems/plugins/eunuch.vim.tt                                         │
+" Summary: Configure plugin `tpope/vim-eunuch`.                                │
 "                                                                              │
 " Authors:                                                                     │
 "   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              │
@@ -33,19 +33,13 @@
 
 
 " ────────────────────────────────────────────────────────────────── Declare ──┐
-function! plugins#easyalign#declare() abort
-  Plug 'junegunn/vim-easy-align'
+function! plugins#eunuch#declare() abort
+  Plug 'tpope/vim-eunuch'
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 " ──────────────────────────────────────────────────────────────── Configure ──┐
-function! plugins#easyalign#configure() abort
-  " Start interactive EasyAlign in visual mode (e.g. `vip<Enter>`).
-  vnoremap <Enter> <Plug>(EasyAlign)
-
-  " Start interactive EasyAlign for a motion/text object (e.g. `gaip`).
-  nnoremap ga <Plug>(EasyAlign)
-  xnoremap ga <Plug>(EasyAlign)
+function! plugins#eunuch#configure() abort
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 

@@ -70,6 +70,7 @@ call plugins#autotype#declare()
 call plugins#cleverf#declare()
 call plugins#txtfmt#declare()
 call plugins#ansiesc#declare()
+call plugins#targets#declare()
 " ────────────────────────────── Collaborative ← Editing ← Declare ← Plugins ──┤
 <% if has_feature? :collaborative %>
 call plugins#floobits#declare()
@@ -171,6 +172,8 @@ call plugins#fugitive#declare()
 " ───────────────────────────────────────────────── Undo ← Declare ← Plugins ──┤
 call plugins#undotree#declare()
 call plugins#peekaboo#declare()
+" ───────────────────────────────────────────────── Yank ← Declare ← Plugins ──┤
+call plugins#highlightedyank#declare()
 " ───────────────────────────────────── Files Management ← Declare ← Plugins ──┤
 <% if has_feature? :vanilla %>
 call plugins#vimfiler#declare()
@@ -182,6 +185,8 @@ call plugins#fzf#declare()
 call plugins#far#declare()
 <% end %>
 call plugins#grepper#declare()
+call plugins#eunuch#declare()
+call plugins#dirvish#declare()
 " ───────────────────────────────────────────────── Misc ← Declare ← Plugins ──┤
 call plugins#prettyprint#declare()
 " ─────────────────────────────────────────── Statusline ← Declare ← Plugins ──┤
@@ -213,6 +218,7 @@ call plugins#drawit#configure()
 call plugins#cleverf#configure()
 call plugins#txtfmt#configure()
 call plugins#ansiesc#configure()
+call plugins#targets#configure()
 " ──────────────────────────── Collaborative ← Editing ← Configure ← Plugins ──┤
 <% if has_feature? :collaborative %>
 call plugins#floobits#configure()
@@ -305,6 +311,8 @@ call plugins#iron#configure()
 " ─────────────────────────────────────────────── Undo ← Configure ← Plugins ──┤
 call plugins#undotree#configure()
 call plugins#peekaboo#configure()
+" ───────────────────────────────────────────────── Yank ← Declare ← Plugins ──┤
+call plugins#highlightedyank#configure()
 " ─────────────────────────────────── Files Management ← Configure ← Plugins ──┤
 <% if has_feature? :vanilla %>
 call plugins#vimfiler#configure()
@@ -314,6 +322,8 @@ call plugins#fzf#configure()
 call plugins#far#configure()
 <% end %>
 call plugins#grepper#configure()
+call plugins#eunuch#configure()
+call plugins#dirvish#configure()
 " ─────────────────────────────────────────────── Misc ← Configure ← Plugins ──┤
 " ───────────────────────────────────────── Statusline ← Configure ← Plugins ──┤
 call plugins#airline#configure()

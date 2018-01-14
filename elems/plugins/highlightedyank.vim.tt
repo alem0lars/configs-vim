@@ -1,7 +1,7 @@
 " ─────────────────────────────────────────────────────────────────────────────┐
 "                                                                              │
-" Name:    elems/plugins/easyalign.vim.tt                                      │
-" Summary: Configure plugin `junegunn/vim-easy-align`.                         │
+" Name:    elems/plugins/highlightedyank.vim.tt                                │
+" Summary: Configure plugin `wellle/highlightedyank.vim`.                      │
 "                                                                              │
 " Authors:                                                                     │
 "   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              │
@@ -33,19 +33,15 @@
 
 
 " ────────────────────────────────────────────────────────────────── Declare ──┐
-function! plugins#easyalign#declare() abort
-  Plug 'junegunn/vim-easy-align'
+function! plugins#highlightedyank#declare() abort
+  Plug 'machakann/vim-highlightedyank'
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 " ──────────────────────────────────────────────────────────────── Configure ──┐
-function! plugins#easyalign#configure() abort
-  " Start interactive EasyAlign in visual mode (e.g. `vip<Enter>`).
-  vnoremap <Enter> <Plug>(EasyAlign)
-
-  " Start interactive EasyAlign for a motion/text object (e.g. `gaip`).
-  nnoremap ga <Plug>(EasyAlign)
-  xnoremap ga <Plug>(EasyAlign)
+function! plugins#highlightedyank#configure() abort
+  let g:highlightedyank_highlight_duration=1200
+  hi! link HighlightedyankRegion Comment
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 
