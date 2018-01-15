@@ -109,7 +109,7 @@ function! s:ensure_dir_exists() abort
     call s:ask_quit("Parent directory '" . required_dir . "' doesn't exist.",
           \  "&Create it\nor &Quit?", 2)
     try
-      call mkdir( required_dir, 'p' )
+      call mkdir(required_dir, 'p')
     catch
       call s:ask_quit("Can't create '" . required_dir . "'",
             \ "&Quit\nor &Continue anyway?", 1)
