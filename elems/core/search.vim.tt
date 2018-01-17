@@ -44,6 +44,9 @@ set hlsearch
 " ───────────────────────────────────────────────────────────────── Mappings ──┤
 " <Leader>/: clear previous search highlighting.
 nnoremap <silent> <Leader>/ :nohlsearch<CR>
+
+" //: Search the selected text (in visual mode).
+vnoremap // y/<C-R>"<CR>
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 " vim: set filetype=eruby.vim :
