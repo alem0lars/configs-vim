@@ -47,7 +47,7 @@ function! plugins#langs#typescript#configure() abort
 
   " ──────────────────────────────────────────────────────── ALE ← Configure ──┤
   if !exists('g:ale_fixers') | let g:ale_fixers = {} | endif
-  let g:ale_fixers['typescript'] = ['tslint', 'prettier', 'eslint']
+  let g:ale_fixers['typescript'] = ['prettier', 'eslint', 'tslint']
 
 endfunction
 
