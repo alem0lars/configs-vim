@@ -13,7 +13,6 @@ vim:
     cmd: openterm
 
 features:
-  - powerline
   # Langs
   - c
   - ruby

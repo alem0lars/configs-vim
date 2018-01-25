@@ -33,9 +33,11 @@
 
 
 " ────────────────────────────────────────────────────────────────── Declare ──┐
+
 function! plugins#langs#mediawiki#declare() abort
   Plug 'chikamichi/mediawiki.vim'
 endfunction
+
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 

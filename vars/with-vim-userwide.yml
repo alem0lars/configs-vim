@@ -1,7 +1,8 @@
-# => inherits: with-vim <= #
+# => inherits: with-vanilla <= #
 
 
 vim:
+  rc:           ~/.vimrc
   base_dir:     $HOME/.vim
   autoload_dir: $HOME/.vim/autoload
   vimplug:

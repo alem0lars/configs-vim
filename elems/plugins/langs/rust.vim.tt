@@ -33,15 +33,24 @@
 
 
 " ────────────────────────────────────────────────────────────────── Declare ──┐
+
 function! plugins#langs#rust#declare() abort
   Plug 'rust-lang/rust.vim'
   Plug 'racer-rust/vim-racer'
 endfunction
+
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 " ──────────────────────────────────────────────────────────────── Configure ──┐
+
 function! plugins#langs#rust#configure() abort
+  let g:racer_experimental_completer = 1
+  " ────────────────────────────────────────────────────── dasht ← Configure ──┤
+  <% if has_feature? :dasht %>
+  let g:dasht_filetype_docsets['rust'] = ['^Rust$']
+  <% end %>
 endfunction
+
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 

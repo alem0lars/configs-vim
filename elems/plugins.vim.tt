@@ -38,10 +38,6 @@ end -%>
 
 " ──────────────────────────────────────────────────────── Declare ← Plugins ──┐
 call plug#begin('<%= local! :cache_dir %>')
-" ──────────────────────────────────────────────── Async ← Declare ← Plugins ──┤
-<% if has_feature? :vanilla %>
-call plugins#vimproc#declare()
-<% end %>
 " ────────────────────────────────────────────── Editing ← Declare ← Plugins ──┤
 call plugins#context_filetype#declare()
 call plugins#repeat#declare()

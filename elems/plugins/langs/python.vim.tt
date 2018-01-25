@@ -51,7 +51,7 @@ function! plugins#langs#python#configure() abort
   autocmd FileType python setlocal foldmethod=syntax
   " ──────────────────────────────────────────── `dasht` support ← Configure ──┤
   <% if has_feature? :dasht %>
-  let g:dasht_filetype_docsets['python'] = ['(num|sci)py', 'pandas']
+  let g:dasht_filetype_docsets['python'] = ['Python_2', 'Python_3', '^(Num|Sci)py$', 'Pandas']
   <% end %>
   " ──────────────────────────────────────────── `deoplete-jedi` ← Configure ──┤
   let g:deoplete#sources#jedi#statement_length=64

@@ -1,7 +1,8 @@
-# => inherits: with-vim, with-systemwide <= #
+# => inherits: with-vanilla, with-systemwide <= #
 
 
 vim:
+  rc:           /etc/vimrc.local
   base_dir:     /etc/vim
   autoload_dir: /etc/vim/autoload
   vimplug:

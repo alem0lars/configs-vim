@@ -57,6 +57,10 @@ function! plugins#langs#tex#configure() abort
   let g:vimtex_delim_stopline=512
   " Detect tex files correctly.
   let g:tex_flavor='latex'
+  " ──────────────────────────────────────────── `dasht` support ← Configure ──┤
+  <% if has_feature? :dasht %>
+  let g:dasht_filetype_docsets['tex'] = ['^LaTeX$']
+  <% end %>
   " ─────────────────────────────────────────────────────── Fold ← Configure ──┤
   let g:vimtex_fold_enabled=1
   " ──────────────────────────────────────────────────── AutoCmd ← Configure ──┤

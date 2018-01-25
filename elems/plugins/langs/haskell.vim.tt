@@ -47,6 +47,10 @@ function! plugins#langs#haskell#configure() abort
   let g:haskellmode_completion_ghc = 0
   " ─────────────────────────────────────────────────────── Fold ← Configure ──┤
   autocmd FileType haskell setlocal foldmethod=syntax
+  " ──────────────────────────────────────────── `dasht` support ← Configure ──┤
+  <% if has_feature? :dasht %>
+  let g:dasht_filetype_docsets['haskell'] = ['^Haskell$']
+  <% end %>
   " ──────────────────────────────────────────────────────── ALE ← Configure ──┤
   if !exists('g:ale_linters') | let g:ale_linters = {} | endif
   let g:ale_linters['haskell'] = ['stack-ghc-mod', 'stack-build', 'stack-ghc']
@@ -54,7 +58,7 @@ function! plugins#langs#haskell#configure() abort
   let g:ale_fixers['haskell'] = ['brittany', 'hfmt']
 endfunction
 
-" ─────────────────────────────────────────────────────────────────────────────┘
+" ─────────────────────────────────────────────────────────────────────────────┘ 
 
 
 " vim: set filetype=eruby.vim :

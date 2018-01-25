@@ -1,3 +1,5 @@
+let &runtimepath.=',<%= get_var! "vim.base_dir" %>'
+
 exe 'source <%= get_var! "vim.base_dir" %>/init.vim'
 
 " vim: set filetype=eruby.vim :

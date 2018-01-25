@@ -45,6 +45,10 @@ endfunction
 
 function! plugins#langs#typescript#configure() abort
 
+  " ──────────────────────────────────────────── `dasht` support ← Configure ──┤
+  <% if has_feature? :dasht %>
+  let g:dasht_filetype_docsets['javascript'] = ['^JavaScript$', '^NodeJS$', '^TypeScript$']
+  <% end %>
   " ──────────────────────────────────────────────────────── ALE ← Configure ──┤
   if !exists('g:ale_fixers') | let g:ale_fixers = {} | endif
   let g:ale_fixers['typescript'] = ['prettier', 'eslint', 'tslint']

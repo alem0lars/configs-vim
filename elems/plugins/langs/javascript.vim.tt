@@ -45,6 +45,7 @@ function! plugins#langs#javascript#declare() abort
 
   Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 endfunction
+
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 " ──────────────────────────────────────────────────────────────── Configure ──┐
@@ -62,6 +63,10 @@ function! plugins#langs#javascript#configure() abort
   let g:jsdoc_access_descriptions=1
   let g:jsdoc_underscore_private=1
   let g:jsdoc_enable_es6=1
+  " ──────────────────────────────────────────── `dasht` support ← Configure ──┤
+  <% if has_feature? :dasht %>
+  let g:dasht_filetype_docsets['javascript'] = ['^JavaScript$', '^NodeJS$']
+  <% end %>
   " ──────────────────────────────────────────────────────── ALE ← Configure ──┤
   if !exists('g:ale_fixers') | let g:ale_fixers = {} | endif
   let g:ale_fixers['json'] = ['prettier']

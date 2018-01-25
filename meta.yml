@@ -2,7 +2,7 @@ commands:
 
   - type: download
     url:  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    dst:  '<%= get_var!(:"vim.autoload_dir", type: :directory).join("plug.vim") %>'
+    dst:  '<%= get_var!("vim.autoload_dir", type: :directory).join("plug.vim") %>'
     only: f?vim
 
   - type: sync
@@ -13,7 +13,7 @@ commands:
 elems:
 
   - src:  ^(vimrc)$
-    dst:  ~/.<1>
+    dst:  '<%= var! "vim.rc" %>'
     only: f?vim && f?vanilla
 
   - src:  ^((?!.*vimrc).+)$

@@ -42,6 +42,7 @@ endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 " ──────────────────────────────────────────────────────────────── Configure ──┐
+
 function! plugins#langs#c_based#configure() abort
   " ─────────────────────────────────────────── `clang_complete` ← Configure ──┤
   " Disable autocomplete using clang_complete because neocomplete will be used.
@@ -73,8 +74,8 @@ function! plugins#langs#c_based#configure() abort
   let g:clang_make_default_keymappings=0
   " ──────────────────────────────────────────── `dasht` support ← Configure ──┤
   <% if has_feature? :dasht %>
-  " When in C++, also search C, Boost, and OpenGL:
-  let g:dasht_filetype_docsets['cpp'] = ['^c$', 'boost', 'OpenGL']
+  " When in C++, also search C, Boost:
+  let g:dasht_filetype_docsets['cpp'] = ['^C$', '^C\+\+$', 'Boost']
   <% end %>
 endfunction
 
