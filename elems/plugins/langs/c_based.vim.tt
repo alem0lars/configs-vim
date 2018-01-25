@@ -34,9 +34,11 @@
 
 
 " ────────────────────────────────────────────────────────────────── Declare ──┐
+
 function! plugins#langs#c_based#declare() abort
   Plug 'Rip-Rip/clang_complete', {'do': 'make install'}
 endfunction
+
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 " ──────────────────────────────────────────────────────────────── Configure ──┐
@@ -74,30 +76,8 @@ function! plugins#langs#c_based#configure() abort
   " When in C++, also search C, Boost, and OpenGL:
   let g:dasht_filetype_docsets['cpp'] = ['^c$', 'boost', 'OpenGL']
   <% end %>
-  " ────────────────────────────────────────── Vim-Kind-specific ← Configure ──┤
-  <% if has_feature? :vanilla %>
-  call s:configure_vanilla()
-  <% end %>
-  <% if has_feature? :neovim %>
-  call s:configure_neovim()
-  <% end %>
 endfunction
-" ────────────────────────────────────────────────────── Vanilla ← Configure ──┤
-function! s:configure_vanilla() abort
-  " ──────────────────────────────────── `neocomplete` ← Vanilla ← Configure ──┤
-  " Set source.
-  let g:neocomplete#force_omni_input_patterns.c =
-        \ '[^.[:digit:] *\t]\%(\.\|->\)\w*'
-  let g:neocomplete#force_omni_input_patterns.cpp =
-        \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
-  let g:neocomplete#force_omni_input_patterns.objc =
-        \ '\[\h\w*\s\h\?\|\h\w*\%(\.\|->\)'
-  let g:neocomplete#force_omni_input_patterns.objcpp =
-        \ '\[\h\w*\s\h\?\|\h\w*\%(\.\|->\)\|\h\w*::\w*'
-endfunction
-" ─────────────────────────────────────────────────────── NeoVim ← Configure ──┤
-function! s:configure_neovim() abort
-endfunction
+
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 

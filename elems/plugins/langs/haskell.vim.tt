@@ -43,49 +43,15 @@ endfunction
 " ──────────────────────────────────────────────────────────────── Configure ──┐
 
 function! plugins#langs#haskell#configure() abort
-
   " ───────────────────────────────────────────────── `neco-ghc` ← Configure ──┤
-
   let g:haskellmode_completion_ghc = 0
-
   " ─────────────────────────────────────────────────────── Fold ← Configure ──┤
-
   autocmd FileType haskell setlocal foldmethod=syntax
-
-  " ────────────────────────────────────────── Vim-kind-specific ← Configure ──┤
-
-  <% if has_feature? :vanilla %>
-  call s:configure_vanilla()
-  <% end %>
-  <% if has_feature? :neovim %>
-  call s:configure_neovim()
-  <% end %>
-
-endfunction
-
-" ────────────────────────────────────────────────────── Vanilla ← Configure ──┤
-
-function! s:configure_vanilla() abort
-
-  " ──────────────────────────────────── `neocomplete` ← Vanilla ← Configure ──┤
-  " Set `omnifunc`.
-  autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
-  " Set source.
-  let g:neocomplete#force_omni_input_patterns.haskell =
-        \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
-
-endfunction
-
-" ─────────────────────────────────────────────────────── NeoVim ← Configure ──┤
-
-function! s:configure_neovim() abort
-
-  " ─────────────────────────────────────────────── ALE ← NeoVim ← Configure ──┤
+  " ──────────────────────────────────────────────────────── ALE ← Configure ──┤
   if !exists('g:ale_linters') | let g:ale_linters = {} | endif
   let g:ale_linters['haskell'] = ['stack-ghc-mod', 'stack-build', 'stack-ghc']
   if !exists('g:ale_fixers') | let g:ale_fixers = {} | endif
   let g:ale_fixers['haskell'] = ['brittany', 'hfmt']
-
 endfunction
 
 " ─────────────────────────────────────────────────────────────────────────────┘

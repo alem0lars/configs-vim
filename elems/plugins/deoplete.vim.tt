@@ -33,6 +33,7 @@
 
 
 " ────────────────────────────────────────────────────────────── Declaration ──┐
+
 function! plugins#deoplete#declare() abort
   if has('nvim')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -45,9 +46,11 @@ function! plugins#deoplete#declare() abort
   Plug 'Shougo/neoinclude.vim'
   Plug 'Shougo/echodoc.vim'
 endfunction
+
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 " ──────────────────────────────────────────────────────────── Configuration ──┐
+
 function! plugins#deoplete#configure() abort
   " ───────────────────────────────────────────────── `neopairs` ← Configure ──┤
   " Enable `neopairs`.
@@ -99,6 +102,7 @@ endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 " ───────────────────────────────────────────────────────────────── Internal ──┐
+
 function! s:close_popup() abort
   return deoplete#mappings#close_popup() . "\<CR>"
 endfunction
@@ -107,6 +111,7 @@ function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1] =~ '\s'
 endfunction
+
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 " TODO check if interesting:

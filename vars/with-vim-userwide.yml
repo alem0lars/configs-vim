@@ -1,0 +1,13 @@
+# => inherits: with-vim <= #
+
+
+vim:
+  base_dir:     $HOME/.vim
+  autoload_dir: $HOME/.vim/autoload
+  vimplug:
+    cache_dir: ~/.cache
+  template_dirs:
+    - $HOME/.vim-templates
+
+
+# vim: set filetype=eruby.yaml :

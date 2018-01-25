@@ -33,12 +33,15 @@
 
 
 " ────────────────────────────────────────────────────────────────── Declare ──┐
+
 function! plugins#langs#tex#declare() abort
   Plug 'lervag/vimtex'
 endfunction
+
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 " ──────────────────────────────────────────────────────────────── Configure ──┐
+
 function! plugins#langs#tex#configure() abort
   " ─────────────────────────────────────────── Build ← `vimtex` ← Configure ──┤
   let g:vimtex_latexmk_options=''
@@ -58,33 +61,7 @@ function! plugins#langs#tex#configure() abort
   let g:vimtex_fold_enabled=1
   " ──────────────────────────────────────────────────── AutoCmd ← Configure ──┤
   autocmd FileType tex setlocal spell
-  " ────────────────────────────────────────── Vim-Kind-specific ← Configure ──┤
-  <% if has_feature? :vanilla %>
-    call s:configure_vanilla()
-  <% end %>
-  <% if has_feature? :neovim %>
-    call s:configure_neovim()
-  <% end %>
-endfunction
-" ────────────────────────────────────────────────────── Vanilla ← Configure ──┤
-function! s:configure_vanilla() abort
-  " ─────────────────────────────────────────────────── Complete ← Configure ──┤
-  " Set source.
-  let g:neocomplete#sources#omni#input_patterns.tex =
-        \ '\v\\%('
-        \ . '\a*cite\a*%(\s*\[[^]]*\]){0,2}\s*\{[^}]*'
-        \ . '|\a*ref%(\s*\{[^}]*|range\s*\{[^,}]*%(}\{)?)'
-        \ . '|hyperref\s*\[[^]]*'
-        \ . '|includegraphics\*?%(\s*\[[^]]*\]){0,2}\s*\{[^}]*'
-        \ . '|%(include%(only)?|input)\s*\{[^}]*'
-        \ . '|\a*(gls|Gls|GLS)(pl)?\a*%(\s*\[[^]]*\]){0,2}\s*\{[^}]*'
-        \ . '|includepdf%(\s*\[[^]]*\])?\s*\{[^}]*'
-        \ . '|includestandalone%(\s*\[[^]]*\])?\s*\{[^}]*'
-        \ . ')'
-endfunction
-" ─────────────────────────────────────────────────────── NeoVim ← Configure ──┤
-function! s:configure_neovim() abort
-  " ──────────────────────────────────────── `deoplete` ← NeoVim ← Configure ──┤
+  " ───────────────────────────────────────────────── `deoplete` ← Configure ──┤
   let g:deoplete#omni#input_patterns.tex = '\\(?:'
         \ .  '\w*cite\w*(?:\s*\[[^]]*\]){0,2}\s*{[^}]*'
         \ . '|\w*ref(?:\s*\{[^}]*|range\s*\{[^,}]*(?:}{)?)'
@@ -95,13 +72,8 @@ function! s:configure_neovim() abort
         \ . '|includepdf(\s*\[[^]]*\])?\s*\{[^}]*'
         \ . '|includestandalone(\s*\[[^]]*\])?\s*\{[^}]*'
         \ .')'
-  " ───────────────────────────────────────── `neomake` ← NeoVim ← Configure ──┤
-"  let g:neomake_tex_chktex_maker = neomake#makers#ft#tex#chktex()
-"  if !has_key(g:neomake_tex_chktex_maker, 'args')
-"    let g:neomake_tex_chktex_maker.args=[]
-"  endif
-"  call add(g:neomake_tex_chktex_maker.args, '-I')
 endfunction
+
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 

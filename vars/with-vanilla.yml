@@ -1,12 +1,10 @@
 vim:
-  base_dir:     ~/.vim
-  autoload_dir: ~/.vim/autoload
-  backups_dir:  ~/.cache/vim/backups
-  swaps_dir:    ~/.cache/vim/swaps
-  views_dir:    ~/.cache/vim/views
-  undos_dir:    ~/.cache/vim/undos
-  sessions_dir: ~/.cache/vim/sessions
-  tmp_dir:      ~/.cache/vim/tmp
+  backups_dir:  $HOME/.cache/vim/backups
+  swaps_dir:    $HOME/.cache/vim/swaps
+  views_dir:    $HOME/.cache/vim/views
+  undos_dir:    $HOME/.cache/vim/undos
+  sessions_dir: $HOME/.cache/vim/sessions
+  tmp_dir:      $HOME/.cache/vim/tmp
 
 features:
   - vanilla

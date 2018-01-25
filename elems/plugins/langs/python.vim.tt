@@ -37,17 +37,15 @@ end %>
 
 
 " ────────────────────────────────────────────────────────────────── Declare ──┐
+
 function! plugins#langs#python#declare() abort
-  <% if has_feature? :vanilla %>
-  Plug 'davidhalter/jedi-vim'
-  <% end %>
-  <% if has_feature? :neovim %>
   Plug 'zchee/deoplete-jedi'
-  <% end %>
 endfunction
+
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 " ──────────────────────────────────────────────────────────────── Configure ──┐
+
 function! plugins#langs#python#configure() abort
   " ─────────────────────────────────────────────────────── Fold ← Configure ──┤
   autocmd FileType python setlocal foldmethod=syntax
@@ -55,51 +53,11 @@ function! plugins#langs#python#configure() abort
   <% if has_feature? :dasht %>
   let g:dasht_filetype_docsets['python'] = ['(num|sci)py', 'pandas']
   <% end %>
-  " ────────────────────────────────────────── Vim-Kind-specific ← Configure ──┤
-  <% if has_feature? :vanilla %>
-  call s:configure_vanilla()
-  <% end %>
-  <% if has_feature? :neovim %>
-  call s:configure_neovim()
-  <% end %>
-endfunction
-" ────────────────────────────────────────────────────── Vanilla ← Configure ──┤
-function! s:configure_vanilla() abort
-  " ────────────────────────────── Enable ← `jedi-vim` ← Vanilla ← Configure ──┤
-  " Disable the standalone completion (jedi is only used as backend for
-  " `neocomplete`.
-  let g:jedi#completions_enabled=0
-  let g:jedi#auto_vim_configuration=0
-  " Don't popup automatically the first completion element.
-  let g:jedi#popup_select_first=0
-  " ──────────────────────── Misc Options ← `jedi-vim` ← Vanilla ← Configure ──┤
-  " `jedi` displays function call signatures in insert mode in real-time,
-  " highlighting the current argument. The call signatures will be displayed in
-  " Vim's command line aligned with the function call.
-  let g:jedi#show_call_signatures='2'
-  " ──────────────────────────────────── `neocomplete` ← Vanilla ← Configure ──┤
-  " Set `omnifunc`.
-  " Needed because we set `g:jedi#completions_enabled=0` to skip the
-  " direct usage of `jedi-vim`, but it's there where the plugin also
-  " registers the `omnifunc`.
-  autocmd FileType python setlocal omnifunc=jedi#completions
-  " Set source.
-  let g:neocomplete#force_omni_input_patterns.python =
-        \ '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
-  " ────────────────────────────────────────── Hotkeys ← Vanilla ← Configure ──┤
-  let s:jedi_leader='<%= local! :leader %>'
-  let g:jedi#goto_command=s:jedi_leader . 'gc'
-  let g:jedi#goto_assignments_command=s:jedi_leader . 'ga'
-  let g:jedi#documentation_command=s:jedi_leader . 'd'
-  let g:jedi#rename_command=s:jedi_leader . 'r'
-  let g:jedi#usages_command=s:jedi_leader . 'u'
-endfunction
-" ─────────────────────────────────────────────────────── NeoVim ← Configure ──┤
-function! s:configure_neovim() abort
-  " ─────────────────────────────────── `deoplete-jedi` ← NeoVim ← Configure ──┤
+  " ──────────────────────────────────────────── `deoplete-jedi` ← Configure ──┤
   let g:deoplete#sources#jedi#statement_length=64
   let g:deoplete#sources#jedi#show_docstring=1
 endfunction
+
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 

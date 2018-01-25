@@ -33,14 +33,17 @@
 
 
 " ────────────────────────────────────────────────────────────────── Declare ──┐
+
 function! plugins#far#declare() abort
   Plug 'brooth/far.vim'
 endfunction
+
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 " ──────────────────────────────────────────────────────────────── Configure ──┐
+
 function! plugins#far#configure() abort
-  let g:far#source = '<%= has_feature?(:neovim) ? :agnvim : :ag %>'
+  let g:far#source = 'ag'
   let g:far#limit = 1024
   let g:far#window_width = 96
   let g:far#window_height = 24
@@ -58,6 +61,7 @@ function! plugins#far#configure() abort
         \   '**/*.java',
         \ ]
 endfunction
+
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 

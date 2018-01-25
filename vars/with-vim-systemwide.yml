@@ -1,0 +1,14 @@
+# => inherits: with-vim, with-systemwide <= #
+
+
+vim:
+  base_dir:     /etc/vim
+  autoload_dir: /etc/vim/autoload
+  vimplug:
+    cache_dir: /etc/vim/cache/vimplug
+  template_dirs:
+    - /etc/vim/templates
+    - $HOME/.vim-templates # allow users to override
+
+
+# vim: set filetype=eruby.yaml :
