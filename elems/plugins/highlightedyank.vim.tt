@@ -41,7 +41,7 @@ endfunction
 " ──────────────────────────────────────────────────────────────── Configure ──┐
 function! plugins#highlightedyank#configure() abort
   let g:highlightedyank_highlight_duration=1200
-  hi! link HighlightedyankRegion Comment
+  hi! link HighlightedyankRegion Identifier
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 
