@@ -1,0 +1,4 @@
+# => inherits: kate, with-vim-systemwide <= #
+
+
+# vim: set filetype=eruby.yaml :
