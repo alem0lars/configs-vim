@@ -35,7 +35,7 @@
 " ────────────────────────────────────────────────────────────────── Declare ──┐
 
 function! plugins#langs#graphql#declare() abort
-  Plug 'alem0lars/vim-graphql'
+  Plug 'jparise/vim-graphql'
 endfunction
 
 " ─────────────────────────────────────────────────────────────────────────────┘
