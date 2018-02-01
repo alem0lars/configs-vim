@@ -99,6 +99,7 @@ call plugins#taskwarrior#declare()
 call plugins#langs#vimscript#declare()
 call plugins#langs#toml#declare()
 call plugins#langs#mediawiki#declare()
+call plugins#langs#graphql#declare()
 <% if has_feature? :c, :cpp, :objc, :objcpp, match: :any? %>
 call plugins#langs#c_based#declare()
 <% end %>
@@ -221,6 +222,7 @@ call plugins#taskwarrior#configure()
 <% end %>
 " ────────────────────────────────────────────── Langs ← Configure ← Plugins ──┤
 call plugins#langs#vimscript#configure()
+call plugins#langs#graphql#configure()
 <% if has_feature? :c, :cpp, :objc, :objcpp, match: :any? %>
 call plugins#langs#c_based#configure()
 <% end %>
