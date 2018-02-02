@@ -43,6 +43,9 @@ endfunction
 " ──────────────────────────────────────────────────────────────── Configure ──┐
 
 function! plugins#langs#graphql#configure() abort
+  " ──────────────────────────────────────────────────────── ALE ← Configure ──┤
+  if !exists('g:ale_fixers') | let g:ale_fixers = {} | endif
+  let g:ale_fixers['graphql'] = ['prettier']
 endfunction
 
 " ─────────────────────────────────────────────────────────────────────────────┘
