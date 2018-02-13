@@ -145,6 +145,9 @@ call plugins#langs#salt#declare()
 <% if has_feature? :xml %>
 call plugins#langs#xml#declare()
 <% end %>
+<% if has_feature? :markdown %>
+call plugins#langs#markdown#declare()
+<% end %>
 " ──────────────────────────────────────────────── Shell ← Declare ← Plugins ──┤
 <% if has_feature? :neovim %>
 call plugins#iron#declare()
@@ -260,6 +263,9 @@ call plugins#langs#salt#configure()
 <% end %>
 <% if has_feature? :xml %>
 call plugins#langs#xml#configure()
+<% end %>
+<% if has_feature? :markdown %>
+call plugins#langs#markdown#configure()
 <% end %>
 " ────────────────────────────────────────────── Shell ← Configure ← Plugins ──┤
 <% if has_feature? :neovim %>

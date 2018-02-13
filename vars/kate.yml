@@ -1,4 +1,4 @@
-# => inherits: generic, with-user-alem0lars, with-tmux, with-zsh, with-taskwarrior <= #
+# => inherits: generic, with-user-alem0lars, with-tmux, with-zsh, with-taskwarrior, with-firefox <= #
 
 
 colorscheme:
@@ -35,6 +35,7 @@ features:
   - bro
   - salt
   - xml
+  - markdown
 #  - mono
 #  - go
   # Tools
