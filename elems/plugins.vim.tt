@@ -163,7 +163,6 @@ call plugins#fzf#declare()
 call plugins#far#declare()
 call plugins#grepper#declare()
 call plugins#eunuch#declare()
-call plugins#dirvish#declare()
 " ───────────────────────────────────────────────── Misc ← Declare ← Plugins ──┤
 call plugins#prettyprint#declare()
 " ─────────────────────────────────────────── Statusline ← Declare ← Plugins ──┤
@@ -277,7 +276,6 @@ call plugins#fzf#configure()
 call plugins#far#configure()
 call plugins#grepper#configure()
 call plugins#eunuch#configure()
-call plugins#dirvish#configure()
 " ─────────────────────────────────────────────── Misc ← Configure ← Plugins ──┤
 " ───────────────────────────────────────── Statusline ← Configure ← Plugins ──┤
 call plugins#airline#configure()

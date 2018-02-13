@@ -13,7 +13,9 @@ vim:
     cmd: openterm
   wiki:
     dirs:
-      - /data/notes/oracle
+      - path:   /data/notes/oracle
+        syntax: markdown
+        ext:    .md
 
 features:
   # Langs
