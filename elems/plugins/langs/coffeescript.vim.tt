@@ -1,7 +1,7 @@
 " ─────────────────────────────────────────────────────────────────────────────┐
 "                                                                              │
-" Name:    elems/plugins/langs/markdown.vim.tt                                 │
-" Summary: Configure plugins related to language: `markdown`.                  │
+" Name:    elems/plugins/langs/coffeescript.vim.tt                               │
+" Summary: Configure plugins related to language: `coffeescript`.                │
 "                                                                              │
 " Authors:                                                                     │
 "   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              │
@@ -29,29 +29,29 @@
 " See the License for the specific language governing permissions and          │
 " limitations under the License.                                               │
 "                                                                              │
-" ─────────────────────────────────────────────────────────────────────────────┤
-<% define_locals do
-  variable :web_browser
-end %>
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 
 " ────────────────────────────────────────────────────────────────── Declare ──┐
 
-function! plugins#langs#markdown#declare() abort
-  Plug 'JamshedVesuna/vim-markdown-preview'
+function! plugins#langs#coffeescript#declare() abort
+  Plug 'kchmck/vim-coffee-script'
 endfunction
 
 " ─────────────────────────────────────────────────────────────────────────────┘
 
 " ──────────────────────────────────────────────────────────────── Configure ──┐
 
-function! plugins#langs#markdown#configure() abort
-  " ─────────────────────────────────────── vim-markdown-preview ← Configure ──┤
-  let g:vim_markdown_preview_github=1
-  "let g:vim_markdown_preview_temp_file=1
-  "let g:vim_markdown_preview_toggle=3
-  let g:vim_markdown_preview_browser='<%= local! :web_browser %>'
+function! plugins#langs#coffeescript#configure() abort
+
+  " ──────────────────────────────────────────── `dasht` support ← Configure ──┤
+  <% if has_feature? :dasht %>
+  let g:dasht_filetype_docsets['javascript'] = ['^JavaScript$', '^NodeJS$', '^coffeescript$']
+  <% end %>
+  " ──────────────────────────────────────────────────────── ALE ← Configure ──┤
+  if !exists('g:ale_fixers') | let g:ale_fixers = {} | endif
+  let g:ale_fixers['coffeescript'] = ['prettier', 'eslint']
+
 endfunction
 
 " ─────────────────────────────────────────────────────────────────────────────┘

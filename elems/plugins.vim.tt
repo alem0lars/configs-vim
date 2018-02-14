@@ -121,6 +121,9 @@ call plugins#langs#javascript#declare()
 <% if has_feature? :typescript %>
 call plugins#langs#typescript#declare()
 <% end %>
+<% if has_feature? :coffeescript %>
+call plugins#langs#coffeescript#declare()
+<% end %>
 <% if has_feature? :powershell %>
 call plugins#langs#powershell#declare()
 <% end %>
@@ -245,6 +248,9 @@ call plugins#langs#javascript#configure()
 <% end %>
 <% if has_feature? :typescript %>
 call plugins#langs#typescript#configure()
+<% end %>
+<% if has_feature? :coffeescript %>
+call plugins#langs#coffeescript#configure()
 <% end %>
 <% if has_feature? :powershell %>
 call plugins#langs#powershell#configure()

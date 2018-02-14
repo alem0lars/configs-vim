@@ -27,6 +27,7 @@ features:
   - python
   - javascript
   - typescript
+  - coffeescript
   - tex
   - plantuml
   - haskell
