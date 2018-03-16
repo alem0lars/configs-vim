@@ -30,6 +30,7 @@
 "                                                                              │
 " ─────────────────────────────────────────────────────────────────────────────┘
 
+
 " ──────────────────────────────────────────────────────────────────── Rules ──┐
 " With both 'ignorecase' and 'smartcase' turned on, a search is
 " case-insensitive if you enter the search string in all lower case. However,
@@ -48,5 +49,6 @@ nnoremap <silent> <Leader>/ :nohlsearch<CR>
 " //: Search the selected text (in visual mode).
 vnoremap // y/<C-R>"<CR>
 " ─────────────────────────────────────────────────────────────────────────────┘
+
 
 " vim: set filetype=eruby.vim :

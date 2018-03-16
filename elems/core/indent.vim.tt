@@ -57,7 +57,7 @@ set softtabstop=<%= local! :indent_size %>
 set shiftwidth=<%= local! :indent_size %>
 " ──────────────────────────────────────────────────────────────────── Sizes ──┤
 " Allow cursor to go to invalid places.
-set virtualedit=all
+" set virtualedit=all
 " ──────────────────────────────────────────────────── Whitespaces Highlight ──┤
 " Highlight special whitespaces.
 set list

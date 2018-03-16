@@ -48,8 +48,8 @@ augroup END
 
 " For conceal markers.
 if has('conceal')
-  set conceallevel=3
-  set concealcursor=
+  set conceallevel=1
+  set concealcursor=v
 endif
 
 
