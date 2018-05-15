@@ -1,4 +1,4 @@
-# => inherits: generic, with-user-alem0lars, with-tmux, with-zsh, with-taskwarrior, with-firefox <= #
+# => inherits: generic, with-user-alem0lars, with-tmux, with-zsh, with-chromium <= #
 
 
 colorscheme:
