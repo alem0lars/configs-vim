@@ -45,13 +45,13 @@ endfunction
 
 " ──────────────────────────────────────────────────────────── Configuration ──┐
 function! plugins#tcomment#configure() abort
-  if !exists('g:tcommentOptions')
-    let g:tcommentOptions = {}
+  if !exists('g:tcomment#options')
+    let g:tcomment#options = {}
   endif
   " Indent uncommented lines.
-  let g:tcommentOptions.postprocess_uncomment = 'norm! %sgg=%sgg'
+  let g:tcomment#options.postprocess_uncomment = 'norm! %sgg=%sgg'
   " Always strip trailing whitespace.
-  let g:tcommentOptions.strip_whitespace = 2
+  let g:tcomment#options.strip_whitespace = 2
 endfunction
 " ─────────────────────────────────────────────────────────────────────────────┘
 
